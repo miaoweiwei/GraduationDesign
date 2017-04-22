@@ -15,6 +15,7 @@ using GraduationDesignManagement.Game.GluttonousSnake;
 using GraduationDesignManagement.Properties;
 using GraduationDesignManagement.Views;
 using log4net.Config;
+using SumscopeAddIn.Views;
 using Excel=Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Image = System.Drawing.Image;
@@ -87,13 +88,33 @@ namespace GraduationDesignManagement
         }
 
         #endregion
-
-
+        
         #region 毕设系统管理
 
         /// <summary> 开启毕业设计 </summary>
         public void btnopenGD_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
+            //获取<最优报价>第一步窗体和CTP
+            //var frmBestPrice = new BestPrice();
+            //CustomTaskPane taskPaneBestPrice = CustomTaskPaneFactory.CreateCustomTaskPane(frmBestPrice, "最优报价");
+            //taskPaneBestPrice.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom;
+            //taskPaneBestPrice.Height = 270;
+            //CustomTaskPaneList.Add(taskPaneBestPrice);
+            //taskPaneBestPrice.Visible = true;
+
+
+
+
+
+            StartGraduationDesignFrm startGraduationDesignFrm = new StartGraduationDesignFrm();
+            var startGraduationDesignPane = CustomTaskPaneFactory.CreateCustomTaskPane(startGraduationDesignFrm, "贪吃蛇");
+            //snakeControlTaskPane.Width = 270;
+            startGraduationDesignPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在右边弹出
+
+            CustomTaskPaneList.Add(startGraduationDesignPane);
+            startGraduationDesignPane.Visible = true;
+
 
         }
         /// <summary> 毕设日程设定 </summary>

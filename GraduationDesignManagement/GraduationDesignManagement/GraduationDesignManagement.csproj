@@ -123,6 +123,15 @@
     <Compile Include="Views\LogInFrm.designer.cs">
       <DependentUpon>LogInFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MyListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\StartGraduationDesignFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\StartGraduationDesignFrm.Designer.cs">
+      <DependentUpon>StartGraduationDesignFrm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="GraduationDesignManagement-AddIn.dna">
@@ -190,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LogInFrm.resx">
       <DependentUpon>LogInFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StartGraduationDesignFrm.resx">
+      <DependentUpon>StartGraduationDesignFrm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
