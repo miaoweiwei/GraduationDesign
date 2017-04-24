@@ -88,6 +88,8 @@
     <Compile Include="Common\ServerHelper.cs" />
     <Compile Include="Common\XmlUtil.cs" />
     <Compile Include="Dictionary\AddInDictionary.cs" />
+    <Compile Include="EnumClass\PleaType.cs" />
+    <Compile Include="EnumClass\UserTypeInfo.cs" />
     <Compile Include="Game\Enum.cs" />
     <Compile Include="Game\ExcelDisplay.cs" />
     <Compile Include="Game\ExcelSet.cs" />
@@ -111,6 +113,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RibbonMenu.cs" />
+    <Compile Include="Views\ChooseTearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ChooseTearch.Designer.cs">
+      <DependentUpon>ChooseTearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FrmVersion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,11 +134,17 @@
     <Compile Include="Views\MyListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Views\StartGraduationDesignFrm.cs">
+    <Compile Include="Views\ChooseStudent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\StartGraduationDesignFrm.Designer.cs">
-      <DependentUpon>StartGraduationDesignFrm.cs</DependentUpon>
+    <Compile Include="Views\ChooseStudent.Designer.cs">
+      <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SetSchedule.Designer.cs">
+      <DependentUpon>SetSchedule.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -194,14 +208,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChooseTearch.resx">
+      <DependentUpon>ChooseTearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FrmVersion.resx">
       <DependentUpon>FrmVersion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LogInFrm.resx">
       <DependentUpon>LogInFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\StartGraduationDesignFrm.resx">
-      <DependentUpon>StartGraduationDesignFrm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ChooseStudent.resx">
+      <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SetSchedule.resx">
+      <DependentUpon>SetSchedule.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

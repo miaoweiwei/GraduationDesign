@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using GraduationDesignManagement.Common;
+using GraduationDesignManagement.Enum;
 using GraduationDesignManagement.MysqlData;
 using Newtonsoft.Json;
 
@@ -10,6 +12,8 @@ namespace GraduationDesignManagement.BusinessServices
 {
     class LogonBusinessService
     {
+        private DataQuery _dataQuery = new DataQuery();
+
         /// <summary> 登录状态 </summary>
         public bool IsAddInLogon { get; private set; }
         /// <summary> 老师 学生 密码错误 不存在用户 </summary>
@@ -19,10 +23,13 @@ namespace GraduationDesignManagement.BusinessServices
         public string UserId;
         /// <summary> 用户名 </summary>
         public string UserName;
+        /// <summary> 用户名 </summary>
+        public object UserObj;
+        /// <summary> 用户名对应的系 系里的所有班级 </summary>
+        public List<string> ClassList;
+
         /// <summary> 保存用户的权限列表 </summary>
         public Dictionary<string, bool> AuthDic =new Dictionary<string, bool>();
-
-        private DataQuery _dataQuery = new DataQuery();
         
         #region 单例
 
@@ -57,7 +64,9 @@ namespace GraduationDesignManagement.BusinessServices
                 UserId = user;
                 IsAddInLogon = true;
                 UserTypeInfo = userTypeInfo;
-                GetAuthList();
+                UserObj = GetUserInfo(user, userTypeInfo);
+                ClassList = GetDepartmentClass(userTypeInfo,UserId);
+                AuthDic =GetAuthList(UserObj, userTypeInfo);
             }
             else
             {
@@ -74,35 +83,58 @@ namespace GraduationDesignManagement.BusinessServices
         {
             UserId = "";
             AuthDic.Clear();
+            UserObj = null;
             IsAddInLogon = false;
         }
 
-
         /// <summary>
-        /// 获得用户权限
+        /// 获取用户信息
         /// </summary>
-        private void GetAuthList()
+        /// <param name="userId"></param>
+        /// <param name="userType"></param>
+        /// <returns></returns>
+        private object GetUserInfo(string userId,UserTypeInfo userType)
         {
-            if (!IsAddInLogon || string.IsNullOrEmpty(UserId))
-                return;
+            object obj = null;
             DataRow dataRow = null;
             switch (UserTypeInfo)
             {
                 case UserTypeInfo.Teacher:
                     dataRow = _dataQuery.GetTeacherDataRow(UserId);
-                    Teacher teacher = _dataQuery.DataRowToObject<Teacher>(dataRow);
-                    if (string.IsNullOrEmpty(teacher.Teachername))
-                        UserName = teacher.Teachername;
-                    AuthDic= GetTeacherAuth(teacher);
+                    obj = _dataQuery.DataRowToObject<Teacher>(dataRow);
                     break;
                 case UserTypeInfo.Student:
                     dataRow = _dataQuery.GetStudentDataRow(UserId);
-                    Student student = _dataQuery.DataRowToObject<Student>(dataRow);
-                    if (string.IsNullOrEmpty(student.Studentname))
-                        UserName = student.Studentname;
-                    AuthDic = GetStudentAuth(student);
+                    obj = _dataQuery.DataRowToObject<Student>(dataRow);
                     break;
             }
+            return obj;
+        }
+        
+        /// <summary>
+        /// 获得用户权限
+        /// </summary>
+        private Dictionary<string,bool> GetAuthList(object obj, UserTypeInfo userType)
+        {
+            Dictionary < string, bool> dictionary=new Dictionary<string, bool>();
+            if (!IsAddInLogon || (userType !=UserTypeInfo.Student && userType != UserTypeInfo.Teacher))
+                return dictionary;
+            switch (UserTypeInfo)
+            {
+                case UserTypeInfo.Teacher:
+                    Teacher teacher = (Teacher) obj;
+                    if (!string.IsNullOrEmpty(teacher.Teachername))
+                        UserName = teacher.Teachername;
+                    dictionary = GetTeacherAuth(teacher);
+                    break;
+                case UserTypeInfo.Student:
+                    Student student = (Student) obj;
+                    if (string.IsNullOrEmpty(student.Studentname))
+                        UserName = student.Studentname;
+                    dictionary = GetStudentAuth(student);
+                    break;
+            }
+            return dictionary;
         }
 
         /// <summary>
@@ -118,11 +150,12 @@ namespace GraduationDesignManagement.BusinessServices
                 dic = new Dictionary<string, bool>()
                 {
                     {"groupSystemManage", true}, //毕设系统管理group
-                    {"btnShcedule", false}, //毕设日程设定
-                    {"btnCandidateMentor", false}, //选择毕设候选导师
-                    {"btnCandidateStudent", false}, //选择毕设候选学生
+                    {"btnShcedule", true}, //毕设日程设定
+                    {"btnCandidateMentor", true}, //选择毕设候选导师
+                    {"btnCandidateStudent", true}, //选择毕设候选学生
 
                     {"groupManagement", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设管理group
+                    {"groupStudent", false}, //我的毕业设计group
 
                     {"btnBeginReply", true}, //开题
                     {"btnMiddleReply", true}, //中期
@@ -141,14 +174,15 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateMentor", false}, //选择毕设候选导师
                     {"btnCandidateStudent", false}, //选择毕设候选学生
 
-                    {"groupManagement", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设管理group
+                    {"groupManagement", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设管理group
+                    {"groupStudent", false}, //我的毕业设计group
 
-                    {"btnBeginReply", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //开题
-                    {"btnMiddleReply", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //中期
-                    {"btnEndReply", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //结题
+                    {"btnBeginReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //开题
+                    {"btnMiddleReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //中期
+                    {"btnEndReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //结题
 
-                    {"btnScorestSort", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设成绩分析
-                    {"btnScorestChart", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //图表
+                    {"btnScorestSort", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设成绩分析
+                    {"btnScorestChart", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //图表
                 };
             }
             return dic;
@@ -169,32 +203,43 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateMentor", false}, //选择毕设候选导师
                     {"btnCandidateStudent", false}, //选择毕设候选学生
 
-                    {"groupManagement", (string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //毕设管理group
+                    {"groupManagement", false}, //毕设管理group
+                    {"groupStudent", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //我的毕业设计group
 
-                    {"btnBeginReply", (string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //开题
-                    {"btnMiddleReply", (string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //中期
-                    {"btnEndReply", (string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //结题
+                    {"btnBeginReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //开题
+                    {"btnMiddleReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //中期
+                    {"btnEndReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //结题
 
-                    {"btnScorestSort", true}, //毕设成绩分析
-                    {"btnScorestChart", true}, //图表
+                    {"btnScorestSort", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //毕设成绩分析
+                    {"btnScorestChart", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //图表
                 };
             return dic;
         }
 
         /*******************************************数据解析************************************************/
+
         /// <summary>
-        /// 解析数据库返回的用户信息
+        /// 获取用户所在系的班级
         /// </summary>
-        /// <param name="dataRow"> DataRow </param>
-        /// <returns> 返回Dictionary&lt;string, string&gt; </returns>
-        private Dictionary<string, string> GetStudentInfo( DataRow dataRow)
+        /// <returns></returns>
+        public List<string> GetDepartmentClass(UserTypeInfo userType,string userId)
         {
-            Dictionary<string, string> dictionary=new Dictionary<string, string>();
-            if (dataRow==null || dataRow.Table.Columns.Count<=0)
-                return dictionary;
-            foreach (DataColumn dataColumn in dataRow.Table.Columns)
-                dictionary.Add(dataColumn.ColumnName, dataRow[dataColumn.ColumnName].ToString());
-            return dictionary;
+            List<string> classList=new List<string>();
+            if (!IsAddInLogon || string.IsNullOrEmpty(userId))
+                return classList;
+            if (userType!=UserTypeInfo.Student && userType!=UserTypeInfo.Teacher)
+                return classList;
+
+            DataTable dataTable = null;
+            dataTable = _dataQuery.GetClassDataTable(userId,userType);
+
+            if (dataTable == null || dataTable.Rows.Count <= 0)
+                return classList;
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                classList.Add(dataRow[0].ToString());
+            }
+            return classList;
         }
     }
 }

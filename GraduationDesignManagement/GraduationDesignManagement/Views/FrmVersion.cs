@@ -91,10 +91,10 @@ namespace GraduationDesignManagement.Views
                 }
                 else
                 {
-                    MessageBox.Show("无最新版本");
+                    MessageBox.Show(@"无最新版本");
                 }
             }
-            catch (Exception ee)
+            catch 
             {
                 MessageBox.Show(@"检测更新失败");
             }

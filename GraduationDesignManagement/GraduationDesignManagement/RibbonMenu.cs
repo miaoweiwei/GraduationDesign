@@ -91,46 +91,48 @@ namespace GraduationDesignManagement
         
         #region 毕设系统管理
 
-        /// <summary> 开启毕业设计 </summary>
-        public void btnopenGD_Click(IRibbonControl control)
-        {
-            CloseVisibleCtp();
-            //获取<最优报价>第一步窗体和CTP
-            //var frmBestPrice = new BestPrice();
-            //CustomTaskPane taskPaneBestPrice = CustomTaskPaneFactory.CreateCustomTaskPane(frmBestPrice, "最优报价");
-            //taskPaneBestPrice.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom;
-            //taskPaneBestPrice.Height = 270;
-            //CustomTaskPaneList.Add(taskPaneBestPrice);
-            //taskPaneBestPrice.Visible = true;
-
-
-
-
-
-            StartGraduationDesignFrm startGraduationDesignFrm = new StartGraduationDesignFrm();
-            var startGraduationDesignPane = CustomTaskPaneFactory.CreateCustomTaskPane(startGraduationDesignFrm, "贪吃蛇");
-            //snakeControlTaskPane.Width = 270;
-            startGraduationDesignPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在右边弹出
-
-            CustomTaskPaneList.Add(startGraduationDesignPane);
-            startGraduationDesignPane.Visible = true;
-
-
-        }
         /// <summary> 毕设日程设定 </summary>
         public void btnShcedule_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
 
+            SetSchedule setSchedule = new SetSchedule();
+            CustomTaskPane setSchedulePane = CustomTaskPaneFactory.CreateCustomTaskPane(setSchedule, "选择老师");
+            setSchedulePane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+            
+            CustomTaskPaneList.Add(setSchedulePane);
+            //传递CTP
+            setSchedule.TaskPaneSetSchedule = setSchedulePane;
+
+            setSchedulePane.Visible = true;
         }
         /// <summary> 选择毕设候选导师 </summary>
         public void btnCandidateMentor_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
 
+            ChooseTearch chooseTearch = new ChooseTearch();
+            var chooseTearchPane = CustomTaskPaneFactory.CreateCustomTaskPane(chooseTearch, "选择老师");
+            chooseTearchPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+
+            CustomTaskPaneList.Add(chooseTearchPane);
+            //传递CTP
+            chooseTearch.TaskPaneChooseTearch = chooseTearchPane;
+            chooseTearchPane.Visible = true;
         }
         /// <summary> 选择毕设候选学生 </summary>
         public void btnCandidateStudent_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
 
+            ChooseStudent chooseStudent = new ChooseStudent();
+            var chooseStudentPane = CustomTaskPaneFactory.CreateCustomTaskPane(chooseStudent, "选择学生");
+            chooseStudentPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+
+            CustomTaskPaneList.Add(chooseStudentPane);
+            //传递CTP
+            chooseStudent.TaskPaneChooseStudent = chooseStudentPane;
+            chooseStudentPane.Visible = true;
         }
 
         #endregion
@@ -402,7 +404,6 @@ namespace GraduationDesignManagement
                 case "btnCandidateMentor":  //选择毕设候选导师
                     return _isbtnCandidateMentor;
                 case "btnCandidateStudent": //选择毕设候选学生
-
                     return _isbtnCandidateStudent;
                 case "groupManagement":     //毕设管理
                     return _isgroupManagement;

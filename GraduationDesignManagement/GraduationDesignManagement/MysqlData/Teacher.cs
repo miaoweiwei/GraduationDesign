@@ -13,7 +13,7 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 教师ID
         /// </summary>
-        public int Teacherid { get; set; }
+        public string Teacherid { get; set; }
         /// <summary>
         /// 教师名字
         /// </summary>

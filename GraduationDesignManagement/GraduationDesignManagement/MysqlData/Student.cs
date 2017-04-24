@@ -18,7 +18,7 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 学生班级
         /// </summary>
-        public string Studentclass { get; set; }
+        public string Class { get; set; }
         /// <summary>
         /// 是否可以参加毕业设计
         /// </summary>

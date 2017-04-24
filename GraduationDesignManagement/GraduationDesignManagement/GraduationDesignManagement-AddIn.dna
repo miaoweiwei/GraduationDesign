@@ -44,7 +44,6 @@
             
             <!--毕设系统-->
             <group id="groupSystemManage" label="毕设系统管理" getVisible="GetControlsVisible">
-              <button id ="btnopenGD" onAction ="btnopenGD_Click" size="large" label="开启毕业设计"/>
               <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" getEnabled="GetControlsVisible"/>
               <button id ="btnCandidateMentor" onAction="btnCandidateMentor_Click" size="large" label="选择毕设候选导师" getEnabled="GetControlsVisible"/>
               <button id ="btnCandidateStudent" onAction="btnCandidateStudent_Click" size="large" label="选择毕设候选学生" getEnabled="GetControlsVisible"/>

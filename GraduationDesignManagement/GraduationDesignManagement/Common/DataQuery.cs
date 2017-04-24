@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using GraduationDesignManagement.Common;
-using GraduationDesignManagement.MysqlData;
+using GraduationDesignManagement.Enum;
 using MySql.Data.MySqlClient;
+using DataTable = System.Data.DataTable;
 
-namespace GraduationDesignManagement.BusinessServices
+namespace GraduationDesignManagement.Common
 {
     public class DataQuery
     {
@@ -91,14 +88,61 @@ namespace GraduationDesignManagement.BusinessServices
             var dataRow = _mySqlDataHelper.ExecuteDataRow(sql, param);
             return dataRow;
         }
-
+        /// <summary>
+        /// 获取学学生信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public DataRow GetStudentDataRow(string userId)
         {
             string sql = "SELECT * FROM student_table WHERE studentid=?User;";
-            MySqlParameter[] param = new MySqlParameter[] { new MySqlParameter("User", userId), };
+            MySqlParameter[] param = { new MySqlParameter("User", userId), };
             var dataRow = _mySqlDataHelper.ExecuteDataRow(sql, param);
             return dataRow;
         }
+
+        /// <summary>
+        /// 获取用户对应的系 系里的班级
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="userType">用户类型</param>
+        /// <returns></returns>
+        public DataTable GetClassDataTable(string userId ,UserTypeInfo userType)
+        {
+            string sqlSt = "";
+            switch (userType)
+            {
+                case UserTypeInfo.Teacher:
+                    sqlSt = "SELECT d.class FROM teacher_table t, department_table d WHERE t.teacherid=?User And t.department=d.departmentname;";
+                    break;
+                case UserTypeInfo.Student:
+                    sqlSt =
+                        "SELECT class FROM department_table " +
+                        "WHERE departmentname=(" +
+                        "SELECT d.departmentname FROM student_table s , department_table d " +
+                        "WHERE s.studentid=?User AND s.class=d.class" +
+                        ");";
+                    break;
+            }
+            MySqlParameter[] param = { new MySqlParameter("User", userId), };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            return dataTable;
+        }
+
+        /// <summary>
+        /// 获取毕设日程
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetScheduleDataTable()
+        {
+            DataTable dataTable = new DataTable();
+            string sqlSt = "SELECT datetype,begindate,enddate,matter FROM schedule_table;";
+            MySqlParameter[] param = {};
+             dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            return dataTable;
+        }
+
+
 
         /// <summary>
         /// 把datatable转化为指定的对象List
@@ -154,25 +198,5 @@ namespace GraduationDesignManagement.BusinessServices
             }
             return t;
         }
-    }
-
-    public enum UserTypeInfo
-    {
-        /// <summary>
-        /// 学生
-        /// </summary>
-        Student,
-        /// <summary>
-        /// 教师
-        /// </summary>
-        Teacher,
-        /// <summary>
-        /// 不存在该用户
-        /// </summary>
-        NotExist,
-        /// <summary>
-        /// 密码错误
-        /// </summary>
-        PasswordError
     }
 }

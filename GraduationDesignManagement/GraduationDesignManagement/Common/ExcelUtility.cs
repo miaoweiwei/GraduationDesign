@@ -619,7 +619,7 @@ namespace GraduationDesignManagement.Common
                     returnValue = new DateTime(year, month, day);
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
