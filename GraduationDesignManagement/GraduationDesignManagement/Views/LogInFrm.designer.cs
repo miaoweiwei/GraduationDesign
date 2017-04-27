@@ -86,7 +86,7 @@
             // 
             // labInfo
             // 
-            this.labInfo.Location = new System.Drawing.Point(122, 128);
+            this.labInfo.Location = new System.Drawing.Point(125, 128);
             this.labInfo.Name = "labInfo";
             this.labInfo.Size = new System.Drawing.Size(233, 29);
             this.labInfo.TabIndex = 4;
@@ -117,24 +117,26 @@
             // 
             // txbUserId
             // 
-            this.txbUserId.Location = new System.Drawing.Point(214, 45);
+            this.txbUserId.Location = new System.Drawing.Point(217, 45);
             this.txbUserId.Name = "txbUserId";
             this.txbUserId.Size = new System.Drawing.Size(141, 21);
             this.txbUserId.TabIndex = 2;
+            this.txbUserId.Text = "2017006";
             // 
             // txbUserPassword
             // 
-            this.txbUserPassword.Location = new System.Drawing.Point(214, 92);
+            this.txbUserPassword.Location = new System.Drawing.Point(217, 92);
             this.txbUserPassword.Name = "txbUserPassword";
             this.txbUserPassword.PasswordChar = '*';
             this.txbUserPassword.Size = new System.Drawing.Size(141, 21);
             this.txbUserPassword.TabIndex = 2;
+            this.txbUserPassword.Text = "2017006";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(118, 93);
+            this.label3.Location = new System.Drawing.Point(121, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 19);
             this.label3.TabIndex = 1;
@@ -144,7 +146,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(118, 46);
+            this.label2.Location = new System.Drawing.Point(121, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 19);
             this.label2.TabIndex = 0;

@@ -11,7 +11,7 @@ namespace GraduationDesignManagement.Common
 {
     public class DataQuery
     {
-        MySqlDataHelper  _mySqlDataHelper=new MySqlDataHelper(InitConfig.MysqlConnectSt);
+        MySqlDataHelper _mySqlDataHelper=new MySqlDataHelper(InitConfig.MysqlConnectSt);
 
         /// <summary>
         /// 返回登录是否成功查询用户是否存在 并 返回返回用户类型
@@ -220,6 +220,26 @@ namespace GraduationDesignManagement.Common
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt,param);
         }
 
+        /// <summary>
+        /// 根据班级获取学生list
+        /// </summary>
+        /// <returns></returns>
+        public List<Student> GetStudentList(List<string>clasList )
+        {
+            List<Student> students=new List<Student>();
+            if (clasList == null || clasList.Count <= 0)
+                return students;
+            string sqlSt = "SELECT * FROM student_table WHERE class in (";
+            foreach (string s in clasList)
+            {
+                sqlSt = sqlSt +"'"+ s + "',";
+            }
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ")";
+            MySqlParameter[] param = { };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            students = DataTableToList<Student>(dataTable);
+            return students;
+        }
 
         /// <summary>
         /// 把datatable转化为指定的对象List

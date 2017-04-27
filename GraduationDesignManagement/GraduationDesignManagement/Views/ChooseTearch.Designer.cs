@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labSelect = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.mlvSelect = new SumscopeAddIn.Views.MyListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,7 +60,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labSelect = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +95,16 @@
             this.panel1.Size = new System.Drawing.Size(1227, 215);
             this.panel1.TabIndex = 2;
             // 
+            // labSelect
+            // 
+            this.labSelect.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.labSelect.ForeColor = System.Drawing.Color.Black;
+            this.labSelect.Location = new System.Drawing.Point(916, 170);
+            this.labSelect.Name = "labSelect";
+            this.labSelect.Size = new System.Drawing.Size(138, 23);
+            this.labSelect.TabIndex = 131;
+            this.labSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.White;
@@ -119,6 +129,7 @@
             this.mlvSelect.FullRowSelect = true;
             this.mlvSelect.GridLines = true;
             this.mlvSelect.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.mlvSelect.HideSelection = false;
             this.mlvSelect.Location = new System.Drawing.Point(913, 32);
             this.mlvSelect.Name = "mlvSelect";
             this.mlvSelect.Size = new System.Drawing.Size(307, 126);
@@ -315,6 +326,7 @@
             this.mlvUp.FullRowSelect = true;
             this.mlvUp.GridLines = true;
             this.mlvUp.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.mlvUp.HideSelection = false;
             this.mlvUp.Location = new System.Drawing.Point(222, 3);
             this.mlvUp.Name = "mlvUp";
             this.mlvUp.Size = new System.Drawing.Size(301, 156);
@@ -408,6 +420,7 @@
             this.mlvDown.FullRowSelect = true;
             this.mlvDown.GridLines = true;
             this.mlvDown.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.mlvDown.HideSelection = false;
             this.mlvDown.Location = new System.Drawing.Point(595, 3);
             this.mlvDown.Name = "mlvDown";
             this.mlvDown.Size = new System.Drawing.Size(307, 156);
@@ -431,16 +444,6 @@
             // 
             this.columnHeader6.Text = "院系";
             this.columnHeader6.Width = 140;
-            // 
-            // labSelect
-            // 
-            this.labSelect.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.labSelect.ForeColor = System.Drawing.Color.Black;
-            this.labSelect.Location = new System.Drawing.Point(916, 170);
-            this.labSelect.Name = "labSelect";
-            this.labSelect.Size = new System.Drawing.Size(138, 23);
-            this.labSelect.TabIndex = 131;
-            this.labSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChooseTearch
             // 

@@ -30,28 +30,29 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBatchImp = new System.Windows.Forms.Button();
-            this.lblChooseNum = new System.Windows.Forms.Label();
+            this.labRightNum = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblFilterNum = new System.Windows.Forms.Label();
+            this.labLeftNum = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chbxAll = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.cmbOk = new System.Windows.Forms.ComboBox();
-            this.mlvClass = new SumscopeAddIn.Views.MyListView();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.mlvUp = new SumscopeAddIn.Views.MyListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAllUp = new System.Windows.Forms.Button();
             this.btnAllDown = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
-            this.mlvDown = new SumscopeAddIn.Views.MyListView();
+            this.mlvClass = new SumscopeAddIn.Views.MyListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mlvLeft = new SumscopeAddIn.Views.MyListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mlvReft = new SumscopeAddIn.Views.MyListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,7 +64,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(481, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(438, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(2, 185);
             this.pictureBox1.TabIndex = 124;
@@ -71,57 +72,57 @@
             // 
             // btnBatchImp
             // 
-            this.btnBatchImp.BackColor = System.Drawing.Color.Black;
+            this.btnBatchImp.BackColor = System.Drawing.SystemColors.Control;
             this.btnBatchImp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBatchImp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBatchImp.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBatchImp.ForeColor = System.Drawing.Color.Orange;
-            this.btnBatchImp.Location = new System.Drawing.Point(100, 86);
+            this.btnBatchImp.ForeColor = System.Drawing.Color.Black;
+            this.btnBatchImp.Location = new System.Drawing.Point(90, 86);
             this.btnBatchImp.Name = "btnBatchImp";
             this.btnBatchImp.Size = new System.Drawing.Size(131, 28);
             this.btnBatchImp.TabIndex = 53;
             this.btnBatchImp.Text = "批量导入";
             this.btnBatchImp.UseVisualStyleBackColor = false;
             // 
-            // lblChooseNum
+            // labRightNum
             // 
-            this.lblChooseNum.AutoSize = true;
-            this.lblChooseNum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.lblChooseNum.ForeColor = System.Drawing.Color.Black;
-            this.lblChooseNum.Location = new System.Drawing.Point(939, 176);
-            this.lblChooseNum.Name = "lblChooseNum";
-            this.lblChooseNum.Size = new System.Drawing.Size(12, 12);
-            this.lblChooseNum.TabIndex = 52;
-            this.lblChooseNum.Text = "0";
+            this.labRightNum.AutoSize = true;
+            this.labRightNum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.labRightNum.ForeColor = System.Drawing.Color.Black;
+            this.labRightNum.Location = new System.Drawing.Point(896, 176);
+            this.labRightNum.Name = "labRightNum";
+            this.labRightNum.Size = new System.Drawing.Size(12, 12);
+            this.labRightNum.TabIndex = 52;
+            this.labRightNum.Text = "0";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(850, 176);
+            this.label5.Location = new System.Drawing.Point(807, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 12);
             this.label5.TabIndex = 51;
             this.label5.Text = "已选中人数：";
             // 
-            // lblFilterNum
+            // labLeftNum
             // 
-            this.lblFilterNum.AutoSize = true;
-            this.lblFilterNum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
-            this.lblFilterNum.ForeColor = System.Drawing.Color.Black;
-            this.lblFilterNum.Location = new System.Drawing.Point(621, 177);
-            this.lblFilterNum.Name = "lblFilterNum";
-            this.lblFilterNum.Size = new System.Drawing.Size(12, 12);
-            this.lblFilterNum.TabIndex = 50;
-            this.lblFilterNum.Text = "0";
+            this.labLeftNum.AutoSize = true;
+            this.labLeftNum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
+            this.labLeftNum.ForeColor = System.Drawing.Color.Black;
+            this.labLeftNum.Location = new System.Drawing.Point(565, 177);
+            this.labLeftNum.Name = "labLeftNum";
+            this.labLeftNum.Size = new System.Drawing.Size(12, 12);
+            this.labLeftNum.TabIndex = 50;
+            this.labLeftNum.Text = "0";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(493, 177);
+            this.label1.Location = new System.Drawing.Point(450, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 12);
             this.label1.TabIndex = 49;
@@ -131,7 +132,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(31, 41);
+            this.label2.Location = new System.Drawing.Point(21, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 28);
             this.label2.TabIndex = 47;
@@ -141,7 +142,8 @@
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(108)))), ((int)(((byte)(75)))));
-            this.txtSearch.Location = new System.Drawing.Point(100, 45);
+            this.txtSearch.ForeColor = System.Drawing.Color.White;
+            this.txtSearch.Location = new System.Drawing.Point(90, 45);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(131, 21);
             this.txtSearch.TabIndex = 48;
@@ -152,6 +154,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.chbxAll);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.cmbOk);
@@ -159,27 +162,40 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnBatchImp);
-            this.panel1.Controls.Add(this.lblChooseNum);
+            this.panel1.Controls.Add(this.labRightNum);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.lblFilterNum);
+            this.panel1.Controls.Add(this.labLeftNum);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Controls.Add(this.mlvUp);
+            this.panel1.Controls.Add(this.mlvLeft);
             this.panel1.Controls.Add(this.btnAllUp);
             this.panel1.Controls.Add(this.btnAllDown);
             this.panel1.Controls.Add(this.btnUp);
             this.panel1.Controls.Add(this.btnDown);
-            this.panel1.Controls.Add(this.mlvDown);
+            this.panel1.Controls.Add(this.mlvReft);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1180, 215);
             this.panel1.TabIndex = 1;
             // 
+            // chbxAll
+            // 
+            this.chbxAll.BackColor = System.Drawing.Color.White;
+            this.chbxAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chbxAll.Location = new System.Drawing.Point(365, 6);
+            this.chbxAll.Name = "chbxAll";
+            this.chbxAll.Size = new System.Drawing.Size(48, 16);
+            this.chbxAll.TabIndex = 134;
+            this.chbxAll.Text = "全选";
+            this.chbxAll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chbxAll.UseVisualStyleBackColor = false;
+            this.chbxAll.CheckedChanged += new System.EventHandler(this.chbxAll_CheckedChanged);
+            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(1084, 171);
+            this.btnCancel.Location = new System.Drawing.Point(1041, 171);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 133;
@@ -189,7 +205,7 @@
             // btnOk
             // 
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(979, 171);
+            this.btnOk.Location = new System.Drawing.Point(936, 171);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(77, 23);
             this.btnOk.TabIndex = 132;
@@ -207,11 +223,76 @@
             "提交并导出",
             "提交",
             "导出"});
-            this.cmbOk.Location = new System.Drawing.Point(979, 171);
+            this.cmbOk.Location = new System.Drawing.Point(936, 171);
             this.cmbOk.Name = "cmbOk";
             this.cmbOk.Size = new System.Drawing.Size(95, 24);
             this.cmbOk.TabIndex = 131;
             this.cmbOk.SelectionChangeCommitted += new System.EventHandler(this.cmbOk_SelectionChangeCommitted);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
+            this.pictureBox2.Location = new System.Drawing.Point(239, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(2, 185);
+            this.pictureBox2.TabIndex = 127;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnAllUp
+            // 
+            this.btnAllUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAllUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAllUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllUp.ForeColor = System.Drawing.Color.Black;
+            this.btnAllUp.Location = new System.Drawing.Point(745, 134);
+            this.btnAllUp.Name = "btnAllUp";
+            this.btnAllUp.Size = new System.Drawing.Size(52, 25);
+            this.btnAllUp.TabIndex = 19;
+            this.btnAllUp.Text = "<<";
+            this.btnAllUp.UseVisualStyleBackColor = false;
+            this.btnAllUp.Click += new System.EventHandler(this.btnAllUp_Click);
+            // 
+            // btnAllDown
+            // 
+            this.btnAllDown.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAllDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAllDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllDown.ForeColor = System.Drawing.Color.Black;
+            this.btnAllDown.Location = new System.Drawing.Point(745, 88);
+            this.btnAllDown.Name = "btnAllDown";
+            this.btnAllDown.Size = new System.Drawing.Size(52, 25);
+            this.btnAllDown.TabIndex = 18;
+            this.btnAllDown.Text = ">>";
+            this.btnAllDown.UseVisualStyleBackColor = false;
+            this.btnAllDown.Click += new System.EventHandler(this.btnAllDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUp.ForeColor = System.Drawing.Color.Black;
+            this.btnUp.Location = new System.Drawing.Point(745, 45);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(52, 25);
+            this.btnUp.TabIndex = 17;
+            this.btnUp.Text = "<";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDown.ForeColor = System.Drawing.Color.Black;
+            this.btnDown.Location = new System.Drawing.Point(745, 4);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(52, 25);
+            this.btnDown.TabIndex = 16;
+            this.btnDown.Text = ">";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // mlvClass
             // 
@@ -225,47 +306,40 @@
             this.mlvClass.FullRowSelect = true;
             this.mlvClass.GridLines = true;
             this.mlvClass.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.mlvClass.Location = new System.Drawing.Point(296, 3);
+            this.mlvClass.Location = new System.Drawing.Point(253, 3);
             this.mlvClass.Name = "mlvClass";
             this.mlvClass.Size = new System.Drawing.Size(173, 183);
             this.mlvClass.TabIndex = 130;
             this.mlvClass.UseCompatibleStateImageBehavior = false;
             this.mlvClass.View = System.Windows.Forms.View.Details;
+            this.mlvClass.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.mlvClass_ItemChecked);
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "可选班级";
             this.columnHeader7.Width = 170;
             // 
-            // pictureBox2
+            // mlvLeft
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Black;
-            this.pictureBox2.Location = new System.Drawing.Point(282, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(2, 185);
-            this.pictureBox2.TabIndex = 127;
-            this.pictureBox2.TabStop = false;
-            // 
-            // mlvUp
-            // 
-            this.mlvUp.BackColor = System.Drawing.Color.DarkGray;
-            this.mlvUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mlvUp.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.mlvLeft.BackColor = System.Drawing.Color.DarkGray;
+            this.mlvLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mlvLeft.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.mlvUp.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.mlvUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(198)))), ((int)(((byte)(110)))));
-            this.mlvUp.FullRowSelect = true;
-            this.mlvUp.GridLines = true;
-            this.mlvUp.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.mlvUp.Location = new System.Drawing.Point(495, 3);
-            this.mlvUp.Name = "mlvUp";
-            this.mlvUp.Size = new System.Drawing.Size(281, 156);
-            this.mlvUp.TabIndex = 20;
-            this.mlvUp.UseCompatibleStateImageBehavior = false;
-            this.mlvUp.View = System.Windows.Forms.View.Details;
-            this.mlvUp.VirtualMode = true;
+            this.mlvLeft.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mlvLeft.ForeColor = System.Drawing.Color.Black;
+            this.mlvLeft.FullRowSelect = true;
+            this.mlvLeft.GridLines = true;
+            this.mlvLeft.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.mlvLeft.Location = new System.Drawing.Point(452, 3);
+            this.mlvLeft.Name = "mlvLeft";
+            this.mlvLeft.Size = new System.Drawing.Size(281, 156);
+            this.mlvLeft.TabIndex = 20;
+            this.mlvLeft.UseCompatibleStateImageBehavior = false;
+            this.mlvLeft.View = System.Windows.Forms.View.Details;
+            this.mlvLeft.VirtualMode = true;
+            this.mlvLeft.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.mlvLeft_RetrieveVirtualItem);
             // 
             // columnHeader1
             // 
@@ -274,88 +348,37 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "班级";
+            this.columnHeader2.Text = "姓名";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "姓名";
+            this.columnHeader3.Text = "班级";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 97;
             // 
-            // btnAllUp
+            // mlvReft
             // 
-            this.btnAllUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAllUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAllUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllUp.ForeColor = System.Drawing.Color.Black;
-            this.btnAllUp.Location = new System.Drawing.Point(788, 134);
-            this.btnAllUp.Name = "btnAllUp";
-            this.btnAllUp.Size = new System.Drawing.Size(52, 25);
-            this.btnAllUp.TabIndex = 19;
-            this.btnAllUp.Text = "<<";
-            this.btnAllUp.UseVisualStyleBackColor = false;
-            // 
-            // btnAllDown
-            // 
-            this.btnAllDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAllDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAllDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllDown.ForeColor = System.Drawing.Color.Black;
-            this.btnAllDown.Location = new System.Drawing.Point(788, 88);
-            this.btnAllDown.Name = "btnAllDown";
-            this.btnAllDown.Size = new System.Drawing.Size(52, 25);
-            this.btnAllDown.TabIndex = 18;
-            this.btnAllDown.Text = ">>";
-            this.btnAllDown.UseVisualStyleBackColor = false;
-            // 
-            // btnUp
-            // 
-            this.btnUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUp.ForeColor = System.Drawing.Color.Black;
-            this.btnUp.Location = new System.Drawing.Point(788, 45);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(52, 25);
-            this.btnUp.TabIndex = 17;
-            this.btnUp.Text = "<";
-            this.btnUp.UseVisualStyleBackColor = false;
-            // 
-            // btnDown
-            // 
-            this.btnDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDown.ForeColor = System.Drawing.Color.Black;
-            this.btnDown.Location = new System.Drawing.Point(788, 4);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(52, 25);
-            this.btnDown.TabIndex = 16;
-            this.btnDown.Text = ">";
-            this.btnDown.UseVisualStyleBackColor = false;
-            // 
-            // mlvDown
-            // 
-            this.mlvDown.BackColor = System.Drawing.Color.DarkGray;
-            this.mlvDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mlvDown.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.mlvReft.BackColor = System.Drawing.Color.DarkGray;
+            this.mlvReft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mlvReft.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-            this.mlvDown.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.mlvDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(198)))), ((int)(((byte)(110)))));
-            this.mlvDown.FullRowSelect = true;
-            this.mlvDown.GridLines = true;
-            this.mlvDown.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.mlvDown.Location = new System.Drawing.Point(852, 3);
-            this.mlvDown.Name = "mlvDown";
-            this.mlvDown.Size = new System.Drawing.Size(305, 156);
-            this.mlvDown.TabIndex = 15;
-            this.mlvDown.UseCompatibleStateImageBehavior = false;
-            this.mlvDown.View = System.Windows.Forms.View.Details;
-            this.mlvDown.VirtualMode = true;
+            this.mlvReft.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mlvReft.ForeColor = System.Drawing.Color.Black;
+            this.mlvReft.FullRowSelect = true;
+            this.mlvReft.GridLines = true;
+            this.mlvReft.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.mlvReft.Location = new System.Drawing.Point(809, 3);
+            this.mlvReft.Name = "mlvReft";
+            this.mlvReft.Size = new System.Drawing.Size(305, 156);
+            this.mlvReft.TabIndex = 15;
+            this.mlvReft.UseCompatibleStateImageBehavior = false;
+            this.mlvReft.View = System.Windows.Forms.View.Details;
+            this.mlvReft.VirtualMode = true;
+            this.mlvReft.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.mlvReft_RetrieveVirtualItem);
             // 
             // columnHeader4
             // 
@@ -364,13 +387,13 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "班级";
+            this.columnHeader5.Text = "姓名";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 100;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "姓名";
+            this.columnHeader6.Text = "班级";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
             // 
@@ -381,6 +404,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ChooseStudent";
             this.Size = new System.Drawing.Size(1180, 215);
+            this.Load += new System.EventHandler(this.ChooseStudent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -396,21 +420,21 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnBatchImp;
-        public System.Windows.Forms.Label lblChooseNum;
+        public System.Windows.Forms.Label labRightNum;
         private System.Windows.Forms.Label label5;
-        public System.Windows.Forms.Label lblFilterNum;
+        public System.Windows.Forms.Label labLeftNum;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Panel panel1;
-        public SumscopeAddIn.Views.MyListView mlvUp;
+        public SumscopeAddIn.Views.MyListView mlvLeft;
         private System.Windows.Forms.Button btnAllUp;
         private System.Windows.Forms.Button btnAllDown;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
-        public SumscopeAddIn.Views.MyListView mlvDown;
+        public SumscopeAddIn.Views.MyListView mlvReft;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.PictureBox pictureBox2;
         public SumscopeAddIn.Views.MyListView mlvClass;
@@ -418,5 +442,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.ComboBox cmbOk;
+        private System.Windows.Forms.CheckBox chbxAll;
     }
 }
