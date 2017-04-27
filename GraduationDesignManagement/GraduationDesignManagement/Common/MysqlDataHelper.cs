@@ -4,6 +4,8 @@ using System.Data;
  using System.IO;
 using System.Linq;
 using System.Text;
+ using System.Text.RegularExpressions;
+ using System.Threading;
  using System.Windows.Forms;
  using MySql.Data.MySqlClient;
 
@@ -276,6 +278,29 @@ namespace GraduationDesignManagement.Common
         {
             return BulkInsert(ConnectionString, table);
         }
+
+        /// <summary>
+        /// 分批次批量删除数据
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="batchSize">每批次删除记录行数</param>
+        /// <param name="interval">批次执行间隔(秒)</param>
+        public void BatchDelete(string sql, int batchSize = 1000, int interval = 1)
+        {
+            BatchDelete(ConnectionString, sql, batchSize, interval);
+        }
+
+        /// <summary>
+        /// 分批次批量更新数据
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="batchSize">每批次更新记录行数</param>
+        /// <param name="interval">批次执行间隔(秒)</param>
+        public void BatchUpdate(string sql, int batchSize = 1000, int interval = 1)
+        {
+            BatchUpdate(ConnectionString, sql, batchSize, interval);
+        }
+
 
         #endregion 批量操作
 
@@ -883,6 +908,73 @@ namespace GraduationDesignManagement.Common
             }
             File.Delete(tmpPath);
             return insertCount;
+        }
+
+        /// <summary>
+        /// 分批次批量删除数据
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="batchSize">每批次更新记录行数</param>
+        /// <param name="interval">批次执行间隔(秒)</param>
+        public static void BatchDelete(string connectionString, string sql, int batchSize = 1000, int interval = 1)
+        {
+            sql = sql.ToLower();
+            if (batchSize < 1000) batchSize = 1000;
+            if (interval < 1) interval = 1;
+            while (ExecuteScalar(connectionString, sql.Replace("delete", "select *")) != null)
+            {
+                ExecuteNonQuery(connectionString, CommandType.Text, sql.Replace("delete", string.Format("delete top ({0})", batchSize)));
+                System.Threading.Thread.Sleep(interval * 1000);
+            }
+        }
+
+        /// <summary>
+        /// 分批删除表
+        /// </summary>
+        /// <param name="connectionString">连接字符串</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="batchSize"每次删除的条数></param>
+        /// <param name="interval">每次删除间隔的时间</param>
+        public static void BatchDeleteByTableName(string connectionString, string tableName, int batchSize = 1000, int interval = 1)
+        {
+            try
+            {
+                if (batchSize < 1000) batchSize = 1000;
+                if (interval < 1) interval = 1;
+                string sqlSt = string.Format("SELECT * FROM {0};", tableName);
+                while (ExecuteScalar(connectionString, sqlSt) != null)
+                {
+                    ExecuteNonQuery(connectionString, CommandType.Text, string.Format("delete from {0} where 1=1 limit {1};", tableName, batchSize));
+                    Thread.Sleep(interval * 1000);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("BatchDeleteByTableName出错：" + exception.Message);
+            }
+        }
+        
+
+        /// <summary>
+        /// 分批次批量更新数据
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="batchSize">每批次更新记录行数</param>
+        /// <param name="interval">批次执行间隔(秒)</param>
+        public static void BatchUpdate(string connectionString, string sql, int batchSize = 1000, int interval = 1)
+        {
+            if (batchSize < 1000) batchSize = 1000;
+            if (interval < 1) interval = 1;
+            string existsSql = Regex.Replace(sql, @"[\w\s.=,']*from", "select top 1 1 from", RegexOptions.IgnoreCase);
+            existsSql = Regex.Replace(existsSql, @"set[\w\s.=,']* where", "where", RegexOptions.IgnoreCase);
+            existsSql = Regex.Replace(existsSql, @"update", "select top 1 1 from", RegexOptions.IgnoreCase);
+            while (ExecuteScalar<int>(connectionString, existsSql) != 0)
+            {
+                ExecuteNonQuery(connectionString, CommandType.Text, Regex.Replace(sql, "update", string.Format("update top ({0})", batchSize), RegexOptions.IgnoreCase));
+                System.Threading.Thread.Sleep(interval * 1000);
+            }
         }
 
         /// <summary>

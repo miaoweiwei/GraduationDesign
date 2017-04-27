@@ -13,11 +13,11 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 教师ID
         /// </summary>
-        public string Teacherid { get; set; }
+        public string TeacherId { get; set; }
         /// <summary>
         /// 教师名字
         /// </summary>
-        public string Teachername { get; set; }
+        public string TeacherName { get; set; }
         /// <summary>
         /// 职位
         /// </summary>
@@ -29,6 +29,6 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 是否允许做毕设导师
         /// </summary>
-        public string Iscan { get; set; }
+        public string IsCan { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using GraduationDesignManagement.Enum;
+using GraduationDesignManagement.MysqlData;
 using MySql.Data.MySqlClient;
 using DataTable = System.Data.DataTable;
 
@@ -118,9 +119,9 @@ namespace GraduationDesignManagement.Common
                 case UserTypeInfo.Student:
                     sqlSt =
                         "SELECT class FROM department_table " +
-                        "WHERE departmentname=(" +
-                        "SELECT d.departmentname FROM student_table s , department_table d " +
-                        "WHERE s.studentid=?User AND s.class=d.class" +
+                        "WHERE departmentname=( " +
+                        "SELECT d.dep artmentname FROM student_table s , department_table d " +
+                        "WHERE s.studentid=?User AND s.class=d.class " +
                         ");";
                     break;
             }
@@ -135,13 +136,89 @@ namespace GraduationDesignManagement.Common
         /// <returns></returns>
         public DataTable GetScheduleDataTable()
         {
-            DataTable dataTable = new DataTable();
             string sqlSt = "SELECT datetype,begindate,enddate,matter FROM schedule_table;";
             MySqlParameter[] param = {};
-             dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
             return dataTable;
         }
 
+        /// <summary>
+        /// 获取 系 名单List
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetDataTableDepartment()
+        {
+            string sqlSt = "SELECT * FROM department_table;";
+            MySqlParameter[] param = {};
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+
+            List<string> deparList=new List<string>();
+            if (dataTable != null && dataTable.Rows.Count>0)
+            {
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    if (!deparList.Contains(dataRow[1].ToString()))
+                        deparList.Add(dataRow[1].ToString());
+                }
+            }
+            return deparList;
+        }
+
+        /// <summary>
+        /// 获取老师List
+        /// </summary>
+        /// <returns></returns>
+        public List<Teacher> GeTeacherList()
+        {
+            List<Teacher> teacherList=new List<Teacher>();
+
+            //SELECT * FROM teacher_table;
+
+            string sqlSt = "SELECT * FROM teacher_table;";
+            MySqlParameter[] param = {};
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+
+            teacherList = DataTableToList<Teacher>(dataTable);
+            return teacherList;
+        }
+
+        /// <summary>
+        /// 获取老师所在系的 系里所有的老师
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public DataTable GetTeacherDataTable(string userId)
+        {
+            string sqlSt =
+                "SELECT * FROM teacher_table " +
+                "WHERE department = ( " +
+                "SELECT department FROM teacher_table " +
+                "WHERE teacherid = ?User )";
+            MySqlParameter[] param = { new MySqlParameter("User", userId), };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            return dataTable;
+        }
+
+        /// <summary>
+        /// 更新选择毕设老师的iscan状态返回更新行数
+        /// </summary>
+        /// <param name="teacherIdList"></param>
+        /// <param name="state">1表示设为导师 0或其他表示不是导师</param>
+        /// <returns></returns>
+        public int UpDataTeacherIsCan(List<string> teacherIdList, int state)
+        {
+            if (teacherIdList==null || teacherIdList.Count<=0)
+                return 0;
+
+            string sqlSt = "UPDATE teacher_table SET iscan = "+ state + " WHERE teacherid IN (";
+            foreach (string s in teacherIdList)
+            {
+                sqlSt = sqlSt + s + ",";
+            }
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ")";
+            MySqlParameter[] param = { };
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt,param);
+        }
 
 
         /// <summary>
@@ -169,6 +246,7 @@ namespace GraduationDesignManagement.Common
 
         /// <summary>
         /// 把DataRow转成对应的对象
+        /// 列名 对象属性名转小写对比
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="dataRow"></param>
@@ -181,10 +259,15 @@ namespace GraduationDesignManagement.Common
             Type type = typeof(T);
             T t = new T();
             PropertyInfo[] propertys = t.GetType().GetProperties();
+            
+            List<string> columList=new List<string>();
+            foreach (DataColumn column in dataRow.Table.Columns)
+                columList.Add(column.ColumnName.ToLower());
+
             foreach (PropertyInfo pro in propertys)
             {
                 //检查dataRow是否包含此列（列名==对象的属性名）  
-                if (dataRow.Table.Columns.Contains(pro.Name))
+                if (columList.Contains(pro.Name.ToLower()))
                 {
                     object value = dataRow[pro.Name];
                     Type tmpType = Nullable.GetUnderlyingType(pro.PropertyType) ?? pro.PropertyType;

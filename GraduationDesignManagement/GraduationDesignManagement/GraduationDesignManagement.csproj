@@ -88,6 +88,7 @@
     <Compile Include="Common\ServerHelper.cs" />
     <Compile Include="Common\XmlUtil.cs" />
     <Compile Include="Dictionary\AddInDictionary.cs" />
+    <Compile Include="EnumClass\MoveDirect.cs" />
     <Compile Include="EnumClass\PleaType.cs" />
     <Compile Include="EnumClass\UserTypeInfo.cs" />
     <Compile Include="Game\Enum.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Game\GluttonousSnake\SnakeCoreControl.cs" />
     <Compile Include="MysqlData\GraduationDesign.cs" />
     <Compile Include="MysqlData\Project.cs" />
+    <Compile Include="MysqlData\Schedule.cs" />
     <Compile Include="MysqlData\Student.cs" />
     <Compile Include="MysqlData\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +127,12 @@
     <Compile Include="Views\FrmVersion.Designer.cs">
       <DependentUpon>FrmVersion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ImportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ImportFrm.Designer.cs">
+      <DependentUpon>ImportFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LogInFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +147,12 @@
     </Compile>
     <Compile Include="Views\ChooseStudent.Designer.cs">
       <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RowMergeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\RowMergeView.designer.cs">
+      <DependentUpon>RowMergeView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SetSchedule.cs">
       <SubType>UserControl</SubType>
@@ -214,11 +228,17 @@
     <EmbeddedResource Include="Views\FrmVersion.resx">
       <DependentUpon>FrmVersion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImportFrm.resx">
+      <DependentUpon>ImportFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LogInFrm.resx">
       <DependentUpon>LogInFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ChooseStudent.resx">
       <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RowMergeView.resx">
+      <DependentUpon>RowMergeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetSchedule.resx">
       <DependentUpon>SetSchedule.cs</DependentUpon>

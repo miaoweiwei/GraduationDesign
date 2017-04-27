@@ -66,6 +66,7 @@ namespace GraduationDesignManagement
             }
             else
             {
+                CloseVisibleCtp();
                 _logonBusinessService.LogOut();
                 SetUiAuth(_logonBusinessService.AuthDic);
                 _loginLable = "登录";
@@ -97,7 +98,7 @@ namespace GraduationDesignManagement
             CloseVisibleCtp();
 
             SetSchedule setSchedule = new SetSchedule();
-            CustomTaskPane setSchedulePane = CustomTaskPaneFactory.CreateCustomTaskPane(setSchedule, "选择老师");
+            CustomTaskPane setSchedulePane = CustomTaskPaneFactory.CreateCustomTaskPane(setSchedule, "设置毕业日程");
             setSchedulePane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
             
             CustomTaskPaneList.Add(setSchedulePane);

@@ -13,15 +13,15 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 项目Id
         /// </summary>
-        public int Projectid { get; set; }
+        public int ProjectId { get; set; }
         /// <summary>
         /// 项目名称
         /// </summary>
-        public string Projectname{ get; set; }
+        public string ProjectName{ get; set; }
         /// <summary>
         /// 教师Id
         /// </summary>
-        public string Teacherid { get; set; }
+        public string TeacherId { get; set; }
         /// <summary>
         /// 项目状态
         /// </summary>

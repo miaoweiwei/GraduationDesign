@@ -11,7 +11,7 @@ using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.Common;
 using GraduationDesignManagement.EnumClass;
 using log4net.Appender;
-using Excel= Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GraduationDesignManagement.Views
 {
@@ -32,13 +32,15 @@ namespace GraduationDesignManagement.Views
             InitializeComponent();
         }
 
-        
         private void SetSchedule_Load(object sender, EventArgs e)
         {
-            SetDatePicker();
             _dataQuery = new DataQuery();
             DataTable dataTable = _dataQuery.GetScheduleDataTable();
             SetReplyDataTable(dataTable);
+
+            dgvBegin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMiddle.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEnd.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void SetReplyDataTable(DataTable dataTable)
@@ -75,7 +77,7 @@ namespace GraduationDesignManagement.Views
                         };
                         _beginDataTable.Rows.Add(dataRow);
                         break;
-                    case "MiddleReply": 
+                    case "MiddleReply":
                         dataRow = _middlDataTable.NewRow();
                         dataRow.ItemArray = new[]
                         {
@@ -98,174 +100,68 @@ namespace GraduationDesignManagement.Views
                 }
             }
             dgvBegin.DataSource = _beginDataTable;
+            if (_beginDataTable.Rows.Count > 0) dgvBegin.Rows[0].Cells[0].Selected = true;
+
             dgvMiddle.DataSource = _middlDataTable;
+            if (_middlDataTable.Rows.Count > 0) dgvMiddle.Rows[0].Cells[0].Selected = true;
+
             dgvEnd.DataSource = _endDataTable;
+            if (_endDataTable.Rows.Count > 0) dgvEnd.Rows[0].Cells[0].Selected = true;
         }
 
-        #region datagridview设置日期列
 
-        DateTimePicker dtpBegin = new DateTimePicker();
-        DateTimePicker dtpMiddle=new DateTimePicker();
-        DateTimePicker dtpEnd = new DateTimePicker();
-
-        private Rectangle rectangle;
-        private void SetDatePicker()
-        {
-            dtpBegin.Visible = false;  //先不让它显示  
-            dtpBegin.Format = DateTimePickerFormat.Custom;  //设置日期格式为2010-08-05  
-            dtpBegin.CustomFormat = @"yyyy-MM-dd";
-            dtpBegin.TextChanged += new EventHandler(dtp_TextChange); //为时间控件加入事件dtp_TextChange 
-            dgvBegin.Controls.Add(dtpBegin);  //把时间控件加入DataGridView 
-
-            dtpMiddle.Visible = false;  //先不让它显示  
-            dtpMiddle.Format = DateTimePickerFormat.Custom;  //设置日期格式为2010-08-05  
-            dtpMiddle.CustomFormat = @"yyyy-MM-dd";
-            dtpMiddle.TextChanged += new EventHandler(dtp_TextChange); //为时间控件加入事件dtp_TextChange 
-            dgvMiddle.Controls.Add(dtpMiddle);  //把时间控件加入DataGridView 
-
-            dtpEnd.Visible = false;  //先不让它显示  
-            dtpEnd.Format = DateTimePickerFormat.Custom;  //设置日期格式为2010-08-05  
-            dtpEnd.CustomFormat = @"yyyy-MM-dd";
-            dtpEnd.TextChanged += new EventHandler(dtp_TextChange); //为时间控件加入事件dtp_TextChange 
-            dgvEnd.Controls.Add(dtpEnd);  //把时间控件加入DataGridView 
-        }
-
-        private void dtp_TextChange(object sender, EventArgs e)
-        {
-            DateTimePicker dateTimePicker=sender as DateTimePicker;
-            if (dateTimePicker == null)
-                return;
-
-            switch (tabControl.SelectedTab.Name)
-            {
-                case "tabBegin":
-                    dgvBegin.CurrentCell.Value = dateTimePicker.Value.ToString();
-                    break;
-                case "tabMiddle":
-                    dgvMiddle.CurrentCell.Value = dateTimePicker.Value.ToString();
-                    break;
-                case "tabEnd":
-                    dgvEnd.CurrentCell.Value = dateTimePicker.Value.ToString();
-                    break;
-            }
-        }
-
-        private void dataTable_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                DataGridView dataGridView = sender as DataGridView;
-                if (dataGridView == null)
-                    return;
-                DateTimePicker dateTimePicker = new DateTimePicker();
-                switch (tabControl.SelectedTab.Name)
-                {
-                    case "tabBegin":
-                        dateTimePicker = dtpBegin;
-                        break;
-                    case "tabMiddle":
-                        dateTimePicker = dtpMiddle;
-                        break;
-                    case "tabEnd":
-                        dateTimePicker = dtpEnd;
-                        break;
-                }
-                int col = dataGridView.CurrentCell.ColumnIndex;
-                int row = dataGridView.CurrentCell.RowIndex;
-
-                if (col == 0 || col == 1)
-                {
-                    rectangle = dataGridView.GetCellDisplayRectangle(col, row, true); //得到所在单元格位置和大小  
-                    dateTimePicker.Size = new Size(rectangle.Width, rectangle.Height); //把单元格大小赋给时间控件  
-                    dateTimePicker.Location = new Point(rectangle.X, rectangle.Y); //把单元格位置赋给时间控件  
-                    dateTimePicker.Visible = true;  //可以显示控件了  
-                }
-                else
-                    dateTimePicker.Visible = false;
-            }
-            catch (Exception exception)
-            {
-                LogUtil.Error("毕业设计 日程设定：->"+exception);
-            }
-        }
-
-        /***********当列的宽度变化时，时间控件先隐藏起来，不然单元格变大时间控件无法跟着变大哦***********/
-        private void dataGridView_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            DataGridView dataGridView = sender as DataGridView;
-            if (dataGridView == null)
-                return;
-            switch (dataGridView.Name)
-            {
-                case "dgvBegin":
-                    dtpBegin.Visible = false;
-                    break;
-                case "dgvMiddle":
-                    dtpMiddle.Visible = false;
-                    break;
-                case "dgvEnd":
-                    dtpEnd.Visible = false;
-                    break;
-            }
-        }
+        #region 开题
         
-        /***********滚动条滚动时，单元格位置发生变化，也得隐藏时间控件，不然时间控件位置不动就乱了********/
-        private void dataGridView_Scroll(object sender, ScrollEventArgs e)
+        /// <summary> 选择修改或添加 </summary> 
+        private void cmbMatter1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            DataGridView dataGridView = sender as DataGridView;
-            if (dataGridView == null)
+            string text= cmbMatter1.Text.Trim();
+            btnMatter1.Text = text;
+            if (text== "修改事项")
+                ModifyMatter(dgvBegin, _beginDataTable, out _beginDataRow, dtpStart1, dtpEnd1, txbMatter1);
+        }
+
+        /// <summary> 修改事项的DataGridViewRow </summary>
+        private DataRow _beginDataRow;
+
+        /// <summary> 添加或修改 </summary> 
+        private void btnMatter1_Click(object sender, EventArgs e)
+        {
+            switch (btnMatter1.Text)
+            {
+                case "添加事项":
+                    AddDataGridViewRow(_beginDataTable, dtpStart1,dtpEnd1,txbMatter1);
+                    break;
+                case "修改事项":
+                    ModifyMatter(_beginDataRow, dtpStart1, dtpEnd1, txbMatter1);
+                    break;
+            }
+            dgvBegin.DataSource = _beginDataTable;
+            dgvBegin.Refresh();
+        }
+
+        /// <summary> 删除 </summary> 
+        private void btnDelete1_Click(object sender, EventArgs e)
+        {
+            int row = dgvBegin.CurrentCell.RowIndex;
+            if(row<0)
                 return;
-            switch (dataGridView.Name)
-            {
-                case "dgvBegin":
-                    dtpBegin.Visible = false;
-                    break;
-                case "dgvMiddle":
-                    dtpMiddle.Visible = false;
-                    break;
-                case "dgvEnd":
-                    dtpEnd.Visible = false;
-                    break;
-            }
-        }
-        
-        #endregion
-
-        private void btnDataGridViewRowAdd_Click(object sender, EventArgs e)
-        {
-            switch (tabControl.SelectedTab.Name)
-            {
-                case "tabBegin":
-                    _beginDataTable.Rows.Add();
-                    break;
-                case "tabMiddle":
-                    _middlDataTable.Rows.Add();
-                    break;
-                case "tabEnd":
-                    _endDataTable.Rows.Add();
-                    break;
-                default:
-                    break;
-            }
+            _beginDataTable.Rows.RemoveAt(row);
+            dgvBegin.DataSource = _beginDataTable;
+            dgvBegin.Refresh();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            //关闭当前窗体
-            TaskPaneSetSchedule.Visible = false;
-        }
-        
         /// <summary> 选择提交类型 </summary>
-        private void cmbOk_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cmbOk1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            btnOk.Text = cmbOk.Text;
+            btnOk1.Text = cmbOk1.Text;
         }
-        
+
         /// <summary> 提交 或 导出 </summary>
-        private void btnOk_Click(object sender, EventArgs e)
+        private void btnOk1_Click(object sender, EventArgs e)
         {
             object[,] objectArr;
-            switch (btnOk.Text)
+            switch (btnOk1.Text.Trim())
             {
                 case "提交并导出":
                     SubmitToMysql();
@@ -284,10 +180,255 @@ namespace GraduationDesignManagement.Views
             TaskPaneSetSchedule.Visible = false;
         }
 
+        /// <summary> 关闭 </summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //关闭当前窗体
+            TaskPaneSetSchedule.Visible = false;
+        }
+
+        private void dgvBegin_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (btnMatter1.Text.Trim() == "修改事项")
+            {
+                ModifyMatter(dgvBegin, _beginDataTable, out _beginDataRow, dtpStart1, dtpEnd1, txbMatter1);
+            }
+        }
+
+        private void dtpStart1_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart1.Value;
+            DateTime endDateTime = dtpEnd1.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"开始时间应小于结束时间！");
+                dtpStart1.Value = startDateTime.AddDays(-1);
+            }
+
+        }
+
+        private void dtpEnd1_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart1.Value;
+            DateTime endDateTime = dtpEnd1.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"结束时间应大于开始时间！");
+                dtpEnd1.Value = endDateTime.AddDays(1);
+            }
+        }
+
+        #endregion
+        
+        #region 中期
+
+        private void cmbMatter2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string text = cmbMatter2.Text.Trim();
+            btnMatter2.Text = text;
+            if (text == "修改事项")
+                ModifyMatter(dgvMiddle, _middlDataTable, out _middlDataRow, dtpStart2, dtpEnd2, txbMatter2);
+        }
+
+        private DataRow _middlDataRow;
+
+        private void btnMatter2_Click(object sender, EventArgs e)
+        {
+            switch (btnMatter2.Text)
+            {
+                case "添加事项":
+                    AddDataGridViewRow(_middlDataTable, dtpStart2, dtpEnd2, txbMatter2);
+                    break;
+                case "修改事项":
+                    ModifyMatter(_middlDataRow, dtpStart2, dtpEnd2, txbMatter2);
+                    break;
+            }
+            dgvMiddle.DataSource = _middlDataTable;
+            dgvMiddle.Refresh();
+        }
+
+        private void btnDelete2_Click(object sender, EventArgs e)
+        {
+            int row = dgvMiddle.CurrentCell.RowIndex;
+            if (row < 0)
+                return;
+            _middlDataTable.Rows.RemoveAt(row);
+            dgvMiddle.DataSource = _middlDataTable;
+            dgvMiddle.Refresh();
+        }
+
+        private void cmbOk2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            btnOk2.Text = cmbOk2.Text;
+        }
+
+        private void btnOk2_Click(object sender, EventArgs e)
+        {
+            object[,] objectArr;
+            switch (btnOk2.Text.Trim())
+            {
+                case "提交并导出":
+                    SubmitToMysql();
+                    objectArr = GetObjects();
+                    ExportToExcel(objectArr);
+                    break;
+                case "提交":
+                    SubmitToMysql();
+                    break;
+                case "导出":
+                    objectArr = GetObjects();
+                    ExportToExcel(objectArr);
+                    break;
+            }
+            //关闭当前窗体
+            TaskPaneSetSchedule.Visible = false;
+        }
+
+        private void btnCancel2_Click(object sender, EventArgs e)
+        {
+            //关闭当前窗体
+            TaskPaneSetSchedule.Visible = false;
+        }
+
+        private void dgvMiddle_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (btnMatter2.Text.Trim() == "修改事项")
+            {
+                ModifyMatter(dgvMiddle, _middlDataTable, out _middlDataRow, dtpStart2, dtpEnd2, txbMatter2);
+            }
+        }
+
+        private void dtpStart2_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart2.Value;
+            DateTime endDateTime = dtpEnd2.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"开始时间应小于结束时间！");
+                dtpStart2.Value = startDateTime.AddDays(-1);
+            }
+        }
+
+        private void dtpEnd2_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart2.Value;
+            DateTime endDateTime = dtpEnd2.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"结束时间应大于开始时间！");
+                dtpEnd2.Value = endDateTime.AddDays(1);
+            }
+        }
+
+        #endregion
+
+        #region 结题
+
+        private void cmbMatter3_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string text = cmbMatter3.Text.Trim();
+            btnMatter3.Text = text;
+            if (text == "修改事项")
+                ModifyMatter(dgvEnd, _endDataTable, out _endDataRow, dtpStart3, dtpEnd3, txbMatter3);
+        }
+
+        private DataRow _endDataRow;
+
+        private void btnMatter3_Click(object sender, EventArgs e)
+        {
+            switch (btnMatter3.Text.Trim())
+            {
+                case "添加事项":
+                    AddDataGridViewRow(_endDataTable, dtpStart3, dtpEnd3, txbMatter3);
+                    break;
+                case "修改事项":
+                    ModifyMatter(_endDataRow, dtpStart3, dtpEnd3, txbMatter3);
+                    break;
+            }
+            dgvEnd.DataSource = _endDataTable;
+            dgvEnd.Refresh();
+        }
+
+        private void btnDelete3_Click(object sender, EventArgs e)
+        {
+            int row = dgvEnd.CurrentCell.RowIndex;
+            if (row < 0)
+                return;
+            _endDataTable.Rows.RemoveAt(row);
+            dgvEnd.DataSource = _endDataTable;
+            dgvEnd.Refresh();
+        }
+
+        private void cmbOk3_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            btnOk3.Text = cmbOk3.Text;
+        }
+
+        private void btnOk3_Click(object sender, EventArgs e)
+        {
+            object[,] objectArr;
+            switch (btnOk3.Text.Trim())
+            {
+                case "提交并导出":
+                    SubmitToMysql();
+                    objectArr = GetObjects();
+                    ExportToExcel(objectArr);
+                    break;
+                case "提交":
+                    SubmitToMysql();
+                    break;
+                case "导出":
+                    objectArr = GetObjects();
+                    ExportToExcel(objectArr);
+                    break;
+            }
+            //关闭当前窗体
+            TaskPaneSetSchedule.Visible = false;
+        }
+
+        private void btnCancel3_Click(object sender, EventArgs e)
+        {
+            //关闭当前窗体
+            TaskPaneSetSchedule.Visible = false;
+        }
+
+        private void dgvEnd_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (btnMatter3.Text.Trim() == "修改事项")
+            {
+                ModifyMatter(dgvEnd, _endDataTable, out _endDataRow, dtpStart3, dtpEnd3, txbMatter3);
+            }
+        }
+
+        private void dtpStart3_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart3.Value;
+            DateTime endDateTime = dtpEnd3.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"开始时间应小于结束时间！");
+                dtpStart3.Value= startDateTime.AddDays(-1);
+            }
+        }
+
+        private void dtpEnd3_CloseUp(object sender, EventArgs e)
+        {
+            DateTime startDateTime = dtpStart3.Value;
+            DateTime endDateTime = dtpEnd3.Value;
+            if (startDateTime > endDateTime)
+            {
+                MessageBox.Show(@"结束时间应大于开始时间！");
+                dtpEnd3.Value = endDateTime.AddDays(1);
+            }
+        }
+
+        #endregion
+
+
         /// <summary> 提交 </summary>
         private void SubmitToMysql()
         {
-            DataTable dataTable=new DataTable("schedule_table");
+            DataTable dataTable = new DataTable("schedule_table");
 
             dataTable.Columns.Add("datetype");
             dataTable.Columns.Add("begindate");
@@ -297,7 +438,7 @@ namespace GraduationDesignManagement.Views
             foreach (DataRow dataRow in _beginDataTable.Rows)
             {
                 DataRow data = dataTable.NewRow();
-                data.ItemArray=new object[]
+                data.ItemArray = new object[]
                 {
                     "BeginReply",
                     dataRow[0],
@@ -332,29 +473,28 @@ namespace GraduationDesignManagement.Views
             }
             try
             {
-
+                MySqlDataHelper.BatchDeleteByTableName(InitConfig.MysqlConnectSt, "schedule_table");
                 MySqlDataHelper.BulkInsert(InitConfig.MysqlConnectSt, dataTable);
-
             }
             catch (Exception exception)
             {
-
+                LogUtil.Error("毕业设日程设计提交出错->" + exception);
             }
         }
 
         /// <summary> 导出到Excel </summary> 
         private void ExportToExcel(object[,] objectArr)
         {
-            if (objectArr == null || objectArr.GetLength(0)<2 || objectArr.GetLength(1) <=0)
-                objectArr=new object[,] { {"无数据",""}, };
+            if (objectArr == null || objectArr.GetLength(0) < 2 || objectArr.GetLength(1) <= 0)
+                objectArr = new object[,] { { "无数据", "" }, };
             Excel.Application xlApp = ExcelHelper.GetXlApplication();
             Excel.Worksheet xlSheet = xlApp.ActiveSheet;
             var xlRange = (Excel.Range)xlApp.Selection;
             var startRow = xlRange.Row;
             var startCol = xlRange.Column;
-            
-            int endRow = objectArr.GetLength(0) + startRow-1;
-            int endCol = objectArr.GetLength(1) + startCol-1;
+
+            int endRow = objectArr.GetLength(0) + startRow - 1;
+            int endCol = objectArr.GetLength(1) + startCol - 1;
 
             ExcelHelper.SetData(xlSheet, startRow, startCol, endRow, endCol, objectArr);
         }
@@ -364,15 +504,15 @@ namespace GraduationDesignManagement.Views
         {
             int rowBegin = dgvBegin.Rows.Count;
             int rowMiddle = dgvMiddle.Rows.Count;
-            int rowEnd = dgvEnd.Rows.Count;
+            int rowEnd = dgvMiddle.Rows.Count;
 
             int max = rowBegin;
-            if (max<rowMiddle)
+            if (max < rowMiddle)
                 max = rowMiddle;
-            if(max<rowEnd)
+            if (max < rowEnd)
                 max = rowEnd;
 
-            object[,] objectArr = new object[max+2, 9];
+            object[,] objectArr = new object[max + 2, 9];
             objectArr[0, 0] = "开题";
             objectArr[0, 3] = "开题";
             objectArr[0, 6] = "结题";
@@ -401,19 +541,78 @@ namespace GraduationDesignManagement.Views
                     objectArr[i + 2, 4] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
                     objectArr[i + 2, 5] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
                 }
-                for (int i = 0; i < dgvEnd.Rows.Count; i++)
+                for (int i = 0; i < dgvMiddle.Rows.Count; i++)
                 {
-                    objectArr[i + 2, 6] = dgvEnd.Rows[i].Cells[0].Value.ToString();
-                    objectArr[i + 2, 7] = dgvEnd.Rows[i].Cells[1].Value.ToString();
-                    objectArr[i + 2, 8] = dgvEnd.Rows[i].Cells[2].Value.ToString();
+                    objectArr[i + 2, 6] = dgvMiddle.Rows[i].Cells[0].Value.ToString();
+                    objectArr[i + 2, 7] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
+                    objectArr[i + 2, 8] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
                 }
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                LogUtil.Error("日程设定 组织数据出错->"+exception);
             }
 
             return objectArr;
+        }
+        
+        /// <summary>
+        /// 添加事项
+        /// </summary>
+        private void AddDataGridViewRow(DataTable dataTable, DateTimePicker startDate, DateTimePicker endDate, TextBox textBox)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                MessageBox.Show(@"请填写事项");
+                return;
+            }
+
+            DataRow dataRow = null;
+
+            dataRow = dataTable.NewRow();
+                    dataRow.ItemArray=new object[]
+                    {
+                        startDate.Value.ToString("yyyy-MM-dd"),
+                        endDate.Value.ToString("yyyy-MM-dd"),
+                        textBox.Text,
+                    };
+            dataTable.Rows.Add(dataRow);
+        }
+
+        /// <summary>
+        /// 修改事项时 取出要修改的行数据
+        /// </summary>
+        private void ModifyMatter(DataGridView dataGridView,DataTable dataTable ,out DataRow dataRow ,DateTimePicker startDate, DateTimePicker endDate,TextBox textBox)
+        {
+            var row = dataGridView.CurrentCell.RowIndex;
+            dataRow = dataTable.Rows[row];
+
+            DateTime starDateTime, endDateTime;
+            if (DateTime.TryParse(dataRow[0].ToString(), out starDateTime))
+                startDate.Value = starDateTime;
+            if (DateTime.TryParse(dataRow[1].ToString(), out endDateTime))
+                endDate.Value = endDateTime;
+            textBox.Text = dataRow[2].ToString();
+        }
+
+        /// <summary>
+        /// 修改事项
+        /// </summary>
+        private void ModifyMatter(DataRow dataRow, DateTimePicker startDate, DateTimePicker endDate, TextBox textBox)
+        {
+            string matter = textBox.Text.Trim();
+            if (string.IsNullOrEmpty(matter))
+            {
+                MessageBox.Show(@"请填写事项");
+                return;
+            }
+
+            dataRow.ItemArray=new object[]
+            {
+                startDate.Value.ToString("yy年MM月dd日"),
+                endDate.Value.ToString("yy年MM月dd日"),
+                matter
+            };
         }
     }
 }

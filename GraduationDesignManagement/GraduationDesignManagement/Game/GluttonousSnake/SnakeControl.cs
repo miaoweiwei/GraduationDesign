@@ -177,6 +177,26 @@ namespace GraduationDesignManagement.Game.GluttonousSnake
                 LogUtil.Error("贪吃蛇游戏开始：btnBegin_Click(object sender, EventArgs e)" + exception);
             }
         }
+
+        /// <summary>
+        /// 暂停
+        /// </summary> 
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if(_presentBool)
+            {
+                btnPause.Text = @"开始";
+                _snake.SnakeTimer.Enabled = false;
+                _presentBool = false;
+            }
+            else
+            {
+                btnPause.Text = @"暂停";
+                _snake.SnakeTimer.Enabled = true;
+                _presentBool = true;
+            }
+        }
+
         /// <summary> 游戏结束 </summary>
         private void _snake_SnakeDie(object sender, EventArgs e)
         {
@@ -194,7 +214,7 @@ namespace GraduationDesignManagement.Game.GluttonousSnake
                 LogUtil.Error("_snake_SnakeDie(object sender, EventArgs e)" + exception);
             }
         }
-        /// <summary> 刷新显示蛇身 </summary>
+        /// <summary> 刷新果实 </summary>
         private void _snake_SnakeRandomPointChange(object sender, EventArgs e)
         {
             try
@@ -220,7 +240,7 @@ namespace GraduationDesignManagement.Game.GluttonousSnake
                 Console.WriteLine(exception);
             }
         }
-        /// <summary> 刷新果实 </summary>
+        /// <summary> 刷新显示蛇身 </summary>
         private void _snake_SnakePointListChange(object sender, EventArgs e)
         {
             ExcelDisplay.Display(_xlWorksheet, _snake.SnakePointList, _snakeColor);
@@ -345,5 +365,6 @@ namespace GraduationDesignManagement.Game.GluttonousSnake
                 }
             }
         }
+        
     }
 }

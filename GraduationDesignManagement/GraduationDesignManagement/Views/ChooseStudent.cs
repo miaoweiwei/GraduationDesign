@@ -20,21 +20,6 @@ namespace GraduationDesignManagement.Views
             InitializeComponent();
         }
 
-        private void comboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbMajor_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         #region 搜索
 
         private void txtSearch_Enter(object sender, EventArgs e)

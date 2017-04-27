@@ -123,14 +123,14 @@ namespace GraduationDesignManagement.BusinessServices
             {
                 case UserTypeInfo.Teacher:
                     Teacher teacher = (Teacher) obj;
-                    if (!string.IsNullOrEmpty(teacher.Teachername))
-                        UserName = teacher.Teachername;
+                    if (!string.IsNullOrEmpty(teacher.TeacherName))
+                        UserName = teacher.TeacherName;
                     dictionary = GetTeacherAuth(teacher);
                     break;
                 case UserTypeInfo.Student:
                     Student student = (Student) obj;
-                    if (string.IsNullOrEmpty(student.Studentname))
-                        UserName = student.Studentname;
+                    if (string.IsNullOrEmpty(student.StudentName))
+                        UserName = student.StudentName;
                     dictionary = GetStudentAuth(student);
                     break;
             }
@@ -154,7 +154,7 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateMentor", true}, //选择毕设候选导师
                     {"btnCandidateStudent", true}, //选择毕设候选学生
 
-                    {"groupManagement", (string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设管理group
+                    {"groupManagement", (string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
                     {"groupStudent", false}, //我的毕业设计group
 
                     {"btnBeginReply", true}, //开题
@@ -174,15 +174,15 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateMentor", false}, //选择毕设候选导师
                     {"btnCandidateStudent", false}, //选择毕设候选学生
 
-                    {"groupManagement", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设管理group
+                    {"groupManagement", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
                     {"groupStudent", false}, //我的毕业设计group
 
-                    {"btnBeginReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //开题
-                    {"btnMiddleReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //中期
-                    {"btnEndReply", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //结题
+                    {"btnBeginReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //开题
+                    {"btnMiddleReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //中期
+                    {"btnEndReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //结题
 
-                    {"btnScorestSort", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //毕设成绩分析
-                    {"btnScorestChart", (!string.IsNullOrEmpty(teacher.Iscan) && teacher.Iscan == "1")}, //图表
+                    {"btnScorestSort", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设成绩分析
+                    {"btnScorestChart", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //图表
                 };
             }
             return dic;
@@ -204,14 +204,14 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateStudent", false}, //选择毕设候选学生
 
                     {"groupManagement", false}, //毕设管理group
-                    {"groupStudent", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //我的毕业设计group
+                    {"groupStudent", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //我的毕业设计group
 
-                    {"btnBeginReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //开题
-                    {"btnMiddleReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //中期
-                    {"btnEndReply", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //结题
+                    {"btnBeginReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //开题
+                    {"btnMiddleReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //中期
+                    {"btnEndReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //结题
 
-                    {"btnScorestSort", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //毕设成绩分析
-                    {"btnScorestChart", (!string.IsNullOrEmpty(student.Iscan) && student.Iscan == "1")}, //图表
+                    {"btnScorestSort", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //毕设成绩分析
+                    {"btnScorestChart", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //图表
                 };
             return dic;
         }

@@ -5,16 +5,19 @@ using System.Text;
 
 namespace GraduationDesignManagement.MysqlData
 {
+    /// <summary>
+    /// 学生
+    /// </summary>
     public class Student
     {
         /// <summary>
         /// 学生Id
         /// </summary>
-        public string Studentid { get; set; }
+        public string StudentId { get; set; }
         /// <summary>
         /// 学生姓名
         /// </summary>
-        public string Studentname { get; set; }
+        public string StudentName { get; set; }
         /// <summary>
         /// 学生班级
         /// </summary>
@@ -22,6 +25,6 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary>
         /// 是否可以参加毕业设计
         /// </summary>
-        public string Iscan { get; set; }
+        public string IsCan { get; set; }
     }
 }

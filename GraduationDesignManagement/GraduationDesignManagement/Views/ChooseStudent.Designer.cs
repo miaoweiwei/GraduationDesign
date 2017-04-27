@@ -76,7 +76,7 @@
             this.btnBatchImp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBatchImp.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnBatchImp.ForeColor = System.Drawing.Color.Orange;
-            this.btnBatchImp.Location = new System.Drawing.Point(111, 85);
+            this.btnBatchImp.Location = new System.Drawing.Point(100, 86);
             this.btnBatchImp.Name = "btnBatchImp";
             this.btnBatchImp.Size = new System.Drawing.Size(131, 28);
             this.btnBatchImp.TabIndex = 53;
@@ -141,7 +141,7 @@
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(108)))), ((int)(((byte)(75)))));
-            this.txtSearch.Location = new System.Drawing.Point(111, 45);
+            this.txtSearch.Location = new System.Drawing.Point(100, 45);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(131, 21);
             this.txtSearch.TabIndex = 48;

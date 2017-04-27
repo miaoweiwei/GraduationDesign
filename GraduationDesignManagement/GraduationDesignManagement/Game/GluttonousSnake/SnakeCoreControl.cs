@@ -220,7 +220,7 @@ namespace GraduationDesignManagement.Game.GluttonousSnake
 
                 if (CurrentSpeed > 60)
                 {//移动加速
-                    CurrentSpeed -= 20;
+                    CurrentSpeed -= 10;
                     SnakeTimer.Interval = CurrentSpeed;
                 }
             }
