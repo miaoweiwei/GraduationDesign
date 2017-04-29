@@ -11,7 +11,7 @@ namespace GraduationDesignManagement.Common
 {
     public class DataQuery
     {
-        MySqlDataHelper _mySqlDataHelper=new MySqlDataHelper(InitConfig.MysqlConnectSt);
+        MySqlDataHelper _mySqlDataHelper = new MySqlDataHelper(InitConfig.MysqlConnectSt);
 
         /// <summary>
         /// 返回登录是否成功查询用户是否存在 并 返回返回用户类型
@@ -21,13 +21,13 @@ namespace GraduationDesignManagement.Common
         /// <param name="userTypeInfo">
         /// 返回用户类型</param>
         /// <returns>返回登录是否成功</returns>
-        public bool GetLoginState(string user, string password,out UserTypeInfo userTypeInfo)
+        public bool GetLoginState(string user, string password, out UserTypeInfo userTypeInfo)
         {
             userTypeInfo = UserTypeInfo.NotExist;
             try
             {
-                DataRow dataRow=null;
-                MySqlParameter[] parameters=new MySqlParameter[] {new MySqlParameter("User",user), };
+                DataRow dataRow = null;
+                MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("User", user), };
 
                 string sql = "SELECT stupassword FROM student_table WHERE studentid=?User;";
                 dataRow = _mySqlDataHelper.ExecuteDataRow(sql, parameters);
@@ -73,7 +73,7 @@ namespace GraduationDesignManagement.Common
             catch (Exception e)
             {
                 userTypeInfo = UserTypeInfo.NotExist;
-                LogUtil.Error("登录失败出现错误 用户名：" + user+"->"+e);
+                LogUtil.Error("登录失败出现错误 用户名：" + user + "->" + e);
                 return false;
             }
         }
@@ -85,7 +85,7 @@ namespace GraduationDesignManagement.Common
         public DataRow GetTeacherDataRow(string userId)
         {
             string sql = "SELECT * FROM teacher_table WHERE teacherid=?User;";
-            MySqlParameter[] param=new MySqlParameter[] {new MySqlParameter("User",userId), };
+            MySqlParameter[] param = new MySqlParameter[] { new MySqlParameter("User", userId), };
             var dataRow = _mySqlDataHelper.ExecuteDataRow(sql, param);
             return dataRow;
         }
@@ -108,7 +108,7 @@ namespace GraduationDesignManagement.Common
         /// <param name="userId"></param>
         /// <param name="userType">用户类型</param>
         /// <returns></returns>
-        public DataTable GetClassDataTable(string userId ,UserTypeInfo userType)
+        public DataTable GetClassDataTable(string userId, UserTypeInfo userType)
         {
             string sqlSt = "";
             switch (userType)
@@ -120,7 +120,7 @@ namespace GraduationDesignManagement.Common
                     sqlSt =
                         "SELECT class FROM department_table " +
                         "WHERE departmentname=( " +
-                        "SELECT d.dep artmentname FROM student_table s , department_table d " +
+                        "SELECT d.departmentname FROM student_table s , department_table d " +
                         "WHERE s.studentid=?User AND s.class=d.class " +
                         ");";
                     break;
@@ -137,8 +137,8 @@ namespace GraduationDesignManagement.Common
         public DataTable GetScheduleDataTable()
         {
             string sqlSt = "SELECT datetype,begindate,enddate,matter FROM schedule_table;";
-            MySqlParameter[] param = {};
-             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            MySqlParameter[] param = { };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
             return dataTable;
         }
 
@@ -149,11 +149,11 @@ namespace GraduationDesignManagement.Common
         public List<string> GetDataTableDepartment()
         {
             string sqlSt = "SELECT * FROM department_table;";
-            MySqlParameter[] param = {};
+            MySqlParameter[] param = { };
             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
 
-            List<string> deparList=new List<string>();
-            if (dataTable != null && dataTable.Rows.Count>0)
+            List<string> deparList = new List<string>();
+            if (dataTable != null && dataTable.Rows.Count > 0)
             {
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -170,18 +170,17 @@ namespace GraduationDesignManagement.Common
         /// <returns></returns>
         public List<Teacher> GeTeacherList()
         {
-            List<Teacher> teacherList=new List<Teacher>();
+            List<Teacher> teacherList = new List<Teacher>();
 
             //SELECT * FROM teacher_table;
 
             string sqlSt = "SELECT * FROM teacher_table;";
-            MySqlParameter[] param = {};
+            MySqlParameter[] param = { };
             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
 
             teacherList = DataTableToList<Teacher>(dataTable);
             return teacherList;
         }
-
         /// <summary>
         /// 获取老师所在系的 系里所有的老师
         /// </summary>
@@ -198,7 +197,6 @@ namespace GraduationDesignManagement.Common
             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
             return dataTable;
         }
-
         /// <summary>
         /// 更新选择毕设老师的iscan状态返回更新行数
         /// </summary>
@@ -206,11 +204,11 @@ namespace GraduationDesignManagement.Common
         /// <param name="state">1表示设为导师 0或其他表示不是导师</param>
         /// <param name="userType">用户类型</param>
         /// <returns></returns>
-        public int UpDataTeacherIsCan(List<string> teacherIdList, int state,UserTypeInfo userType)
+        public int UpDataTeacherIsCan(List<string> teacherIdList, int state, UserTypeInfo userType)
         {
-            if (teacherIdList==null || teacherIdList.Count<=0)
+            if (teacherIdList == null || teacherIdList.Count <= 0)
                 return 0;
-            string sqlSt ="";
+            string sqlSt = "";
             switch (userType)
             {
                 case UserTypeInfo.Teacher:
@@ -226,22 +224,21 @@ namespace GraduationDesignManagement.Common
             }
             sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ")";
             MySqlParameter[] param = { };
-            return _mySqlDataHelper.ExecuteNonQuery(sqlSt,param);
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }
-
         /// <summary>
         /// 根据班级获取学生list
         /// </summary>
         /// <returns></returns>
-        public List<Student> GetStudentList(List<string>clasList )
+        public List<Student> GetStudentList(List<string> clasList)
         {
-            List<Student> students=new List<Student>();
+            List<Student> students = new List<Student>();
             if (clasList == null || clasList.Count <= 0)
                 return students;
             string sqlSt = "SELECT * FROM student_table WHERE class in (";
             foreach (string s in clasList)
             {
-                sqlSt = sqlSt +"'"+ s + "',";
+                sqlSt = sqlSt + "'" + s + "',";
             }
             sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ")";
             MySqlParameter[] param = { };
@@ -249,12 +246,97 @@ namespace GraduationDesignManagement.Common
             students = DataTableToList<Student>(dataTable);
             return students;
         }
+        /// <summary>
+        /// 获取ProjectList当userId为Null是获取所有ProjectList
+        /// </summary>
+        /// <returns></returns>
+        public List<Project> GetProjectList(string userId)
+        {
+            string sqlSt = "";
+            MySqlParameter[] param;
+            if (userId == null)
+            {
+                sqlSt = "SELECT * FROM project_table;";
+                param = new MySqlParameter[] { };
+            }
+            else
+            {
+                sqlSt = "SELECT * FROM project_table WHERE teacherid= ?User";
+                param=new MySqlParameter[] { new MySqlParameter("User", userId), };
+            }
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            var projects = DataTableToList<Project>(dataTable);
+            return projects;
+        }
+        /// <summary>
+        /// 删除项目
+        /// </summary>
+        /// <param name="projectCodeList"></param>
+        /// <returns></returns>
+        public int DelectProject(List<string>projectCodeList )
+        {
+            if (projectCodeList.Count <= 0)
+                return 0;
+            string sqlSt = "DELETE FROM project_table WHERE projectcode IN (";
+            foreach (string s in projectCodeList)
+                sqlSt = sqlSt + "'" + s + "'" + ",";
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ");";
+            MySqlParameter[] param = { };
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
+        }
+        /// <summary>
+        /// 更新项目相关信息
+        /// </summary>
+        /// <param name="projects"></param>
+        /// <returns></returns>
+        public int UpDataProject(List<Project>projects )
+        {
+            if (projects.Count <= 0)
+                return 0;
+            string sqlSt = "UPDATE project_table ";
+            string projectName = "SET projectname = CASE projectcode ";
+            string projectIntroduce = "introduce = CASE projectcode ";
+            string projectCode = "WHERE projectcode IN (";
+            foreach (Project project in projects)
+            {
+                projectCode = projectCode + "'" + project.Projectcode + "',";
+                projectName = projectName + "WHEN '" + project.Projectcode + "' THEN '" + project.ProjectName + "' ";
+                projectIntroduce = projectIntroduce + "WHEN '" + project.Projectcode + "' THEN '" + project.Introduce + "' ";
+            }
+
+            projectName = projectName + "END, ";
+            projectIntroduce = projectIntroduce + "END ";
+            projectCode = projectCode.Remove(projectCode.Length - 1) + ")";
+            sqlSt = sqlSt + projectName + projectIntroduce + projectCode;
+            MySqlParameter[] param = { };
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
+        }
+        /// <summary>
+        /// 插入新的项目
+        /// </summary>
+        /// <param name="projects"></param>
+        /// <returns></returns>
+        public int InsertProject(List<Project>projects )
+        {
+            if (projects.Count <= 0)
+                return 0;
+            string sqlSt = "INSERT INTO project_table(projectname,introduce,teacherid,projectcode) VALUES";
+            foreach (Project project in projects)
+            {
+                string temp = "('" + project.ProjectName + "','" + project.Introduce + "','" + project.TeacherId + "','" + project.Projectcode + "'),";
+                sqlSt = sqlSt + temp;
+            }
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1);
+            MySqlParameter[] param = {};
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
+        }
+
+        /************************************************************************************/
 
         /// <summary>
         /// 把datatable转化为指定的对象List
         /// </summary>
         /// <param name="dt"></param>
-        /// <param name="className"></param>
         /// <returns></returns>
         public List<T> DataTableToList<T>(DataTable dt) where T : new()
         {
@@ -282,14 +364,14 @@ namespace GraduationDesignManagement.Common
         /// <returns></returns>
         public T DataRowToObject<T>(DataRow dataRow) where T : new()
         {
-            if (dataRow==null)
+            if (dataRow == null)
                 return new T();
             //类所在的namespace
             Type type = typeof(T);
             T t = new T();
             PropertyInfo[] propertys = t.GetType().GetProperties();
-            
-            List<string> columList=new List<string>();
+
+            List<string> columList = new List<string>();
             foreach (DataColumn column in dataRow.Table.Columns)
                 columList.Add(column.ColumnName.ToLower());
 

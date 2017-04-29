@@ -68,8 +68,7 @@ namespace GraduationDesignManagement.Dictionary
             }
             return _positionDictionary;
         }
-
-
+        
         private static Dictionary<string, string> _departmentDictionary;
         /// <summary>
         /// 教师部门字典

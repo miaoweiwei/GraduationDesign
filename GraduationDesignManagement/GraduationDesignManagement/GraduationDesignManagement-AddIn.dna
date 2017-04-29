@@ -51,14 +51,13 @@
             
             <group id="groupManagement" label="毕设管理" getVisible="GetControlsVisible">
               <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程"/>
-              <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="添加毕设项目" />
-              <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="选择学生"/>
-              <button id="btnSelectedStudent" onAction="btnSelectedStudent_Click" size="large" label="已选学生"/>
+              <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
+              <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
             </group>
             
             <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">
               <button id="btnStudentGetPlan" onAction="btnStudentGetPlan_Click" size="large" label="获取毕设日程"/>
-              <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="选择毕业设计项目"/>
+              <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="我的毕设项目"/>
               <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取"/>
             </group>
             

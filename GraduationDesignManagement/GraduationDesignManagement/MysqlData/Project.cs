@@ -11,10 +11,6 @@ namespace GraduationDesignManagement.MysqlData
     public class Project
     {
         /// <summary>
-        /// 项目Id
-        /// </summary>
-        public int ProjectId { get; set; }
-        /// <summary>
         /// 项目名称
         /// </summary>
         public string ProjectName{ get; set; }
@@ -26,6 +22,10 @@ namespace GraduationDesignManagement.MysqlData
         /// 教师Id
         /// </summary>
         public string TeacherId { get; set; }
+        /// <summary>
+        /// 项目代码
+        /// </summary>
+        public string Projectcode { get; set; }
         /// <summary>
         /// 项目状态
         /// </summary>

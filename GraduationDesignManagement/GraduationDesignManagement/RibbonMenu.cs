@@ -108,7 +108,6 @@ namespace GraduationDesignManagement
             CustomTaskPaneList.Add(setSchedulePane);
             //传递CTP
             setSchedule.TaskPaneSetSchedule = setSchedulePane;
-
             setSchedulePane.Visible = true;
         }
         /// <summary> 选择毕设候选导师 </summary>
@@ -152,19 +151,21 @@ namespace GraduationDesignManagement
         /// <summary> 添加毕设项目 </summary>
         public void btnAddProject_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
+            AddProjectFrm addProjectFrm = new AddProjectFrm();
+            CustomTaskPane addProjectFrmPane = CustomTaskPaneFactory.CreateCustomTaskPane(addProjectFrm, "添加毕设项目");
+            addProjectFrmPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
 
+            CustomTaskPaneList.Add(addProjectFrmPane);
+            //传递CTP
+            addProjectFrm.TaskPaneAddProjectFrm = addProjectFrmPane;
+            addProjectFrmPane.Visible = true;
         }
         /// <summary> 选择学生 </summary>
         public void btnSelectStudent_Click(IRibbonControl control)
         {
 
         }
-        /// <summary> 已选学生 </summary>
-        public void btnSelectedStudent_Click(IRibbonControl control)
-        {
-
-        }
-
 
         #endregion
 
@@ -178,7 +179,16 @@ namespace GraduationDesignManagement
         /// <summary> 选择毕业设计项目 </summary>
         public void btnSelectProject_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
 
+            SelectProject selectProject = new SelectProject();
+            var selectProjectPane = CustomTaskPaneFactory.CreateCustomTaskPane(selectProject, "选择学生");
+            selectProjectPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+
+            CustomTaskPaneList.Add(selectProjectPane);
+            //传递CTP
+            selectProject.TaskPaneSelectProject = selectProjectPane;
+            selectProjectPane.Visible = true;
         }
         /// <summary> 资料获取 </summary>
         public void btnGetData_Click(IRibbonControl control)
