@@ -12,12 +12,15 @@ using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
 using GraduationDesignManagement.Dictionary;
 using GraduationDesignManagement.Game.GluttonousSnake;
+using GraduationDesignManagement.MysqlData;
 using GraduationDesignManagement.Properties;
 using GraduationDesignManagement.Views;
 using log4net.Config;
+using Microsoft.Office.Interop.Word;
 using SumscopeAddIn.Views;
 using Excel=Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
+using DataTable = System.Data.DataTable;
 using Image = System.Drawing.Image;
 
 namespace GraduationDesignManagement
@@ -28,7 +31,7 @@ namespace GraduationDesignManagement
         /// <summary>
         /// Excel Application
         /// </summary>
-        private static readonly Application XlApp = (Application)ExcelDnaUtil.Application;
+        private static  Application _xlApp = (Application)ExcelDnaUtil.Application;
 
         private LogonBusinessService _logonBusinessService;
         //保存打开的CTP窗体
@@ -45,6 +48,7 @@ namespace GraduationDesignManagement
             //加载配置文件
             var config = Path.Combine(appDomain.BaseDirectory, "GraduationDesignManagement.dll");
             InitConfig.Init(config);
+            _xlApp = ExcelHelper.GetXlApplication();
         }
 
         #region 登录
@@ -143,7 +147,7 @@ namespace GraduationDesignManagement
         /// <summary> 获取毕设日程 </summary>
         public void btnTeacherGetPlan_Click(IRibbonControl control)
         {
-
+            ScheduleExportToExcel();
         }
         /// <summary> 添加毕设项目 </summary>
         public void btnAddProject_Click(IRibbonControl control)
@@ -169,7 +173,7 @@ namespace GraduationDesignManagement
         /// <summary> 获取毕设日程 </summary>
         public void btnStudentGetPlan_Click(IRibbonControl control)
         {
-
+            ScheduleExportToExcel();
         }
         /// <summary> 选择毕业设计项目 </summary>
         public void btnSelectProject_Click(IRibbonControl control)
@@ -431,7 +435,68 @@ namespace GraduationDesignManagement
         }
 
         #endregion
-        
+
+        /// <summary> 导出毕设日程 </summary>
+        private void ScheduleExportToExcel()
+        {
+            DataQuery dataQuery = new DataQuery();
+            DataTable dataTable = dataQuery.GetScheduleDataTable();
+
+            List<Schedule> schedules = dataQuery.DataTableToList<Schedule>(dataTable);
+            
+            List<Schedule> beginList = schedules.Where(s => s.DateType == "BeginReply").ToList();
+            List<Schedule> middleList = schedules.Where(s => s.DateType == "MiddleReply").ToList();
+            List<Schedule> endList = schedules.Where(s => s.DateType == "EndReply").ToList();
+
+            int max = beginList.Count;
+            if (max < middleList.Count)
+                max = middleList.Count;
+            if (max < endList.Count)
+                max = endList.Count;
+
+            object[,] objectArr = new object[max + 2, 9];
+            objectArr[0, 0] = "开题";
+            objectArr[0, 3] = "开题";
+            objectArr[0, 6] = "结题";
+            objectArr[1, 0] = "开始时间";
+            objectArr[1, 1] = "结束时间";
+            objectArr[1, 2] = "事项";
+
+            objectArr[1, 3] = "开始时间";
+            objectArr[1, 4] = "结束时间";
+            objectArr[1, 5] = "事项";
+
+            objectArr[1, 6] = "开始时间";
+            objectArr[1, 7] = "结束时间";
+            objectArr[1, 8] = "事项";
+            try
+            {
+                for (int i = 0; i < beginList.Count; i++)
+                {
+                    objectArr[i + 2, 0] = beginList[i].BeginDate;
+                    objectArr[i + 2, 1] = beginList[i].EndDate;
+                    objectArr[i + 2, 2] = beginList[i].Matter;
+                }
+                for (int i = 0; i < middleList.Count; i++)
+                {
+                    objectArr[i + 2, 3] = middleList[i].BeginDate;
+                    objectArr[i + 2, 4] = middleList[i].EndDate;
+                    objectArr[i + 2, 5] = middleList[i].Matter;
+                }
+                for (int i = 0; i < beginList.Count; i++)
+                {
+                    objectArr[i + 2, 6] = endList[i].BeginDate;
+                    objectArr[i + 2, 7] = endList[i].EndDate;
+                    objectArr[i + 2, 8] = endList[i].Matter;
+                }
+                ExcelHelper.ExportToExcel(objectArr);
+            }
+            catch (Exception exception)
+            {
+                LogUtil.Error("日程设定 组织数据出错->" + exception);
+            }
+        }
+
         /// <summary> 关闭当前活动的workbook已经打开的窗体 </summary>
         private static void CloseVisibleCtp()
         {

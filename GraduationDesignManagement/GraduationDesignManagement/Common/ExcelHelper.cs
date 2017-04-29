@@ -163,5 +163,24 @@ namespace GraduationDesignManagement.Common
             xlRange.Value2 = objData;
         }
 
+        /// <summary>
+        /// 把object[,]从当前选中的cell开始填充到excel
+        /// </summary>
+        /// <param name="objectArr"></param>
+        public static void ExportToExcel(object[,] objectArr)
+        {
+            if (objectArr == null || objectArr.GetLength(0) < 2 || objectArr.GetLength(1) <= 0)
+                objectArr = new object[,] { { "无数据", "" }, };
+            Excel.Application xlApp = GetXlApplication();
+            Excel.Worksheet xlSheet = xlApp.ActiveSheet;
+            var xlRange = (Excel.Range)xlApp.Selection;
+            var startRow = xlRange.Row;
+            var startCol = xlRange.Column;
+
+            int endRow = objectArr.GetLength(0) + startRow - 1;
+            int endCol = objectArr.GetLength(1) + startCol - 1;
+
+            SetData(xlSheet, startRow, startCol, endRow, endCol, objectArr);
+        }
     }
 }

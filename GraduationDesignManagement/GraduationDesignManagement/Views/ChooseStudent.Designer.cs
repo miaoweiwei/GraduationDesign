@@ -41,17 +41,17 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.cmbOk = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnAllUp = new System.Windows.Forms.Button();
-            this.btnAllDown = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.mlvClass = new SumscopeAddIn.Views.MyListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.mlvLeft = new SumscopeAddIn.Views.MyListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAllUp = new System.Windows.Forms.Button();
+            this.btnAllDown = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.mlvReft = new SumscopeAddIn.Views.MyListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,17 +72,18 @@
             // 
             // btnBatchImp
             // 
-            this.btnBatchImp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnBatchImp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnBatchImp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBatchImp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBatchImp.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBatchImp.ForeColor = System.Drawing.Color.Black;
+            this.btnBatchImp.ForeColor = System.Drawing.Color.White;
             this.btnBatchImp.Location = new System.Drawing.Point(90, 86);
             this.btnBatchImp.Name = "btnBatchImp";
             this.btnBatchImp.Size = new System.Drawing.Size(131, 28);
             this.btnBatchImp.TabIndex = 53;
             this.btnBatchImp.Text = "批量导入";
             this.btnBatchImp.UseVisualStyleBackColor = false;
+            this.btnBatchImp.Click += new System.EventHandler(this.btnBatchImp_Click);
             // 
             // labRightNum
             // 
@@ -141,8 +142,8 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(108)))), ((int)(((byte)(75)))));
-            this.txtSearch.ForeColor = System.Drawing.Color.White;
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(90, 45);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(131, 21);
@@ -195,22 +196,27 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(1041, 171);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 133;
             this.btnCancel.Text = "取消";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // btnOk
             // 
+            this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.Location = new System.Drawing.Point(936, 171);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(77, 23);
             this.btnOk.TabIndex = 132;
             this.btnOk.Text = "提交并导出";
-            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // cmbOk
@@ -228,71 +234,6 @@
             this.cmbOk.Size = new System.Drawing.Size(95, 24);
             this.cmbOk.TabIndex = 131;
             this.cmbOk.SelectionChangeCommitted += new System.EventHandler(this.cmbOk_SelectionChangeCommitted);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Black;
-            this.pictureBox2.Location = new System.Drawing.Point(239, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(2, 185);
-            this.pictureBox2.TabIndex = 127;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnAllUp
-            // 
-            this.btnAllUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAllUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAllUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllUp.ForeColor = System.Drawing.Color.Black;
-            this.btnAllUp.Location = new System.Drawing.Point(745, 134);
-            this.btnAllUp.Name = "btnAllUp";
-            this.btnAllUp.Size = new System.Drawing.Size(52, 25);
-            this.btnAllUp.TabIndex = 19;
-            this.btnAllUp.Text = "<<";
-            this.btnAllUp.UseVisualStyleBackColor = false;
-            this.btnAllUp.Click += new System.EventHandler(this.btnAllUp_Click);
-            // 
-            // btnAllDown
-            // 
-            this.btnAllDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAllDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAllDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllDown.ForeColor = System.Drawing.Color.Black;
-            this.btnAllDown.Location = new System.Drawing.Point(745, 88);
-            this.btnAllDown.Name = "btnAllDown";
-            this.btnAllDown.Size = new System.Drawing.Size(52, 25);
-            this.btnAllDown.TabIndex = 18;
-            this.btnAllDown.Text = ">>";
-            this.btnAllDown.UseVisualStyleBackColor = false;
-            this.btnAllDown.Click += new System.EventHandler(this.btnAllDown_Click);
-            // 
-            // btnUp
-            // 
-            this.btnUp.BackColor = System.Drawing.SystemColors.Control;
-            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUp.ForeColor = System.Drawing.Color.Black;
-            this.btnUp.Location = new System.Drawing.Point(745, 45);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(52, 25);
-            this.btnUp.TabIndex = 17;
-            this.btnUp.Text = "<";
-            this.btnUp.UseVisualStyleBackColor = false;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDown.ForeColor = System.Drawing.Color.Black;
-            this.btnDown.Location = new System.Drawing.Point(745, 4);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(52, 25);
-            this.btnDown.TabIndex = 16;
-            this.btnDown.Text = ">";
-            this.btnDown.UseVisualStyleBackColor = false;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // mlvClass
             // 
@@ -318,6 +259,15 @@
             // 
             this.columnHeader7.Text = "可选班级";
             this.columnHeader7.Width = 170;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
+            this.pictureBox2.Location = new System.Drawing.Point(239, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(2, 185);
+            this.pictureBox2.TabIndex = 127;
+            this.pictureBox2.TabStop = false;
             // 
             // mlvLeft
             // 
@@ -357,6 +307,62 @@
             this.columnHeader3.Text = "班级";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 97;
+            // 
+            // btnAllUp
+            // 
+            this.btnAllUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAllUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAllUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllUp.ForeColor = System.Drawing.Color.White;
+            this.btnAllUp.Location = new System.Drawing.Point(745, 134);
+            this.btnAllUp.Name = "btnAllUp";
+            this.btnAllUp.Size = new System.Drawing.Size(52, 25);
+            this.btnAllUp.TabIndex = 19;
+            this.btnAllUp.Text = "<<";
+            this.btnAllUp.UseVisualStyleBackColor = false;
+            this.btnAllUp.Click += new System.EventHandler(this.btnAllUp_Click);
+            // 
+            // btnAllDown
+            // 
+            this.btnAllDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAllDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAllDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllDown.ForeColor = System.Drawing.Color.White;
+            this.btnAllDown.Location = new System.Drawing.Point(745, 88);
+            this.btnAllDown.Name = "btnAllDown";
+            this.btnAllDown.Size = new System.Drawing.Size(52, 25);
+            this.btnAllDown.TabIndex = 18;
+            this.btnAllDown.Text = ">>";
+            this.btnAllDown.UseVisualStyleBackColor = false;
+            this.btnAllDown.Click += new System.EventHandler(this.btnAllDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUp.ForeColor = System.Drawing.Color.White;
+            this.btnUp.Location = new System.Drawing.Point(745, 45);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(52, 25);
+            this.btnUp.TabIndex = 17;
+            this.btnUp.Text = "<";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDown.ForeColor = System.Drawing.Color.White;
+            this.btnDown.Location = new System.Drawing.Point(745, 4);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(52, 25);
+            this.btnDown.TabIndex = 16;
+            this.btnDown.Text = ">";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // mlvReft
             // 

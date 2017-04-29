@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
+using GraduationDesignManagement.Enum;
 using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 using SumscopeAddIn.Views;
@@ -305,14 +306,14 @@ namespace GraduationDesignManagement.Views
             }
             mlvSelect.EndUpdate();
             labSelect.Text = @"共" + mlvSelect.Items.Count.ToString() + @"人";
-            _dataQuery.UpDataTeacherIsCan(tearList, 0);
+            _dataQuery.UpDataTeacherIsCan(tearList, 0, UserTypeInfo.Teacher);
         }
 
 
         private void btnExport_Click(object sender, EventArgs e)
         {
             object[,] objects= GetObjects(_selectViewItemList);
-            ExportToExcel(objects);
+            ExcelHelper.ExportToExcel(objects);
         }
 
         /// <summary> 提交 </summary>
@@ -325,7 +326,7 @@ namespace GraduationDesignManagement.Views
                 {
                     teacherIdList.Add(listViewItem.SubItems[0].Text);
                 }
-                _dataQuery.UpDataTeacherIsCan(teacherIdList,1);
+                _dataQuery.UpDataTeacherIsCan(teacherIdList, 1, UserTypeInfo.Teacher);
             }
             catch (Exception exception)
             {

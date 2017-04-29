@@ -19,6 +19,10 @@ namespace GraduationDesignManagement.MysqlData
         /// </summary>
         public string ProjectName{ get; set; }
         /// <summary>
+        /// 项目说明
+        /// </summary>
+        public string Introduce { get; set; }
+        /// <summary>
         /// 教师Id
         /// </summary>
         public string TeacherId { get; set; }

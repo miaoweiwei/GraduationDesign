@@ -204,13 +204,22 @@ namespace GraduationDesignManagement.Common
         /// </summary>
         /// <param name="teacherIdList"></param>
         /// <param name="state">1表示设为导师 0或其他表示不是导师</param>
+        /// <param name="userType">用户类型</param>
         /// <returns></returns>
-        public int UpDataTeacherIsCan(List<string> teacherIdList, int state)
+        public int UpDataTeacherIsCan(List<string> teacherIdList, int state,UserTypeInfo userType)
         {
             if (teacherIdList==null || teacherIdList.Count<=0)
                 return 0;
-
-            string sqlSt = "UPDATE teacher_table SET iscan = "+ state + " WHERE teacherid IN (";
+            string sqlSt ="";
+            switch (userType)
+            {
+                case UserTypeInfo.Teacher:
+                    sqlSt = "UPDATE teacher_table SET iscan = " + state + " WHERE teacherid IN (";
+                    break;
+                case UserTypeInfo.Student:
+                    sqlSt = "UPDATE student_table SET iscan = " + state + " WHERE studentid IN (";
+                    break;
+            }
             foreach (string s in teacherIdList)
             {
                 sqlSt = sqlSt + s + ",";

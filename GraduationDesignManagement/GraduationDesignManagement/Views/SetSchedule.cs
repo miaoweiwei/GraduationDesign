@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
+using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
 using GraduationDesignManagement.EnumClass;
 using log4net.Appender;
@@ -166,14 +167,14 @@ namespace GraduationDesignManagement.Views
                 case "提交并导出":
                     SubmitToMysql();
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
                 case "提交":
                     SubmitToMysql();
                     break;
                 case "导出":
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
             }
             //关闭当前窗体
@@ -270,14 +271,14 @@ namespace GraduationDesignManagement.Views
                 case "提交并导出":
                     SubmitToMysql();
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
                 case "提交":
                     SubmitToMysql();
                     break;
                 case "导出":
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
             }
             //关闭当前窗体
@@ -372,14 +373,14 @@ namespace GraduationDesignManagement.Views
                 case "提交并导出":
                     SubmitToMysql();
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
                 case "提交":
                     SubmitToMysql();
                     break;
                 case "导出":
                     objectArr = GetObjects();
-                    ExportToExcel(objectArr);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
             }
             //关闭当前窗体
@@ -423,7 +424,6 @@ namespace GraduationDesignManagement.Views
         }
 
         #endregion
-
 
         /// <summary> 提交 </summary>
         private void SubmitToMysql()
@@ -482,29 +482,12 @@ namespace GraduationDesignManagement.Views
             }
         }
 
-        /// <summary> 导出到Excel </summary> 
-        private void ExportToExcel(object[,] objectArr)
-        {
-            if (objectArr == null || objectArr.GetLength(0) < 2 || objectArr.GetLength(1) <= 0)
-                objectArr = new object[,] { { "无数据", "" }, };
-            Excel.Application xlApp = ExcelHelper.GetXlApplication();
-            Excel.Worksheet xlSheet = xlApp.ActiveSheet;
-            var xlRange = (Excel.Range)xlApp.Selection;
-            var startRow = xlRange.Row;
-            var startCol = xlRange.Column;
-
-            int endRow = objectArr.GetLength(0) + startRow - 1;
-            int endCol = objectArr.GetLength(1) + startCol - 1;
-
-            ExcelHelper.SetData(xlSheet, startRow, startCol, endRow, endCol, objectArr);
-        }
-
         /// <summary> 组织数据 </summary> 
         private object[,] GetObjects()
         {
             int rowBegin = dgvBegin.Rows.Count;
             int rowMiddle = dgvMiddle.Rows.Count;
-            int rowEnd = dgvMiddle.Rows.Count;
+            int rowEnd = dgvEnd.Rows.Count;
 
             int max = rowBegin;
             if (max < rowMiddle)
@@ -541,11 +524,11 @@ namespace GraduationDesignManagement.Views
                     objectArr[i + 2, 4] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
                     objectArr[i + 2, 5] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
                 }
-                for (int i = 0; i < dgvMiddle.Rows.Count; i++)
+                for (int i = 0; i < dgvEnd.Rows.Count; i++)
                 {
-                    objectArr[i + 2, 6] = dgvMiddle.Rows[i].Cells[0].Value.ToString();
-                    objectArr[i + 2, 7] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
-                    objectArr[i + 2, 8] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
+                    objectArr[i + 2, 6] = dgvEnd.Rows[i].Cells[0].Value.ToString();
+                    objectArr[i + 2, 7] = dgvEnd.Rows[i].Cells[1].Value.ToString();
+                    objectArr[i + 2, 8] = dgvEnd.Rows[i].Cells[2].Value.ToString();
                 }
             }
             catch (Exception exception)

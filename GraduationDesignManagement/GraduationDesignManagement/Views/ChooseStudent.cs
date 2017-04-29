@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
+using GraduationDesignManagement.Enum;
 using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 
@@ -30,6 +31,7 @@ namespace GraduationDesignManagement.Views
         private List<Student>_studentList=new List<Student>();
         private Dictionary<string,List<Student>>_derpStudenDic=new Dictionary<string, List<Student>>();
 
+        List<Student>_studentSelectList=new List<Student>();
         public ChooseStudent()
         {
             InitializeComponent();
@@ -40,16 +42,27 @@ namespace GraduationDesignManagement.Views
             _logonBusinessService = LogonBusinessService.Instance;
             _clasList = _logonBusinessService.ClassList;
             _studentList = _dataQuery.GetStudentList(_clasList);
+            
+            //组织数据Dic
             foreach (string s in _clasList)
-            {
                 if (!_derpStudenDic.Keys.Contains(s))
-                    _derpStudenDic[s]=new List<Student>();
-            }
+                    _derpStudenDic[s] = new List<Student>();
+
+            //设置班级Listview
             foreach (Student student in _studentList)
-            {
                 _derpStudenDic[student.Class].Add(student);
-            }
             SetClassListView(_clasList);
+
+            //已选学生
+            foreach (KeyValuePair<string, List<Student>> keyValuePair in _derpStudenDic)
+            {
+                if (_clasList.Contains(keyValuePair.Key))
+                {
+                    var students = keyValuePair.Value.Where(s => s.IsCan == "1").ToList();
+                    _studentSelectList.AddRange(students);
+                }
+            }
+            SetRightStudentListView(_studentSelectList);
         }
         
         #region 搜索
@@ -218,6 +231,7 @@ namespace GraduationDesignManagement.Views
             if (e.ItemIndex == _rightListViewItem.Count)
                 _rightListViewItem = null;
         }
+
         #endregion
 
         private void SetLabNum()
@@ -242,23 +256,109 @@ namespace GraduationDesignManagement.Views
         
         private void cmbOk_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            btnOk.Text = cmbOk.Text;
+            btnOk.Text = cmbOk.Text.Trim();
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            object[,] objectArr;
             switch (btnOk.Text)
             {
                 case "提交并导出":
+                    SubmitToMysql();
+                    objectArr = GetObjects(_rightListViewItem);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
                 case "提交":
+                    SubmitToMysql();
                     break;
                 case "导出":
+                    objectArr = GetObjects(_rightListViewItem);
+                    ExcelHelper.ExportToExcel(objectArr);
                     break;
             }
-
             //关闭当前窗体
             TaskPaneChooseStudent.Visible = false;
+        }
+
+        /// <summary> 提交 </summary>
+        private void SubmitToMysql()
+        {
+            List<string> studentIdList = new List<string>();
+            try
+            {
+                foreach (ListViewItem listViewItem in _rightListViewItem)
+                    studentIdList.Add(listViewItem.SubItems[0].Text);
+                _dataQuery.UpDataTeacherIsCan(studentIdList, 1 ,UserTypeInfo.Student);
+
+
+                List<string> cancelSelecyList =
+                    _studentSelectList.Where(s => !studentIdList.Contains(s.StudentId))
+                        .Select(s => s.StudentId)
+                        .ToList();
+                _dataQuery.UpDataTeacherIsCan(cancelSelecyList, 0, UserTypeInfo.Student);
+
+            }
+            catch (Exception exception)
+            {
+                LogUtil.Error("毕业设日候选学生提交出错->" + exception);
+            }
+        }
+
+        /// <summary> 组织数据 </summary> 
+        private object[,] GetObjects(List<ListViewItem> listViewItems)
+        {
+            object[,] objectArr = new object[listViewItems.Count + 2, 3];
+            objectArr[0, 0] = ((Teacher)_logonBusinessService.UserObj).Department + "毕业设计候选学生";
+            objectArr[1, 0] = "学号";
+            objectArr[1, 1] = "姓名";
+            objectArr[1, 2] = "班级";
+
+            try
+            {
+                for (int i = 0; i < listViewItems.Count; i++)
+                {
+                    objectArr[i + 2, 0] = listViewItems[i].SubItems[0].Text;
+                    objectArr[i + 2, 1] = listViewItems[i].SubItems[1].Text;
+                    objectArr[i + 2, 2] = listViewItems[i].SubItems[2].Text;
+                }
+            }
+            catch (Exception exception)
+            {
+                LogUtil.Error("选择学生 组织数据出错->" + exception);
+            }
+
+            return objectArr;
+        }
+
+        private void btnBatchImp_Click(object sender, EventArgs e)
+        {
+            var bondImpFrm = new ImportFrm(ImportParam);
+            bondImpFrm.ShowDialog();
+        }
+
+        private void ImportParam(List<string> paramList)
+        {
+            foreach (var item in paramList)
+            {
+                var teacherList = _studentList.Where(s => s.StudentId == item).ToList();
+                foreach (Student student in teacherList)
+                {
+                    if (!_rightListViewItem.Exists(
+                        lvt => lvt.Tag.Equals(student.StudentId)
+                    ))
+                    {
+                        var items = new ListViewItem();
+                        items.SubItems[0].Text = student.StudentId;
+                        items.SubItems.Add(student.StudentName);
+                        items.SubItems.Add(student.Class);
+                        items.Tag = student.StudentId;
+                        _rightListViewItem.Add(items);
+                        mlvReft.VirtualListSize = _rightListViewItem.Count;
+                    }
+                }
+            }
+            SetLabNum();
         }
 
         #region 移动
@@ -408,6 +508,5 @@ namespace GraduationDesignManagement.Views
         }
 
         #endregion
-        
     }
 }
