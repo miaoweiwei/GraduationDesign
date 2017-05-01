@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txbIntroduce = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txbProjectName = new System.Windows.Forms.TextBox();
@@ -47,10 +47,8 @@
             this.btnProjress = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // txbIntroduce
@@ -60,7 +58,7 @@
             this.txbIntroduce.Name = "txbIntroduce";
             this.txbIntroduce.ReadOnly = true;
             this.txbIntroduce.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txbIntroduce.Size = new System.Drawing.Size(183, 84);
+            this.txbIntroduce.Size = new System.Drawing.Size(313, 84);
             this.txbIntroduce.TabIndex = 24;
             // 
             // label2
@@ -78,7 +76,7 @@
             this.txbProjectName.Location = new System.Drawing.Point(436, 34);
             this.txbProjectName.Name = "txbProjectName";
             this.txbProjectName.ReadOnly = true;
-            this.txbProjectName.Size = new System.Drawing.Size(183, 21);
+            this.txbProjectName.Size = new System.Drawing.Size(313, 21);
             this.txbProjectName.TabIndex = 25;
             // 
             // label1
@@ -86,7 +84,7 @@
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(346, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(284, 23);
+            this.label1.Size = new System.Drawing.Size(403, 23);
             this.label1.TabIndex = 23;
             this.label1.Text = "相关项目详情";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,14 +106,14 @@
             this.dgvMyStudent.AllowUserToDeleteRows = false;
             this.dgvMyStudent.AllowUserToResizeRows = false;
             this.dgvMyStudent.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMyStudent.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMyStudent.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMyStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMyStudent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -124,6 +122,7 @@
             this.Column4,
             this.Column5});
             this.dgvMyStudent.Location = new System.Drawing.Point(3, 3);
+            this.dgvMyStudent.MultiSelect = false;
             this.dgvMyStudent.Name = "dgvMyStudent";
             this.dgvMyStudent.RowHeadersVisible = false;
             this.dgvMyStudent.RowTemplate.Height = 23;
@@ -135,9 +134,9 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "StudentId";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.HeaderText = "学号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -146,9 +145,9 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "StudentName";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column2.HeaderText = "姓名";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -157,9 +156,9 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "Class";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column3.HeaderText = "班级";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -167,9 +166,9 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "ProjectName";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column4.HeaderText = "项目";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -187,7 +186,7 @@
             this.btnProjress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnProjress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProjress.ForeColor = System.Drawing.Color.White;
-            this.btnProjress.Location = new System.Drawing.Point(529, 167);
+            this.btnProjress.Location = new System.Drawing.Point(656, 167);
             this.btnProjress.Name = "btnProjress";
             this.btnProjress.Size = new System.Drawing.Size(93, 23);
             this.btnProjress.TabIndex = 135;
@@ -217,20 +216,10 @@
             this.pictureBox1.TabIndex = 138;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Black;
-            this.pictureBox2.Location = new System.Drawing.Point(628, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(2, 204);
-            this.pictureBox2.TabIndex = 139;
-            this.pictureBox2.TabStop = false;
-            // 
             // MyStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnProjress);
@@ -241,11 +230,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MyStudent";
-            this.Size = new System.Drawing.Size(656, 210);
+            this.Size = new System.Drawing.Size(766, 210);
             this.Load += new System.EventHandler(this.MyStudent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMyStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,6 +254,5 @@
         private System.Windows.Forms.Button btnProjress;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

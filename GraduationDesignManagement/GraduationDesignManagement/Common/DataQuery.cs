@@ -210,6 +210,24 @@ namespace GraduationDesignManagement.Common
             teacherList = DataTableToList<Teacher>(dataTable);
             return teacherList;
         }
+
+        /// <summary>
+        /// 获取是否可以参加毕设的老师List
+        /// </summary>
+        /// <param name="iscan"></param>
+        /// <returns></returns>
+        public List<Teacher> GeTeacherList(string iscan)
+        {
+            List<Teacher> teacherList = new List<Teacher>();
+            string sqlSt = "SELECT * FROM teacher_table WHERE iscan=?Iscan;";
+            MySqlParameter[] param = {new MySqlParameter("Iscan", iscan),  };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+
+            teacherList = DataTableToList<Teacher>(dataTable);
+            return teacherList;
+        }
+
+
         /// <summary>
         /// 获取老师所在系的 系里所有的老师
         /// </summary>
@@ -424,12 +442,11 @@ namespace GraduationDesignManagement.Common
         }
 
         /// <summary>
-        /// 选择项目或重新选择项目
+        /// 取消之前的项目选择
         /// </summary>
-        /// <param name="project"></param>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        public int SelectProject(Project project,string studentId)
+        public int CancelSelectProject(string studentId)
         {
             //先判断是不是已经选过  若选过 就先设置project 的状态为0
             string sql0 = "SELECT * FROM graduationdesign_table WHERE studentid=?StudentId;";
@@ -448,9 +465,18 @@ namespace GraduationDesignManagement.Common
             //先判断是不是已经选过  若选过 就先设置project 的状态为0（就是上面的语句）然后再删除这一条记录；
             string sql1 = "DELETE FROM graduationdesign_table WHERE studentid=?StudentId;";
             MySqlParameter[] param1 = new MySqlParameter[] { new MySqlParameter("StudentId", studentId), };
-            _mySqlDataHelper.ExecuteNonQuery(sql1, param1);
+            return _mySqlDataHelper.ExecuteNonQuery(sql1, param1);
+        }
 
-
+        /// <summary>
+        /// 选择项目或重新选择项目
+        /// </summary>
+        /// <param name="project"></param>
+        /// <param name="studentId"></param>
+        /// <param name="pleaTeacherId">答辩老师</param>
+        /// <returns></returns>
+        public int SelectProject(Project project,string studentId,string pleaTeacherId)
+        {
             //先设置项目的state状态为1
             UpDataProjectState(project.Projectcode, "1");
             string sql2 = "SELECT * FROM project_table WHERE projectcode=?ProjectCode";
@@ -461,12 +487,13 @@ namespace GraduationDesignManagement.Common
                 return 0;
 
             //然后在向graduationdesign_table里添加一条新的记录；
-            string sqlSt = "INSERT INTO graduationdesign_table(projectcode,teacherid,studentid) VALUES (?ProjectCode,?TeacherId,?StudentId);";
+            string sqlSt = "INSERT INTO graduationdesign_table(projectcode,teacherid,studentid,pleateacherid) VALUES (?ProjectCode,?TeacherId,?StudentId,?PleaTeacherId);";
             MySqlParameter[] param = new MySqlParameter[]
             {
                 new MySqlParameter("ProjectCode", project.Projectcode),
                 new MySqlParameter("TeacherId",project.TeacherId),
                 new MySqlParameter("StudentId",studentId),
+                new MySqlParameter("PleaTeacherId",pleaTeacherId), 
             };
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }

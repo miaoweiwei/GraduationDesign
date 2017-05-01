@@ -125,6 +125,12 @@
     <Compile Include="Views\AddProjectFrm.Designer.cs">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BeginReply.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\BeginReply.Designer.cs">
+      <DependentUpon>BeginReply.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChooseTearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +170,12 @@
     </Compile>
     <Compile Include="Views\ChooseStudent.Designer.cs">
       <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyProject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MyProject.Designer.cs">
+      <DependentUpon>MyProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MyStudent.cs">
       <SubType>UserControl</SubType>
@@ -255,6 +267,9 @@
     <EmbeddedResource Include="Views\AddProjectFrm.resx">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BeginReply.resx">
+      <DependentUpon>BeginReply.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ChooseTearch.resx">
       <DependentUpon>ChooseTearch.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ChooseStudent.resx">
       <DependentUpon>ChooseStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MyProject.resx">
+      <DependentUpon>MyProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MyStudent.resx">
       <DependentUpon>MyStudent.cs</DependentUpon>

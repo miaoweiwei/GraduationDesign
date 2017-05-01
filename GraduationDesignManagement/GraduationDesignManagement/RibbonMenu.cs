@@ -216,7 +216,7 @@ namespace GraduationDesignManagement
         public void btnSelectProject_Click(IRibbonControl control)
         {
             CloseVisibleCtp();
-
+            
             SelectProject selectProject = new SelectProject();
             var selectProjectPane = CustomTaskPaneFactory.CreateCustomTaskPane(selectProject, "选择项目");
             selectProjectPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
@@ -224,7 +224,24 @@ namespace GraduationDesignManagement
             CustomTaskPaneList.Add(selectProjectPane);
             //传递CTP
             selectProject.TaskPaneSelectProject = selectProjectPane;
-            selectProjectPane.Visible = true;
+            
+            MyProject myProject=new MyProject();
+            var myProjectPane = CustomTaskPaneFactory.CreateCustomTaskPane(myProject, "我的项目");
+            myProjectPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+
+            CustomTaskPaneList.Add(myProjectPane);
+            //传递CTP
+            myProject.TaskPaneMyProject = myProjectPane;
+            myProject.TaskPaneSelectProject = selectProjectPane;
+
+            DataQuery dataQuery = DataQuery.Instance;
+            var gradations = dataQuery.GetGraduationDesign(_logonBusinessService.UserTypeInfo, _logonBusinessService.UserId);
+            if (gradations == null || gradations.Count <= 0)
+                selectProjectPane.Visible = true;
+            else
+            {
+                myProjectPane.Visible = true;
+            }
         }
         /// <summary> 资料获取 </summary>
         public void btnGetData_Click(IRibbonControl control)
@@ -242,6 +259,27 @@ namespace GraduationDesignManagement
         }
 
         #endregion
+
+        
+        #region 毕设答辩
+
+        public void btnBeginReply_Click(IRibbonControl control)
+        {
+
+        }
+
+        public void btnMiddleReply_Click(IRibbonControl control)
+        {
+
+        }
+
+        public void btnEndReply_Click(IRibbonControl control)
+        {
+
+        }
+
+        #endregion
+
 
         #region 毕设成绩分析
 

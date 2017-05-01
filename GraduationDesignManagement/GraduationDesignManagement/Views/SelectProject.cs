@@ -90,11 +90,42 @@ namespace GraduationDesignManagement.Views
             }
             if (project.State == "1")
             {
-                MessageBox.Show(@"该项目已被选择请选择其他项目！", @"选择项目");
+                MessageBox.Show(@"该项目已被选择,请选择其他项目！", @"选择项目");
                 return;
             }
 
-            int temp = _dataQuery.SelectProject(project, _logonBusinessService.UserId);
+            //先取消之前的选择
+            _dataQuery.CancelSelectProject(_logonBusinessService.UserId);
+
+           
+            //分配答辩老师
+            Dictionary<string, int> teacherDic = new Dictionary<string, int>();
+            //获取可以参加毕业设计的老师
+            List<Teacher> teachers = _dataQuery.GeTeacherList("1");
+
+            foreach (Teacher teacher in teachers)
+            {
+                if (teacher.TeacherId != project.TeacherId)
+                    teacherDic[teacher.TeacherId] = 0;
+            }
+            //获取已经分配的老师
+            List<GraduationDesign> graduationDesigns = _dataQuery.GetGraduationDesign(_logonBusinessService.UserTypeInfo, null);
+            foreach (GraduationDesign graduationDesign in graduationDesigns)
+            {
+                if (graduationDesign.PleaTeacherId != project.TeacherId)
+                    teacherDic[graduationDesign.PleaTeacherId] += 1;
+            }
+            //取出要答辩学生最少的教师id 作为该项目的答辩老师
+            string teacherId = teacherDic.First().Key;
+            foreach (KeyValuePair<string, int> keyValuePair in teacherDic)
+            {
+                if (keyValuePair.Value < teacherDic[teacherId])
+                    teacherId = keyValuePair.Key;
+            }
+
+
+            int temp = _dataQuery.SelectProject(project, _logonBusinessService.UserId,teacherId);
+            
             if (temp == 1)
             {
                 MessageBox.Show(@"项目选择成功！", @"选择项目");

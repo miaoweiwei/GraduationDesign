@@ -84,6 +84,7 @@
             this.Column7,
             this.Column2});
             this.dgvFileList.Location = new System.Drawing.Point(3, 32);
+            this.dgvFileList.MultiSelect = false;
             this.dgvFileList.Name = "dgvFileList";
             this.dgvFileList.RowHeadersVisible = false;
             this.dgvFileList.RowTemplate.Height = 23;
@@ -278,7 +279,7 @@
             this.Controls.Add(this.txbFilePath);
             this.Controls.Add(this.dgvFileList);
             this.Name = "FileManagement";
-            this.Size = new System.Drawing.Size(952, 168);
+            this.Size = new System.Drawing.Size(952, 170);
             this.Load += new System.EventHandler(this.FileManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).EndInit();
             this.palUpDate.ResumeLayout(false);
