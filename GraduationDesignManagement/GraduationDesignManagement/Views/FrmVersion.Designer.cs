@@ -39,22 +39,24 @@
             this.labDownprg = new System.Windows.Forms.Label();
             this.labnewVer = new System.Windows.Forms.Label();
             this.labNewVerson = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(75, 50);
+            this.label1.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(14, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 21);
+            this.label1.Size = new System.Drawing.Size(474, 37);
             this.label1.TabIndex = 0;
-            this.label1.Text = "毕业设计管理";
+            this.label1.Text = "毕业设计管理系统";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 97);
+            this.label2.Location = new System.Drawing.Point(298, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 1;
@@ -63,7 +65,7 @@
             // labCurrentVer
             // 
             this.labCurrentVer.AutoSize = true;
-            this.labCurrentVer.Location = new System.Drawing.Point(155, 97);
+            this.labCurrentVer.Location = new System.Drawing.Point(375, 116);
             this.labCurrentVer.Name = "labCurrentVer";
             this.labCurrentVer.Size = new System.Drawing.Size(53, 12);
             this.labCurrentVer.TabIndex = 2;
@@ -71,7 +73,7 @@
             // 
             // btnCheckUpDate
             // 
-            this.btnCheckUpDate.Location = new System.Drawing.Point(112, 149);
+            this.btnCheckUpDate.Location = new System.Drawing.Point(332, 168);
             this.btnCheckUpDate.Name = "btnCheckUpDate";
             this.btnCheckUpDate.Size = new System.Drawing.Size(61, 23);
             this.btnCheckUpDate.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             // pgbDownload
             // 
-            this.pgbDownload.Location = new System.Drawing.Point(12, 212);
+            this.pgbDownload.Location = new System.Drawing.Point(230, 219);
             this.pgbDownload.Name = "pgbDownload";
             this.pgbDownload.Size = new System.Drawing.Size(258, 23);
             this.pgbDownload.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -90,7 +92,7 @@
             // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(38, 149);
+            this.btnDownload.Location = new System.Drawing.Point(258, 168);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(68, 23);
             this.btnDownload.TabIndex = 5;
@@ -101,7 +103,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(179, 149);
+            this.btnCancel.Location = new System.Drawing.Point(399, 168);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(68, 23);
             this.btnCancel.TabIndex = 6;
@@ -113,7 +115,7 @@
             // labDownloadprg
             // 
             this.labDownloadprg.AutoSize = true;
-            this.labDownloadprg.Location = new System.Drawing.Point(152, 186);
+            this.labDownloadprg.Location = new System.Drawing.Point(372, 200);
             this.labDownloadprg.Name = "labDownloadprg";
             this.labDownloadprg.Size = new System.Drawing.Size(0, 12);
             this.labDownloadprg.TabIndex = 7;
@@ -122,7 +124,7 @@
             // labDownprg
             // 
             this.labDownprg.AutoSize = true;
-            this.labDownprg.Location = new System.Drawing.Point(78, 186);
+            this.labDownprg.Location = new System.Drawing.Point(298, 200);
             this.labDownprg.Name = "labDownprg";
             this.labDownprg.Size = new System.Drawing.Size(65, 12);
             this.labDownprg.TabIndex = 8;
@@ -132,7 +134,7 @@
             // labnewVer
             // 
             this.labnewVer.AutoSize = true;
-            this.labnewVer.Location = new System.Drawing.Point(78, 123);
+            this.labnewVer.Location = new System.Drawing.Point(298, 142);
             this.labnewVer.Name = "labnewVer";
             this.labnewVer.Size = new System.Drawing.Size(77, 12);
             this.labnewVer.TabIndex = 1;
@@ -142,19 +144,42 @@
             // labNewVerson
             // 
             this.labNewVerson.AutoSize = true;
-            this.labNewVerson.Location = new System.Drawing.Point(155, 123);
+            this.labNewVerson.Location = new System.Drawing.Point(375, 142);
             this.labNewVerson.Name = "labNewVerson";
             this.labNewVerson.Size = new System.Drawing.Size(41, 12);
             this.labNewVerson.TabIndex = 2;
             this.labNewVerson.Text = "新版本";
             this.labNewVerson.Visible = false;
             // 
-            // FrmVerson
+            // linkLabel1
+            // 
+            this.linkLabel1.Location = new System.Drawing.Point(12, 348);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(476, 23);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "毕业设计管理系统";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(11, 97);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(210, 185);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "    本系统主要是面向于毕业班的老师和同学，减少教师和同学的不必要的劳动和重复性工作，方便对毕业生毕业设计的管理，也方便学生更快捷的了解毕业设计的要求和相关文档" +
+    "的下载，教师只须将毕业生管理的重点放在审核上，而不是繁琐的流程，进而提高教师工作效率。 ";
+            // 
+            // FrmVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 262);
+            this.ClientSize = new System.Drawing.Size(500, 380);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.labDownprg);
             this.Controls.Add(this.labDownloadprg);
             this.Controls.Add(this.btnCancel);
@@ -169,7 +194,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmVerson";
+            this.Name = "FrmVersion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "关于毕设管理";
             this.ResumeLayout(false);
@@ -190,5 +215,7 @@
         private System.Windows.Forms.Label labDownprg;
         private System.Windows.Forms.Label labnewVer;
         private System.Windows.Forms.Label labNewVerson;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label3;
     }
 }
