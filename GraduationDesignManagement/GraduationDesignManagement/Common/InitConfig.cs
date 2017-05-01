@@ -25,6 +25,9 @@ namespace GraduationDesignManagement.Common
         /// <summary>  安装包版本文件name </summary>
         public static string CheckFileName { get; set; }
 
+        /// <summary> 上传文件保存的服务器路径 </summary>
+        public static string ServerUpLoadPath { get; set; }
+
         /// <summary>  mysql连接字符串 </summary>
         public static string MysqlConnectSt { get; set; }
 
@@ -49,6 +52,8 @@ namespace GraduationDesignManagement.Common
                 FtpPassword = config.AppSettings.Settings["FtpPassword"].Value;
                 ServerInstallPath = config.AppSettings.Settings["ServerInstallPath"].Value;
                 CheckFileName = config.AppSettings.Settings["CheckFileName"].Value;
+
+                ServerUpLoadPath = config.AppSettings.Settings["ServerUpLoadPath"].Value;
                 
                 UpLoadOutTime = int.Parse(config.AppSettings.Settings["UpLoadOutTime"].Value);
                 DownLoadOutTime = int.Parse(config.AppSettings.Settings["DownLoadOutTime"].Value);

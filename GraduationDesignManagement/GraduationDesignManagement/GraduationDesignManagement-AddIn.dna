@@ -47,12 +47,14 @@
               <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" getEnabled="GetControlsVisible"/>
               <button id ="btnCandidateMentor" onAction="btnCandidateMentor_Click" size="large" label="选择毕设候选导师" getEnabled="GetControlsVisible"/>
               <button id ="btnCandidateStudent" onAction="btnCandidateStudent_Click" size="large" label="选择毕设候选学生" getEnabled="GetControlsVisible"/>
+              <button id="btnUpDateFile" onAction="btnUpDateFile_Click" size="large" label="资料管理"/>
             </group>
             
             <group id="groupManagement" label="毕设管理" getVisible="GetControlsVisible">
               <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程"/>
               <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
               <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
+              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"/>
             </group>
             
             <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">

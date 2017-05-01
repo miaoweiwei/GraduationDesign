@@ -35,7 +35,7 @@ namespace GraduationDesignManagement.Views
 
         private void SetSchedule_Load(object sender, EventArgs e)
         {
-            _dataQuery = new DataQuery();
+            _dataQuery = DataQuery.Instance;
             DataTable dataTable = _dataQuery.GetScheduleDataTable();
             SetReplyDataTable(dataTable);
 

@@ -79,13 +79,16 @@
   <ItemGroup>
     <Compile Include="Common\DataQuery.cs" />
     <Compile Include="BusinessServices\LogonBusinessService.cs" />
+    <Compile Include="Common\DateTimeHelper.cs" />
     <Compile Include="Common\ExcelHelper.cs" />
     <Compile Include="Common\ExcelUtility.cs" />
+    <Compile Include="Common\FtpUpLoadFile.cs" />
     <Compile Include="Common\InitConfig.cs" />
     <Compile Include="Common\Installer.cs" />
     <Compile Include="Common\LogUtil.cs" />
     <Compile Include="Common\MySqlDataHelper.cs" />
     <Compile Include="Common\ServerHelper.cs" />
+    <Compile Include="Common\WebClickDownloadFile.cs" />
     <Compile Include="Common\XmlUtil.cs" />
     <Compile Include="Dictionary\AddInDictionary.cs" />
     <Compile Include="EnumClass\MoveDirect.cs" />
@@ -103,6 +106,7 @@
       <DependentUpon>SnakeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Game\GluttonousSnake\SnakeCoreControl.cs" />
+    <Compile Include="MysqlData\ServerFile.cs" />
     <Compile Include="MysqlData\GraduationDesign.cs" />
     <Compile Include="MysqlData\Project.cs" />
     <Compile Include="MysqlData\Schedule.cs" />
@@ -127,6 +131,13 @@
     <Compile Include="Views\ChooseTearch.Designer.cs">
       <DependentUpon>ChooseTearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FileManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\FileManagement.Designer.cs">
+      <DependentUpon>FileManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataGridViewDisableButtonColumn.cs" />
     <Compile Include="Views\FrmVersion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +197,7 @@
     </Content>
     <None Include="Config\App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Resources\自定义函数.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -245,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ChooseTearch.resx">
       <DependentUpon>ChooseTearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FileManagement.resx">
+      <DependentUpon>FileManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FrmVersion.resx">
       <DependentUpon>FrmVersion.cs</DependentUpon>

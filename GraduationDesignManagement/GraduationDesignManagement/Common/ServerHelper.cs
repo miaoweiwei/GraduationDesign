@@ -19,7 +19,7 @@ namespace GraduationDesignManagement.Common
     /// <summary>
     /// 从服务器下载和上传文件
     /// </summary>
-    public class UpDownHelper
+    public class ServerHelper
     {
         #region 下载
 
@@ -148,107 +148,7 @@ namespace GraduationDesignManagement.Common
         }
 
         #endregion
-
-        #region FTP上传文件
-
-        /// <summary>
-        /// FTP上传进度改变事件
-        /// </summary>
-        public event EventHandler UploadFtpProgresChange;
-        private float _uploadFtpProgres;
-
-        /// <summary>
-        /// FTP上传进度
-        /// </summary>
-        public float UploadFtpProgres
-        {
-            get { return _uploadFtpProgres; }
-            set
-            {
-                _uploadFtpProgres = value;
-                if (UploadFtpProgresChange != null)
-                {
-                    UploadFtpProgresChange(this, new EventArgs());
-                }
-            }
-        }
-
-        /// <summary> FTP上传完成 </summary>
-        public event EventHandler UpLoadFtpComplete;
-        private bool _upLoadFtpComplete;
-        /// <summary> FTP上传状态 </summary>
-        public bool UpLoadFtpState
-        {
-            get { return _upLoadFtpComplete; }
-            set
-            {
-                _upLoadFtpComplete = value;
-                if (UpLoadFtpComplete != null)
-                {
-                    UpLoadFtpComplete(this, new EventArgs());
-                }
-            }
-        }
-
-        /// <summary>
-        /// FTP上传文件到服务器
-        /// </summary>
-        /// <param name="filePath">本地文件路径</param>
-        /// <param name="targetDir">服务器路径uri</param>
-        /// <param name="hostName">服务器地址IP</param>
-        /// <param name="ftpUserName">FTP用户名</param>
-        /// <param name="ftpPassword">FTP用户密码</param>
-        public void UploadFileFtp(string filePath, string targetDir, string hostName, string ftpUserName,
-            string ftpPassword)
-        {
-            try
-            {
-                FileInfo fileInf = new FileInfo(filePath);
-                string uri = "ftp://" + hostName + targetDir + fileInf.Name;
-                var reqFtp = (FtpWebRequest)WebRequest.Create(new Uri(uri));
-                reqFtp.Credentials = new NetworkCredential(ftpUserName, ftpPassword);
-                reqFtp.Timeout = InitConfig.UpLoadOutTime;
-                reqFtp.KeepAlive = false;
-                reqFtp.Method = WebRequestMethods.Ftp.UploadFile;
-                reqFtp.UseBinary = true;
-                reqFtp.ContentLength = fileInf.Length;
-                long fileLength = fileInf.Length;
-
-                int buffLength = 2048;
-                byte[] buff = new byte[buffLength];
-                int sum = 0;
-                FileStream fs = fileInf.OpenRead();
-
-                Stream strm = reqFtp.GetRequestStream();
-                int contentLen;
-                do
-                {
-                    contentLen = fs.Read(buff, 0, buffLength);
-                    if (contentLen > 0)
-                    {
-                        strm.Write(buff, 0, contentLen);
-                    }
-                    sum = contentLen + sum;
-                    if (sum == fileLength)
-                    {
-                        fs.Close();
-                        strm.Close();
-                        contentLen = 0;
-                    }
-                    UploadFtpProgres = (float)(sum * 1.0 / fileLength);
-                } while (contentLen > 0);
-                UpLoadFtpState = true;
-            }
-            catch (Exception ex)
-            {
-                LogUtil.Error(
-                    "UploadFile(string filePath, string targetDir, string hostName, string ftpUserName, string ftpPassword)->" +
-                    ex);
-            }
-        }
-
-        #endregion
-
+        
         #region WebClient上传文件
 
         /// <summary>

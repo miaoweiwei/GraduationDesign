@@ -12,7 +12,7 @@ namespace GraduationDesignManagement.BusinessServices
 {
     class LogonBusinessService
     {
-        private DataQuery _dataQuery = new DataQuery();
+        private DataQuery _dataQuery;
 
         /// <summary> 登录状态 </summary>
         public bool IsAddInLogon { get; private set; }
@@ -47,6 +47,11 @@ namespace GraduationDesignManagement.BusinessServices
             }
         }
 
+        private LogonBusinessService()
+        {
+            _dataQuery = DataQuery.Instance;
+        }
+
         #endregion
 
         /// <summary>
@@ -65,6 +70,7 @@ namespace GraduationDesignManagement.BusinessServices
                 IsAddInLogon = true;
                 UserTypeInfo = userTypeInfo;
                 UserObj = GetUserInfo(user, userTypeInfo);
+
                 ClassList = GetDepartmentClass(userTypeInfo,UserId);
                 AuthDic =GetAuthList(UserObj, userTypeInfo);
             }
@@ -102,10 +108,12 @@ namespace GraduationDesignManagement.BusinessServices
                 case UserTypeInfo.Teacher:
                     dataRow = _dataQuery.GetTeacherDataRow(UserId);
                     obj = _dataQuery.DataRowToObject<Teacher>(dataRow);
+                    UserName = ((Teacher) obj).TeacherName;
                     break;
                 case UserTypeInfo.Student:
                     dataRow = _dataQuery.GetStudentDataRow(UserId);
                     obj = _dataQuery.DataRowToObject<Student>(dataRow);
+                    UserName = ((Student) obj).StudentName;
                     break;
             }
             return obj;

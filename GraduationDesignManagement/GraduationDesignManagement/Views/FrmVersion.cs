@@ -10,7 +10,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
-using GetWebRequest;
 using GraduationDesignManagement.Common;
 
 namespace GraduationDesignManagement.Views
@@ -22,7 +21,7 @@ namespace GraduationDesignManagement.Views
         /// <summary> 安装包的本地路径 </summary>
         private string _installPackagePath;
 
-        readonly UpDownHelper _upDownHelper=new UpDownHelper();
+        readonly ServerHelper _upDownHelper=new ServerHelper();
         /// <summary> 安装包URL路径  </summary>
         private string _downloadFilePath;
         /// <summary> 安装包名称  </summary>

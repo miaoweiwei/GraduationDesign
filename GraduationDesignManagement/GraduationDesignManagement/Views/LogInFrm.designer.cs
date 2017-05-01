@@ -121,7 +121,7 @@
             this.txbUserId.Name = "txbUserId";
             this.txbUserId.Size = new System.Drawing.Size(141, 21);
             this.txbUserId.TabIndex = 2;
-            this.txbUserId.Text = "2017001";
+            this.txbUserId.Text = "20134832535";
             // 
             // txbUserPassword
             // 
@@ -130,7 +130,7 @@
             this.txbUserPassword.PasswordChar = '*';
             this.txbUserPassword.Size = new System.Drawing.Size(141, 21);
             this.txbUserPassword.TabIndex = 2;
-            this.txbUserPassword.Text = "2017001";
+            this.txbUserPassword.Text = "20134832535";
             // 
             // label3
             // 

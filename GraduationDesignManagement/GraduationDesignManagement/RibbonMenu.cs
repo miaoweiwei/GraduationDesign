@@ -138,7 +138,21 @@ namespace GraduationDesignManagement
             chooseStudent.TaskPaneChooseStudent = chooseStudentPane;
             chooseStudentPane.Visible = true;
         }
+        /// <summary> 资料管理 </summary>
+        public void btnUpDateFile_Click(IRibbonControl control)
+        {
+            CloseVisibleCtp();
 
+            FileManagement fileManagement = new FileManagement();
+            var fileManagementPane = CustomTaskPaneFactory.CreateCustomTaskPane(fileManagement, "资料管理");
+            fileManagementPane.Width = 200;
+            fileManagementPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
+
+            CustomTaskPaneList.Add(fileManagementPane);
+            //传递CTP
+            fileManagement.TaskPaneFileManagement = fileManagementPane;
+            fileManagementPane.Visible = true;
+        }
         #endregion
 
         #region 毕设管理
@@ -164,7 +178,29 @@ namespace GraduationDesignManagement
         /// <summary> 选择学生 </summary>
         public void btnSelectStudent_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
+            MyStudent myStudent = new MyStudent();
+            CustomTaskPane myStudentPane = CustomTaskPaneFactory.CreateCustomTaskPane(myStudent, "我的毕业生");
+            myStudentPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
 
+            CustomTaskPaneList.Add(myStudentPane);
+            //传递CTP
+            myStudent.TaskPaneMyStudent = myStudentPane;
+            myStudentPane.Visible = true;
+        }
+        /// <summary> 资料获取 </summary>
+        public void btnAccessMaterials_Click(IRibbonControl control)
+        {
+            CloseVisibleCtp();
+            FileManagement fileManagement = new FileManagement();
+            var fileManagementPane = CustomTaskPaneFactory.CreateCustomTaskPane(fileManagement, "资料管理");
+            fileManagementPane.Width = 200;
+            fileManagementPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
+
+            CustomTaskPaneList.Add(fileManagementPane);
+            //传递CTP
+            fileManagement.TaskPaneFileManagement = fileManagementPane;
+            fileManagementPane.Visible = true;
         }
 
         #endregion
@@ -182,7 +218,7 @@ namespace GraduationDesignManagement
             CloseVisibleCtp();
 
             SelectProject selectProject = new SelectProject();
-            var selectProjectPane = CustomTaskPaneFactory.CreateCustomTaskPane(selectProject, "选择学生");
+            var selectProjectPane = CustomTaskPaneFactory.CreateCustomTaskPane(selectProject, "选择项目");
             selectProjectPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
 
             CustomTaskPaneList.Add(selectProjectPane);
@@ -193,7 +229,16 @@ namespace GraduationDesignManagement
         /// <summary> 资料获取 </summary>
         public void btnGetData_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
+            FileManagement fileManagement = new FileManagement();
+            var fileManagementPane = CustomTaskPaneFactory.CreateCustomTaskPane(fileManagement, "获取资料");
+            fileManagementPane.Width = 200;
+            fileManagementPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
 
+            CustomTaskPaneList.Add(fileManagementPane);
+            //传递CTP
+            fileManagement.TaskPaneFileManagement = fileManagementPane;
+            fileManagementPane.Visible = true;
         }
 
         #endregion
@@ -449,7 +494,7 @@ namespace GraduationDesignManagement
         /// <summary> 导出毕设日程 </summary>
         private void ScheduleExportToExcel()
         {
-            DataQuery dataQuery = new DataQuery();
+            DataQuery dataQuery = DataQuery.Instance;
             DataTable dataTable = dataQuery.GetScheduleDataTable();
 
             List<Schedule> schedules = dataQuery.DataTableToList<Schedule>(dataTable);

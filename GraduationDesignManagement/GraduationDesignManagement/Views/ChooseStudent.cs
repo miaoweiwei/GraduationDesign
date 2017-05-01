@@ -23,7 +23,7 @@ namespace GraduationDesignManagement.Views
         public CustomTaskPane TaskPaneChooseStudent { get; set; }
 
         private LogonBusinessService _logonBusinessService;
-        DataQuery _dataQuery=new DataQuery();
+        private DataQuery _dataQuery;
 
         /// <summary> 老师所在系里的班级 </summary>
         private List<string> _clasList = new List<string>();
@@ -39,6 +39,7 @@ namespace GraduationDesignManagement.Views
         
         private void ChooseStudent_Load(object sender, EventArgs e)
         {
+            _dataQuery = DataQuery.Instance;
             _logonBusinessService = LogonBusinessService.Instance;
             _clasList = _logonBusinessService.ClassList;
             _studentList = _dataQuery.GetStudentList(_clasList);

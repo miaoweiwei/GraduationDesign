@@ -35,7 +35,7 @@ namespace GraduationDesignManagement.Views
         private void AddProjectFrm_Load(object sender, EventArgs e)
         {
             _logonBusinessService=LogonBusinessService.Instance;
-            _dataQuery=new DataQuery();
+            _dataQuery= DataQuery.Instance;
             _projectList = _dataQuery.GetProjectList(_logonBusinessService.UserId);
             _projectCodeList = _projectList.Select(s => s.Projectcode).ToList();
             foreach (Project project in _projectList)

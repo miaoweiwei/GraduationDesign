@@ -39,7 +39,7 @@ namespace GraduationDesignManagement.Views
         private void ChooseTearch_Load(object sender, EventArgs e)
         {
             _logonBusinessService=LogonBusinessService.Instance;
-            _dataQuery =new DataQuery();
+            _dataQuery = DataQuery.Instance;
             _deparList = _dataQuery.GetDataTableDepartment();
             _teacherList = _dataQuery.GeTeacherList();
 

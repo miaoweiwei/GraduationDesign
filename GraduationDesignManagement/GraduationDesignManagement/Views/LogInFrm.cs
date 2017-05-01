@@ -8,7 +8,7 @@ namespace GraduationDesignManagement.Views
 {
     public partial class LogInFrm : Form
     {
-        private LogonBusinessService logonBusinessService = LogonBusinessService.Instance;
+        private LogonBusinessService _logonBusinessService;
 
         private string _userId;
         private string _userPassword;
@@ -16,6 +16,7 @@ namespace GraduationDesignManagement.Views
         public LogInFrm() 
         {
             InitializeComponent();
+            _logonBusinessService = LogonBusinessService.Instance;
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -29,8 +30,8 @@ namespace GraduationDesignManagement.Views
             }
             else
             {
-                logonBusinessService.Login(_userId, _userPassword, out logInInfo);
-                if (logonBusinessService.IsAddInLogon)
+                _logonBusinessService.Login(_userId, _userPassword, out logInInfo);
+                if (_logonBusinessService.IsAddInLogon)
                 {
                     //登录成功
                     this.DialogResult = DialogResult.OK;
