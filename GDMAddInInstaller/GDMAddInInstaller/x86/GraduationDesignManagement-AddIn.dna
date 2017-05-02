@@ -1,0 +1,91 @@
+<DnaLibrary Name="毕业设计管理系统" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="GraduationDesignManagement.dll" LoadFromBytes="true" Pack="true" />
+
+  <!-- 
+       The RuntimeVersion attribute above allows two settings:
+       * RuntimeVersion="v2.0" - for .NET 2.0, 3.0 and 3.5
+       * RuntimeVersion="v4.0" - for .NET 4 and 4.5
+
+       Additional referenced assemblies can be specified by adding 'Reference' tags. 
+       These libraries will not be examined and registered with Excel as add-in libraries, 
+       but will be packed into the -packed.xll file and loaded at runtime as needed.
+       For example:
+       
+       <Reference Path="Another.Library.dll" Pack="true" />
+  
+       Excel-DNA also allows the xml for ribbon UI extensions to be specified in the .dna file.
+       See the main Excel-DNA site at http://excel-dna.net for downloads of the full distribution.
+  -->
+
+  <Image Name="logout" Path=".\Resources\logout.png" Pack="true"/>
+  <Image Name="login" Path=".\Resources\login.png" Pack="true"/>
+  <Image Name="恢复数据" Path=".\Resources\恢复数据.png" Pack="true"/>
+  <Image Name="refresh_stop" Path=".\Resources\refresh_stop.png" Pack="true"/>
+  <Image Name="quotereal" Path=".\Resources\quotereal.png" Pack="true"/>
+  <Image Name="trade" Path=".\Resources\trade.png" Pack="true"/>
+  <Image Name="IAS" Path=".\Resources\IAS.png" Pack="true"/>
+  <Image Name="实时持仓" Path=".\Resources\实时持仓.png" Pack="true"/>
+  <Image Name="hismarket" Path=".\Resources\hismarket.png" Pack="true"/>
+  <Image Name="histrade" Path=".\Resources\histrade.png" Pack="true"/>
+  <Image Name="基差" Path=".\Resources\基差.png" Pack="true"/>
+  <Image Name="价差" Path=".\Resources\价差.png" Pack="true"/>
+  <Image Name="about" Path=".\Resources\about.png" Pack="true"/>
+  <Image Name="func" Path=".\Resources\自定义函数.png" Pack="true"/>
+
+  <CustomUI>
+    <customUI onLoad="RibbonMenu_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui" loadImage="LoadImage">
+      <ribbon>
+        <tabs>
+          <tab id="GraduationDesignManagement" label="毕业设计管理">
+            <!--登录管理-->
+            <group id="grpLogin" label="登录">
+              <button id="btnLogin" onAction="btnLogin_Click" size="large" getLabel="GetLoginLabel" getImage="GetLoginImage"/>
+            </group>
+            
+            <!--毕设系统-->
+            <group id="groupSystemManage" label="毕设系统管理" getVisible="GetControlsVisible">
+              <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" getEnabled="GetControlsVisible"/>
+              <button id ="btnCandidateMentor" onAction="btnCandidateMentor_Click" size="large" label="选择毕设候选导师" getEnabled="GetControlsVisible"/>
+              <button id ="btnCandidateStudent" onAction="btnCandidateStudent_Click" size="large" label="选择毕设候选学生" getEnabled="GetControlsVisible"/>
+              <button id="btnUpDateFile" onAction="btnUpDateFile_Click" size="large" label="资料管理"/>
+            </group>
+            
+            <group id="groupManagement" label="毕设管理" getVisible="GetControlsVisible">
+              <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程"/>
+              <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
+              <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
+              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"/>
+            </group>
+            
+            <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">
+              <button id="btnStudentGetPlan" onAction="btnStudentGetPlan_Click" size="large" label="获取毕设日程"/>
+              <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="我的毕设项目"/>
+              <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取"/>
+            </group>
+            
+            <group id="groupPlan" label="毕设计划">
+              <button id="btnBeginReply" onAction="btnBeginReply_Click" size="large" label="开题" getEnabled="GetControlsVisible"/>
+              <button id="btnMiddleReply" onAction="btnMiddleReply_Click" size="large" label="中期" getEnabled="GetControlsVisible"/>
+              <button id="btnEndReply" onAction="btnEndReply_Click" size="large" label="结题" getEnabled="GetControlsVisible"/>
+            </group>
+            
+            <!--毕设成绩分析-->
+            <group id="groupAnalysis" label="毕设成绩分析">
+              <button id="btnScorestSort" onAction="btnScorestSort_Click" size="large" label="成绩排名" getEnabled="GetControlsVisible"/>
+              <button id="btnScorestChart" onAction="btnScorestChart_Click" size="large" label="图表"  getEnabled="GetControlsVisible"/>
+            </group>
+            
+            <!--娱乐-->
+            <group id="idGame" label="娱乐">
+              <button id="btnSnake" onAction="btnSnake_Click" size="large" image="func" label="贪吃蛇"/>
+            </group>
+            <group id="aboutGraduationDesign" label="关于">
+              <button id="btnVerInfo" onAction="btnVerInfo_Click" label="版本&#13;和支持" size="large" image="about"/>
+            </group>
+          
+          </tab>
+        </tabs>
+      </ribbon>
+    </customUI>
+  </CustomUI>
+</DnaLibrary>
