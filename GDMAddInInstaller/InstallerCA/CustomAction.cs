@@ -21,6 +21,13 @@ namespace InstallerCA
         private static Session _pulicSession;
         private static string _regasmPath;
 
+        [CustomAction]
+        public static ActionResult CuActionResult(Session session)
+        {
+            
+            return ActionResult.Success;
+        }
+
         private static int nowVersion = 2350;//2.3.5.0之前用winform安装程序
         #region Methods
 
@@ -66,7 +73,7 @@ namespace InstallerCA
         }
 
         #endregion
-
+        
         #region CaRegisterAddIn
         [CustomAction]
         public static ActionResult CaRegisterAddIn(Session session)
