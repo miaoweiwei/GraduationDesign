@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="GDMAddInInstaller" Language="2052" Codepage="936" Version="1.0.0" Manufacturer="MiaoWeiWei" UpgradeCode="9823c1c7-c057-4740-b50e-0de583c32f16">
+  <Product Id="*" Name="毕业设计信息管理系统" Language="2052" Codepage="936" Version="1.0.0" Manufacturer="MiaoWeiWei" UpgradeCode="9823c1c7-c057-4740-b50e-0de583c32f16">
 
     <!--<WixLocalization Codepage="utf-8" Culture="fr-ca" xmlns="http://schemas.microsoft.com/wix/2006/localization"></WixLocalization>-->
     <!--需要管理员注册的时候Package中 InstallPrivileges="elevated" -->
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Languages="2052" InstallPrivileges="elevated"/>
-
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Languages="2052" InstallPrivileges="elevated" ShortNames ="yes"/>
 
     <MajorUpgrade DowngradeErrorMessage="一个新版本的[ProductName]已经安装，您安装的不是最新版本" />
     <MediaTemplate EmbedCab="yes" />
-
 
     <!--定义规定的安装目录-->
     <!--<Property Id ="ADDINFOLDER" Value="C:\Sumscope\Quoteboard\AddIn\"/>-->
@@ -109,7 +107,7 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="GDMAddInInstaller">
+        <Directory Id="INSTALLFOLDER" Name="GraduationDesignManagementSystem">
           <Directory Id="ADDINFOLDER">
             <Directory Id="Resources" Name="Resources"/>
             <Directory Id="Config" Name="Config"/>

@@ -162,7 +162,8 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateMentor", true}, //选择毕设候选导师
                     {"btnCandidateStudent", true}, //选择毕设候选学生
 
-                    {"groupManagement", (string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
+                    {"groupManagement", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
+                    { "btnAccessMaterials",false},
                     {"groupStudent", false}, //我的毕业设计group
 
                     {"btnBeginReply", true}, //开题
@@ -183,6 +184,7 @@ namespace GraduationDesignManagement.BusinessServices
                     {"btnCandidateStudent", false}, //选择毕设候选学生
 
                     {"groupManagement", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
+                    { "btnAccessMaterials",(!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")},//导师毕设管理里的资料管理
                     {"groupStudent", false}, //我的毕业设计group
 
                     {"btnBeginReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //开题

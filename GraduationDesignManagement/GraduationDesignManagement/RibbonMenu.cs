@@ -378,7 +378,8 @@ namespace GraduationDesignManagement
                 _isbtnCandidateStudent = false;
                 _ribbonUi.InvalidateControl("btnCandidateStudent");
             }
-            //毕设管理group 
+
+            //导师毕设管理group 
             if (authorityDic.ContainsKey("groupManagement"))
             {
                 _isgroupManagement = authorityDic["groupManagement"];
@@ -389,6 +390,18 @@ namespace GraduationDesignManagement
                 _isgroupManagement = false;
                 _ribbonUi.InvalidateControl("groupManagement");
             }
+            //导师毕设管理里的资料管理
+            if (authorityDic.ContainsKey("btnAccessMaterials"))
+            {
+                _isbtnAccessMaterials = authorityDic.ContainsKey("_isbtnAccessMaterials");
+                _ribbonUi.InvalidateControl("btnAccessMaterials");
+            }
+            else
+            {
+                _isbtnAccessMaterials = false;
+                _ribbonUi.InvalidateControl("btnAccessMaterials");
+            }
+
 
             //我的毕业设计group
             if (authorityDic.ContainsKey("groupStudent"))
@@ -474,6 +487,8 @@ namespace GraduationDesignManagement
         /// <summary> 毕设管理group </summary>
         private bool _isgroupManagement;
 
+        private bool _isbtnAccessMaterials;
+
         /// <summary> 我的毕业设计group </summary>
         private bool _isgroupStudent;
 
@@ -503,8 +518,11 @@ namespace GraduationDesignManagement
                     return _isbtnCandidateMentor;
                 case "btnCandidateStudent": //选择毕设候选学生
                     return _isbtnCandidateStudent;
+
                 case "groupManagement":     //毕设管理
                     return _isgroupManagement;
+                case "btnAccessMaterials":  //资料管理
+                    return _isbtnAccessMaterials;
 
                 case "groupStudent":        //我的毕业设计
                     return _isgroupStudent;

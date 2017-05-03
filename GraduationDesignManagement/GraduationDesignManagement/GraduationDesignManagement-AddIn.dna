@@ -41,7 +41,7 @@
             <group id="grpLogin" label="登录">
               <button id="btnLogin" onAction="btnLogin_Click" size="large" getLabel="GetLoginLabel" getImage="GetLoginImage"/>
             </group>
-            
+           
             <!--毕设系统-->
             <group id="groupSystemManage" label="毕设系统管理" getVisible="GetControlsVisible">
               <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" getEnabled="GetControlsVisible"/>
@@ -50,11 +50,11 @@
               <button id="btnUpDateFile" onAction="btnUpDateFile_Click" size="large" label="资料管理"/>
             </group>
             
-            <group id="groupManagement" label="毕设管理" getVisible="GetControlsVisible">
+            <group id="groupManagement" label="导师毕设管理" getVisible="GetControlsVisible">
               <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程"/>
               <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
               <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
-              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"/>
+              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"  getVisible="GetControlsVisible"/>
             </group>
             
             <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">
@@ -63,7 +63,7 @@
               <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取"/>
             </group>
             
-            <group id="groupPlan" label="毕设计划">
+            <group id="groupPlan" label="毕业设计答辩计划">
               <button id="btnBeginReply" onAction="btnBeginReply_Click" size="large" label="开题" getEnabled="GetControlsVisible"/>
               <button id="btnMiddleReply" onAction="btnMiddleReply_Click" size="large" label="中期" getEnabled="GetControlsVisible"/>
               <button id="btnEndReply" onAction="btnEndReply_Click" size="large" label="结题" getEnabled="GetControlsVisible"/>
