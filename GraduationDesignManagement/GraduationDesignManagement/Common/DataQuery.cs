@@ -502,11 +502,10 @@ namespace GraduationDesignManagement.Common
         /// 获取GraduationDesignList userId为null获取全部
         /// </summary>
         /// <param name="userType"></param>
-        /// <param name="userId"></param>
+        /// <param name="userId"> 学生ID或导师的ID</param>
         /// <returns></returns>
         public List<GraduationDesign> GetGraduationDesign(UserTypeInfo userType,string userId)
         {
-            List<GraduationDesign>graduationList=new List<GraduationDesign>();
             string sqlSt = "";
             MySqlParameter[] param;
             if (string.IsNullOrEmpty(userId))
@@ -528,9 +527,24 @@ namespace GraduationDesignManagement.Common
                 }
             }
             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
-            graduationList = DataTableToList<GraduationDesign>(dataTable);
+            var graduationList = DataTableToList<GraduationDesign>(dataTable);
             return graduationList;
         }
+
+        /// <summary>
+        /// 根据答辩老师的id获取要答辩的项目
+        /// </summary>
+        /// <param name="pleaTeacherId"></param>
+        /// <returns></returns>
+        public List<GraduationDesign> GetGraduationDesign(string pleaTeacherId)
+        {
+            string sqlSt = sqlSt = "SELECT * FROM graduationdesign_table WHERE pleateacherid=?UserId";
+            MySqlParameter[] param=new MySqlParameter[] {new MySqlParameter("UserId", pleaTeacherId), };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            var graduationList = DataTableToList<GraduationDesign>(dataTable);
+            return graduationList;
+        }
+
 
         /// <summary>
         /// 上传文件List

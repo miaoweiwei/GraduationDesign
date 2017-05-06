@@ -29,6 +29,7 @@ namespace GraduationDesignManagement.MysqlData
         public int MiddleScore { get; set; }
         /// <summary> 结题成绩 </summary>
         public int EndScore { get; set; }
-
+        /// <summary> 评语 </summary>
+        public string Comment { get; set; }
     }
 }
