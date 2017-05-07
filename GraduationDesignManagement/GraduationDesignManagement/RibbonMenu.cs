@@ -175,7 +175,7 @@ namespace GraduationDesignManagement
             addProjectFrm.TaskPaneAddProjectFrm = addProjectFrmPane;
             addProjectFrmPane.Visible = true;
         }
-        /// <summary> 选择学生 </summary>
+        /// <summary> 我的毕业生 </summary>
         public void btnSelectStudent_Click(IRibbonControl control)
         {
             CloseVisibleCtp();
@@ -201,6 +201,20 @@ namespace GraduationDesignManagement
             //传递CTP
             fileManagement.TaskPaneFileManagement = fileManagementPane;
             fileManagementPane.Visible = true;
+        }
+        /// <summary> 答辩 </summary>
+        public void btnTeacherReply_Click(IRibbonControl control)
+        {
+            CloseVisibleCtp();
+            
+            ReplyTeacher replyTeacher = new ReplyTeacher();
+            CustomTaskPane replyTeacherPane = CustomTaskPaneFactory.CreateCustomTaskPane(replyTeacher, "答辩");
+            replyTeacherPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
+
+            CustomTaskPaneList.Add(replyTeacherPane);
+            //传递CTP
+            replyTeacher.TaskPaneReplyTeacher = replyTeacherPane;
+            replyTeacherPane.Visible = true;
         }
 
         #endregion
@@ -257,25 +271,19 @@ namespace GraduationDesignManagement
             fileManagement.TaskPaneFileManagement = fileManagementPane;
             fileManagementPane.Visible = true;
         }
-
-        #endregion
-
-        
-        #region 毕设答辩
-
-        public void btnBeginReply_Click(IRibbonControl control)
+        /// <summary> 我的毕业设计答辩 </summary>
+        public void btnStudentReply_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
 
-        }
+            ReplyStudent replyStudent = new ReplyStudent();
+            CustomTaskPane replyStudentPane = CustomTaskPaneFactory.CreateCustomTaskPane(replyStudent, "我的答辩");
+            replyStudentPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
 
-        public void btnMiddleReply_Click(IRibbonControl control)
-        {
-
-        }
-
-        public void btnEndReply_Click(IRibbonControl control)
-        {
-
+            CustomTaskPaneList.Add(replyStudentPane);
+            //传递CTP
+            replyStudent.TaskPaneReplyStudent = replyStudentPane;
+            replyStudentPane.Visible = true;
         }
 
         #endregion
@@ -414,39 +422,7 @@ namespace GraduationDesignManagement
                 _isgroupStudent = false;
                 _ribbonUi.InvalidateControl("groupStudent");
             }
-            //开题
-            if (authorityDic.ContainsKey("btnBeginReply"))
-            {
-                _isbtnBeginReply = authorityDic["btnBeginReply"];
-                _ribbonUi.InvalidateControl("btnBeginReply");
-            }
-            else
-            {
-                _isbtnBeginReply = false;
-                _ribbonUi.InvalidateControl("btnBeginReply");
-            }
-            //中期
-            if (authorityDic.ContainsKey("btnMiddleReply"))
-            {
-                _isbtnMiddleReply = authorityDic["btnMiddleReply"];
-                _ribbonUi.InvalidateControl("btnMiddleReply");
-            }
-            else
-            {
-                _isbtnMiddleReply = false;
-                _ribbonUi.InvalidateControl("btnMiddleReply");
-            }
-            //结题
-            if (authorityDic.ContainsKey("btnEndReply"))
-            {
-                _isbtnEndReply = authorityDic["btnEndReply"];
-                _ribbonUi.InvalidateControl("btnEndReply");
-            }
-            else
-            {
-                _isbtnEndReply = false;
-                _ribbonUi.InvalidateControl("btnEndReply");
-            }
+          
             //毕设成绩分析
             if (authorityDic.ContainsKey("btnScorestSort"))
             {
@@ -492,14 +468,6 @@ namespace GraduationDesignManagement
         /// <summary> 我的毕业设计group </summary>
         private bool _isgroupStudent;
 
-
-        /// <summary> 开题 </summary>
-        private bool _isbtnBeginReply;
-        /// <summary> 中期 </summary>
-        private bool _isbtnMiddleReply;
-        /// <summary> 结题 </summary>
-        private bool _isbtnEndReply;
-
         /// <summary> 毕设成绩分析 </summary>
         private bool _isbtnScorestSort;
         /// <summary> 图表 </summary>
@@ -526,15 +494,7 @@ namespace GraduationDesignManagement
 
                 case "groupStudent":        //我的毕业设计
                     return _isgroupStudent;
-
-                case "btnBeginReply":      //开题
-                    return _isbtnBeginReply;
-                case "btnMiddleReply":      //中期
-                    return _isbtnMiddleReply;
-                case "btnEndReply":      //结题
-                    return _isbtnEndReply;
-
-
+                    
                 case "btnScorestSort":       //毕设成绩分析
                     return _isbtnScorestSort;
                 case "btnScorestChart":       //图表

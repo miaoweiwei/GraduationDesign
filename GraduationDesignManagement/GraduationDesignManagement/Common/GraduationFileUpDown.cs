@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -12,51 +11,40 @@ using GraduationDesignManagement.Views;
 
 namespace GraduationDesignManagement.Common
 {
-    /// <summary>
-    /// 使用WebClient下载文件
-    /// </summary>
-    public class WebClickDownloadFile
+    public class GraduationFileUpDown
     {
         /// <summary>
         /// 按钮Cell
         /// </summary>
         public DataGridViewDisableButtonCell DownCell;
         /// <summary>
-        /// 要下载的文件的大小
-        /// </summary>
-        public long TotalBytesToReceive { get; set; }
-        /// <summary>
         /// 下载进度
         /// </summary>
         public string ProgressPercentage { get; private set; }
 
-        private string _localFilePath;
+        private GraduationDesignFile _designFile;
+        private string _localFilePath; // 文件的本地路径 如果下载失败就删除文件
 
         /// <summary>
-        /// 下载完成并更新下载次数
+        /// 下载完成
         /// </summary>
-        public delegate void ReciveCompleteEventHandler(ServerFile serverFile, bool success);
-        public event ReciveCompleteEventHandler DownLoadUpDateDownLoadTime;
+        public delegate void ReciveCompleteEventHandler(GraduationDesignFile graduationDesignFile, bool success);
+        public event ReciveCompleteEventHandler DownReciveComplete;
 
-        private ServerFile _serverFile; //文件的本地路径 如果下载失败就删除文件
-        
         Timer timer = new Timer();
-        /// <summary>
-        /// 下载文件
-        /// </summary>
-        /// <param name="serverFile">指定要下载的ServerFile</param>
-        /// <param name="filePath">输入到本地文件夹</param>
-        public void DownLoderFile(ServerFile serverFile, string filePath)
-        {
-            _serverFile = serverFile;
-            TotalBytesToReceive = serverFile.Size;
 
-            string fileName = serverFile.FileName.Split('-')[1].Split('.')[0];
-            string fileSuffix = serverFile.FileName.Split('-')[1].Split('.')[1];
-            _localFilePath = filePath + "\\" + fileName + "." + fileSuffix;//获得文件路径带文件名 
+        public void DownLoadGraduationDesignFile(GraduationDesignFile graduationDesignFile, string filePath)
+        {
+            _designFile = graduationDesignFile;
+
+            string fileName = graduationDesignFile.FileName.Split('-')[1].Split('.')[0];
+            string fileSuffix = graduationDesignFile.FileName.Split('-')[1].Split('.')[1];
+
+            _localFilePath = filePath + "\\" + fileName + "."+fileSuffix;//获得文件路径带文件名 
 
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
+
             int iTemp = 1;
             while (true)
             {
@@ -65,7 +53,7 @@ namespace GraduationDesignManagement.Common
                 _localFilePath = filePath + "\\" + fileName + iTemp + "." + fileSuffix;
                 iTemp++;
             }
-            
+
             //创建文件后会返回该文件的Stream 所以要close（）一下
             Stream outStream = File.Create(_localFilePath);
             outStream.Close();
@@ -74,7 +62,7 @@ namespace GraduationDesignManagement.Common
             webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
 
-            string serverFilePath = InitConfig.DomainName + InitConfig.ServerUpLoadPath + serverFile.FileName;
+            string serverFilePath = InitConfig.DomainName + InitConfig.GraduationDesignFilePath + graduationDesignFile.FileName;
             Uri uri = new Uri(serverFilePath);
 
             webClient.DownloadFileAsync(uri, _localFilePath);
@@ -89,7 +77,7 @@ namespace GraduationDesignManagement.Common
             DownCell.Value = ProgressPercentage;
         }
 
-        private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void WebClient_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             string stTemp = "";
             bool success;
@@ -103,8 +91,8 @@ namespace GraduationDesignManagement.Common
                 stTemp = "下载失败重试";
                 success = false;
             }
-            if (DownLoadUpDateDownLoadTime != null)
-                DownLoadUpDateDownLoadTime(_serverFile, success);
+            if (DownReciveComplete != null)
+                DownReciveComplete(_designFile, success);
             if (!success)
                 File.Delete(_localFilePath);
             timer.Enabled = false;

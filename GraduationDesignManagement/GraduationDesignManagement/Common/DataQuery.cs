@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Windows.Forms;
-using GraduationDesignManagement.Enum;
+using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 using ICSharpCode.SharpZipLib.Zip;
 using MySql.Data.MySqlClient;
@@ -468,6 +468,8 @@ namespace GraduationDesignManagement.Common
             return _mySqlDataHelper.ExecuteNonQuery(sql1, param1);
         }
 
+        #region 毕业设计的项目 GraduationDesign
+
         /// <summary>
         /// 选择项目或重新选择项目
         /// </summary>
@@ -544,7 +546,23 @@ namespace GraduationDesignManagement.Common
             var graduationList = DataTableToList<GraduationDesign>(dataTable);
             return graduationList;
         }
+        /// <summary>
+        /// 根据学生id获取学生的毕业项目
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        public GraduationDesign GetMyGraduationDesign(string studentId)
+        {
+            GraduationDesign graduation=new GraduationDesign();
+            string sql = "SELECT * FROM graduationdesign_table WHERE studentid=?StudentId;";
+            MySqlParameter[] param = { new MySqlParameter("StudentId", studentId), };
+            var dataRow = _mySqlDataHelper.ExecuteDataRow(sql, param);
+            graduation = DataRowToObject<GraduationDesign>(dataRow);
+            return graduation;
+        }
+        
 
+        #endregion
 
         /// <summary>
         /// 上传文件List
@@ -560,13 +578,16 @@ namespace GraduationDesignManagement.Common
 
             foreach (ServerFile serverFile in serverFileList)
             {
-                sqlSt = sqlSt + "'" + serverFile.FileCode + "',";
-                sqlSt = sqlSt + "'" + serverFile.FileName+ "',";
-                sqlSt = sqlSt + "'" + serverFile.UpLoadTime + "',";
-                sqlSt = sqlSt + "'" + serverFile.UserName + "',";
-                sqlSt = sqlSt + "'" + serverFile.Size + "',";
+                string temp = "('" +
+                    serverFile.FileCode + "','" +
+                    serverFile.FileName + "','" +
+                    serverFile.UpLoadTime + "','" +
+                    serverFile.UserName + "','" +
+                    serverFile.Size +
+                    "'),";
+                sqlSt = sqlSt + temp;
             }
-            sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ");";
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1);
             MySqlParameter[] param =new MySqlParameter[] {};
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }
@@ -629,6 +650,59 @@ namespace GraduationDesignManagement.Common
             };
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }
+        
+        #region 项目文件的操作
+        /// <summary>
+        /// 根据学生id获取已经提交的项目文件
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        public List<GraduationDesignFile> GetGraduationDesignFileList(string studentId)
+        {
+            List<GraduationDesignFile> graduationList=new List<GraduationDesignFile>();
+            string sqlSt = "SELECT * FROM graduationfile_table WHERE studentid=?StudentId;";
+            MySqlParameter[] param=new MySqlParameter[] {new MySqlParameter("StudentId",studentId), };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            graduationList = DataTableToList<GraduationDesignFile>(dataTable);
+            return graduationList;
+        }
+        /// <summary>
+        /// 上传项目文件
+        /// </summary>
+        /// <param name="graduations"></param>
+        /// <returns></returns>
+        public int InsertGraduationDesignFile(List<GraduationDesignFile> graduations)
+        {
+            if (graduations.Count <= 0)
+                return 0;
+            string sqlSt = "INSERT INTO graduationfile_table(" +
+                           "filecode," +
+                           "filename," +
+                           "uploadtime," +
+                           "datetype," +
+                           "studentid," +
+                           "projectcode" +
+                           ") " +
+                           "VALUES";
+            foreach (GraduationDesignFile graduation in graduations)
+            {
+                string temp = "('" +
+                              graduation.FileCode + "','" +
+                              graduation.FileName + "','" +
+                              graduation.UpLoadTime + "','" +
+                              graduation.DateType + "','" +
+                              graduation.StudentId + "','" +
+                              graduation.ProjectCode +
+                              "'),";
+                sqlSt = sqlSt + temp;
+            }
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1);
+            MySqlParameter[] param = { };
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
+        }
+
+        #endregion
+
 
         /************************************************************************************/
 

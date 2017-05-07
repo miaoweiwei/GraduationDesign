@@ -12,8 +12,10 @@ namespace GraduationDesignManagement.Common
     public class FtpUpLoadFile
     {
         #region FTP上传文件
-
-        public ServerFile ServerFile { get; set; }
+        /// <summary>
+        /// 上传文件的服务器类型
+        /// </summary>
+        public object ObjectFile { get; set; }
 
         private float _uploadFtpProgres;
         /// <summary> FTP上传进度 </summary>
@@ -25,7 +27,7 @@ namespace GraduationDesignManagement.Common
                 _uploadFtpProgres = value;
                 if (UploadFtpProgresChange != null)
                 {
-                    UploadFtpProgresChange(ServerFile, value);
+                    UploadFtpProgresChange(ObjectFile, value);
                 }
             }
         }
@@ -35,10 +37,9 @@ namespace GraduationDesignManagement.Common
         /// </summary>
         /// <param name="serverFile"></param>
         /// <param name="num">上传进度</param>
-        public delegate void UploadFileFtpProgresChange(ServerFile serverFile, float uploadFileFtpProgres);
+        public delegate void UploadFileFtpProgresChange(object obj, float uploadFileFtpProgres);
         public event UploadFileFtpProgresChange UploadFtpProgresChange;
-
-
+        
         private bool _upLoadFtpComplete;
         /// <summary> FTP上传状态 </summary>
         public bool UpLoadFtpState
@@ -49,7 +50,7 @@ namespace GraduationDesignManagement.Common
                 _upLoadFtpComplete = value;
                 if (UploadFtpFileCompleted != null)
                 {
-                    UploadFtpFileCompleted(ServerFile, value);
+                    UploadFtpFileCompleted(ObjectFile, value);
                 }
             }
         }
@@ -58,12 +59,11 @@ namespace GraduationDesignManagement.Common
         /// </summary>
         /// <param name="serverFile"></param>
         /// <param name="upLoadFtpState"></param>
-        public delegate void UploadFileCompleted(ServerFile serverFile, bool upLoadFtpState);
+        public delegate void UploadFileCompleted(object obj, bool upLoadFtpState);
         public event UploadFileCompleted UploadFtpFileCompleted;
 
         Timer timer = new Timer();
-
-
+        
         /// <summary>
         /// FTP上传文件到服务器
         /// </summary>

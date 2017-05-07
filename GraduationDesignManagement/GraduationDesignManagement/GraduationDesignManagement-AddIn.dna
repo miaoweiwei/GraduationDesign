@@ -55,18 +55,15 @@
               <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
               <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
               <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"  getVisible="GetControlsVisible"/>
+              <button id="btnTeacherReply" onAction="btnTeacherReply_Click" size="large" label="答辩"/>
+           
             </group>
             
             <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">
               <button id="btnStudentGetPlan" onAction="btnStudentGetPlan_Click" size="large" label="获取毕设日程"/>
               <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="我的毕设项目"/>
               <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取"/>
-            </group>
-            
-            <group id="groupPlan" label="毕业设计答辩计划">
-              <button id="btnBeginReply" onAction="btnBeginReply_Click" size="large" label="开题" getEnabled="GetControlsVisible"/>
-              <button id="btnMiddleReply" onAction="btnMiddleReply_Click" size="large" label="中期" getEnabled="GetControlsVisible"/>
-              <button id="btnEndReply" onAction="btnEndReply_Click" size="large" label="结题" getEnabled="GetControlsVisible"/>
+              <button id="btnStudentReply" onAction="btnStudentReply_Click" size="large" label="我的答辩"/>
             </group>
             
             <!--毕设成绩分析-->

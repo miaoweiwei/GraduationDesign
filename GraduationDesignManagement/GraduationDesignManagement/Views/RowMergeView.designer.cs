@@ -1,5 +1,5 @@
 ﻿
-    namespace SumscopeAddIn.Views
+    namespace GraduationDesignManagement.Views
     {
         partial class RowMergeView
         {

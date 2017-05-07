@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
-using GraduationDesignManagement.Enum;
+using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 
 namespace GraduationDesignManagement.Views
@@ -244,7 +244,7 @@ namespace GraduationDesignManagement.Views
         private void UpDateFile(ServerFile serverFile, string filePath, string fileName)
         {
             FtpUpLoadFile ftpUpLoadFile = new FtpUpLoadFile();
-            ftpUpLoadFile.ServerFile = serverFile;
+            ftpUpLoadFile.ObjectFile = serverFile;
 
             ftpUpLoadFile.UploadFtpProgresChange += FtpUpLoadFile_UploadFtpProgresChange;
             ftpUpLoadFile.UploadFtpFileCompleted += FtpUpLoadFile_UploadFtpFileCompleted;
@@ -253,10 +253,11 @@ namespace GraduationDesignManagement.Views
             ftpUpLoadFile.UploadFileFtp(filePath, uri, fileName, InitConfig.FtpUser, InitConfig.FtpPassword);
         }
 
-        private void FtpUpLoadFile_UploadFtpFileCompleted(ServerFile serverFile, bool upLoadFtpState)
+        private void FtpUpLoadFile_UploadFtpFileCompleted(object obj, bool upLoadFtpState)
         {
             if (upLoadFtpState)
             {
+                ServerFile serverFile = (ServerFile) obj;
                 _dataQuery.UpLoadFile(new List<ServerFile>() { serverFile });
 
                 labUpDateProgres.Invoke(new Action(delegate
@@ -280,13 +281,14 @@ namespace GraduationDesignManagement.Views
             }
         }
 
-        private void FtpUpLoadFile_UploadFtpProgresChange(ServerFile serverFile, float uploadFileFtpProgres)
+        private void FtpUpLoadFile_UploadFtpProgresChange(object obj, float uploadFileFtpProgres)
         {
             labUpDateProgres.Invoke(new Action(delegate
             {
                 labUpDateProgres.Text = Math.Round(uploadFileFtpProgres * 100, 2) + @"%";
             }));
         }
+
         #endregion
     }
 }

@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
 
-namespace SumscopeAddIn.Views
+namespace GraduationDesignManagement.Views
 {
     /// <summary>
     /// DataGridView行合并.请对属性MergeColumnNames 赋值既可

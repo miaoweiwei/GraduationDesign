@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using GraduationDesignManagement.Common;
-using GraduationDesignManagement.Enum;
+using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 using Newtonsoft.Json;
 
@@ -166,10 +166,6 @@ namespace GraduationDesignManagement.BusinessServices
                     { "btnAccessMaterials",false},
                     {"groupStudent", false}, //我的毕业设计group
 
-                    {"btnBeginReply", true}, //开题
-                    {"btnMiddleReply", true}, //中期
-                    {"btnEndReply", true}, //结题
-
                     {"btnScorestSort", true}, //毕设成绩分析
                     {"btnScorestChart", true}, //图表
                 };
@@ -186,10 +182,6 @@ namespace GraduationDesignManagement.BusinessServices
                     {"groupManagement", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设管理group
                     { "btnAccessMaterials",(!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")},//导师毕设管理里的资料管理
                     {"groupStudent", false}, //我的毕业设计group
-
-                    {"btnBeginReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //开题
-                    {"btnMiddleReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //中期
-                    {"btnEndReply", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //结题
 
                     {"btnScorestSort", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设成绩分析
                     {"btnScorestChart", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //图表
@@ -215,10 +207,6 @@ namespace GraduationDesignManagement.BusinessServices
 
                     {"groupManagement", false}, //毕设管理group
                     {"groupStudent", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //我的毕业设计group
-
-                    {"btnBeginReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //开题
-                    {"btnMiddleReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //中期
-                    {"btnEndReply", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //结题
 
                     {"btnScorestSort", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //毕设成绩分析
                     {"btnScorestChart", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //图表

@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
-using GraduationDesignManagement.Enum;
 using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
 
