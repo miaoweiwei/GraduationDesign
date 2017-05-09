@@ -89,6 +89,7 @@
             // 
             // btnFinish
             // 
+            this.btnFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnFinish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinish.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.btnFinish.Location = new System.Drawing.Point(115, 7);
@@ -96,7 +97,7 @@
             this.btnFinish.Size = new System.Drawing.Size(97, 30);
             this.btnFinish.TabIndex = 11;
             this.btnFinish.Text = "确定导入";
-            this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.UseVisualStyleBackColor = false;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // ImportFrm

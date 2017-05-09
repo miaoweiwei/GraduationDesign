@@ -95,6 +95,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Location = new System.Drawing.Point(309, 166);
@@ -102,18 +103,19 @@
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnLogIn
             // 
+            this.btnLogIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogIn.Location = new System.Drawing.Point(100, 166);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(75, 23);
             this.btnLogIn.TabIndex = 3;
             this.btnLogIn.Text = "登录";
-            this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.UseVisualStyleBackColor = false;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // txbUserId
@@ -122,7 +124,7 @@
             this.txbUserId.Name = "txbUserId";
             this.txbUserId.Size = new System.Drawing.Size(141, 21);
             this.txbUserId.TabIndex = 2;
-            this.txbUserId.Text = "20134832535";
+            this.txbUserId.Text = "2017001";
             // 
             // txbUserPassword
             // 
@@ -131,7 +133,7 @@
             this.txbUserPassword.PasswordChar = '*';
             this.txbUserPassword.Size = new System.Drawing.Size(141, 21);
             this.txbUserPassword.TabIndex = 2;
-            this.txbUserPassword.Text = "20134832535";
+            this.txbUserPassword.Text = "2017001";
             // 
             // label3
             // 

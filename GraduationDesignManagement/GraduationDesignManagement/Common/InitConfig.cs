@@ -30,6 +30,8 @@ namespace GraduationDesignManagement.Common
 
         /// <summary> 上传文件保存的毕业设计的项目文件 </summary>
         public static string GraduationDesignFilePath { get; set; }
+        /// <summary> 毕业设计信息管理系统网页介绍 </summary>
+        public static string GraduationDesignHtml { get; set; }
 
         /// <summary>  mysql连接字符串 </summary>
         public static string MysqlConnectSt { get; set; }
@@ -58,6 +60,8 @@ namespace GraduationDesignManagement.Common
 
                 ServerUpLoadPath = config.AppSettings.Settings["ServerUpLoadPath"].Value;
                 GraduationDesignFilePath= config.AppSettings.Settings["GraduationDesignFilePath"].Value;
+
+                GraduationDesignHtml = config.AppSettings.Settings["GraduationDesignHtml"].Value;
 
                 UpLoadOutTime = int.Parse(config.AppSettings.Settings["UpLoadOutTime"].Value);
                 DownLoadOutTime = int.Parse(config.AppSettings.Settings["DownLoadOutTime"].Value);

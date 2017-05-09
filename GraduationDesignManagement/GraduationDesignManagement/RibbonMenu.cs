@@ -210,7 +210,7 @@ namespace GraduationDesignManagement
             ReplyTeacher replyTeacher = new ReplyTeacher();
             CustomTaskPane replyTeacherPane = CustomTaskPaneFactory.CreateCustomTaskPane(replyTeacher, "答辩");
             replyTeacherPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionTop; //在上面弹出
-
+            
             CustomTaskPaneList.Add(replyTeacherPane);
             //传递CTP
             replyTeacher.TaskPaneReplyTeacher = replyTeacherPane;
@@ -315,7 +315,7 @@ namespace GraduationDesignManagement
             var snakeControl = new SnakeControl();
             var snakeControlTaskPane = CustomTaskPaneFactory.CreateCustomTaskPane(snakeControl, "贪吃蛇");
             snakeControlTaskPane.Width = 270;
-            snakeControlTaskPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionRight; //在右边弹出
+            snakeControlTaskPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionLeft; //在右边弹出
 
             CustomTaskPaneList.Add(snakeControlTaskPane);
             snakeControlTaskPane.Visible = true;

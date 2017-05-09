@@ -179,46 +179,50 @@
             // 
             // btnDelete1
             // 
+            this.btnDelete1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDelete1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete1.Location = new System.Drawing.Point(20, 59);
             this.btnDelete1.Name = "btnDelete1";
             this.btnDelete1.Size = new System.Drawing.Size(95, 23);
             this.btnDelete1.TabIndex = 134;
             this.btnDelete1.Text = "删除事项";
-            this.btnDelete1.UseVisualStyleBackColor = true;
+            this.btnDelete1.UseVisualStyleBackColor = false;
             this.btnDelete1.Click += new System.EventHandler(this.btnDelete1_Click);
             // 
             // btnMatter1
             // 
+            this.btnMatter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnMatter1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMatter1.Location = new System.Drawing.Point(20, 19);
             this.btnMatter1.Name = "btnMatter1";
             this.btnMatter1.Size = new System.Drawing.Size(77, 23);
             this.btnMatter1.TabIndex = 133;
             this.btnMatter1.Text = "添加事项";
-            this.btnMatter1.UseVisualStyleBackColor = true;
+            this.btnMatter1.UseVisualStyleBackColor = false;
             this.btnMatter1.Click += new System.EventHandler(this.btnMatter1_Click);
             // 
             // btnCancel1
             // 
+            this.btnCancel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel1.Location = new System.Drawing.Point(20, 135);
             this.btnCancel1.Name = "btnCancel1";
             this.btnCancel1.Size = new System.Drawing.Size(95, 23);
             this.btnCancel1.TabIndex = 132;
             this.btnCancel1.Text = "取消";
-            this.btnCancel1.UseVisualStyleBackColor = true;
+            this.btnCancel1.UseVisualStyleBackColor = false;
             this.btnCancel1.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk1
             // 
+            this.btnOk1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnOk1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk1.Location = new System.Drawing.Point(20, 96);
             this.btnOk1.Name = "btnOk1";
             this.btnOk1.Size = new System.Drawing.Size(77, 23);
             this.btnOk1.TabIndex = 131;
             this.btnOk1.Text = "提交并导出";
-            this.btnOk1.UseVisualStyleBackColor = true;
+            this.btnOk1.UseVisualStyleBackColor = false;
             this.btnOk1.Click += new System.EventHandler(this.btnOk1_Click);
             // 
             // cmbMatter1

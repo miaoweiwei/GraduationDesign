@@ -245,7 +245,7 @@ namespace GraduationDesignManagement.Views
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.linkLabel1.Links[0].LinkData = InitConfig.DomainName;
+            this.linkLabel1.Links[0].LinkData = InitConfig.DomainName+ InitConfig.GraduationDesignHtml;
             System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
 
