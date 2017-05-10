@@ -35,6 +35,6 @@ namespace GraduationDesignManagement.MysqlData
         /// <summary> 中期评语 </summary>
         public string MiddleComment { get; set; }
         /// <summary> 结题评语 </summary>
-        public string EndMiddle { get; set; }
+        public string EndComment { get; set; }
     }
 }

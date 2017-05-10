@@ -152,6 +152,23 @@ namespace GraduationDesignManagement.Views
                 _fileTable.Rows.Add(dataRow);
             }
             rdgvFile.DataSource = _fileTable;
+
+            GraduationDesign graduation = _graduationDesignList.Find(s => s.StudentId == studentId);
+            switch (pleaType)
+            {
+                case PleaType.BeginReply:
+                    txbScore.Text = graduation.BeginScore.ToString();
+                    txbComment.Text = graduation.BeginComment;
+                    break;
+                case PleaType.MiddleReply:
+                    txbScore.Text = graduation.MiddleScore.ToString();
+                    txbComment.Text = graduation.MiddleComment;
+                    break;
+                case PleaType.EndReply:
+                    txbScore.Text = graduation.EndScore.ToString();
+                    txbComment.Text = graduation.EndComment;
+                    break;
+            }
         }
 
         private void rdBtn_CheckedChanged(object sender, EventArgs e)
@@ -201,10 +218,83 @@ namespace GraduationDesignManagement.Views
             }
         }
         
+        private void txbScore_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char) Keys.Back)
+            {
+                e.Handled = false; //让操作生效
+            }
+            else
+            {
+                e.Handled = true; //让操作生效
+            }
+        }
+
+        private void txbScore_TextChanged(object sender, EventArgs e)
+        {
+            string text = txbScore.Text.Trim();
+            int score = 0;
+            if (int.TryParse(text, out score))
+            {
+                if (score<0 || score>100)
+                {
+                    MessageBox.Show(@"请输入正确的成绩！");
+                    txbScore.Text = "";
+                    return;
+                }
+            }
+        }
+
         /// <summary> 提交 </summary> 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txbScore.Text))
+            {
+                MessageBox.Show(@"请输入成绩！");
+                return;
+            }
+            int score = int.Parse(txbScore.Text);
+            string commentSt = txbComment.Text;
 
+            int row = rdgvProject.CurrentCell.RowIndex;
+
+            string studentId = (rdgvProject.Rows[row].Cells[0].Value ?? "").ToString();
+
+            PleaType pleaType = PleaType.BeginReply;
+            if (rdBtnBegin.Checked)
+                pleaType = PleaType.BeginReply;
+            if (rdBtnMiddle.Checked)
+                pleaType = PleaType.MiddleReply;
+            if (rdBtnEnd.Checked)
+                pleaType = PleaType.EndReply;
+
+            GraduationDesign graduation=new GraduationDesign();
+            foreach (GraduationDesign graduationDesign in _graduationDesignList)
+            {
+                if (graduationDesign.StudentId == studentId)
+                {
+                    graduation = graduationDesign;
+                    switch (pleaType)
+                    {
+                        case PleaType.BeginReply:
+                            graduationDesign.BeginScore = score;
+                            graduationDesign.BeginComment = commentSt;
+                            break;
+                        case PleaType.MiddleReply:
+                            graduationDesign.MiddleScore= score;
+                            graduationDesign.MiddleComment= commentSt;
+                            break;
+                        case PleaType.EndReply:
+                            graduationDesign.EndScore = score;
+                            graduationDesign.EndComment = commentSt;
+                            break;
+                    }
+                }
+            }
+            if (_dataQuery.UpDataGraduationDesignScoreComment(graduation, pleaType)==1)
+            {
+                MessageBox.Show(@"提交成功！","");
+            }
         }
 
         /// <summary> 导出 </summary> 

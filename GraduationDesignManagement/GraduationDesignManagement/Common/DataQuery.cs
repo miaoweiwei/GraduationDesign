@@ -560,7 +560,36 @@ namespace GraduationDesignManagement.Common
             graduation = DataRowToObject<GraduationDesign>(dataRow);
             return graduation;
         }
-        
+
+        public int UpDataGraduationDesignScoreComment(GraduationDesign graduation,PleaType pleaType)
+        {
+            int score = 0;
+            string comment = "";
+            switch (pleaType)
+            {
+                case PleaType.BeginReply:
+                    score = graduation.BeginScore;
+                    comment = graduation.BeginComment;
+                    break;
+                case PleaType.MiddleReply:
+                    score = graduation.MiddleScore;
+                    comment = graduation.MiddleComment;
+                    break;
+                case PleaType.EndReply:
+                    score = graduation.EndScore;
+                    comment = graduation.EndComment;
+                    break;
+            }
+            
+            string sqlSt = "UPDATE graduationdesign_table SET beginscore=?Score,begincomment=?Comment WHERE studentid=?StudentId";
+            MySqlParameter[] param=new MySqlParameter[]
+            {
+                new MySqlParameter("Score",score),
+                new MySqlParameter("Comment",comment),
+                new MySqlParameter("StudentId",graduation.StudentId)
+            };
+            return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
+        }
 
         #endregion
 
