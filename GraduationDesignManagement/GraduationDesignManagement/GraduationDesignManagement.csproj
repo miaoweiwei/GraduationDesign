@@ -199,6 +199,12 @@
     <Compile Include="Views\RowMergeView.designer.cs">
       <DependentUpon>RowMergeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ScorestAnalysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ScorestAnalysis.Designer.cs">
+      <DependentUpon>ScorestAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectProject.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RowMergeView.resx">
       <DependentUpon>RowMergeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ScorestAnalysis.resx">
+      <DependentUpon>ScorestAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SelectProject.resx">
       <DependentUpon>SelectProject.cs</DependentUpon>

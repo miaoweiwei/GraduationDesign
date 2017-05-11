@@ -171,6 +171,8 @@ namespace GraduationDesignManagement.Common
             return dataTable;
         }
 
+        #region 老师
+
         /// <summary>
         /// 获取 系 名单List
         /// </summary>
@@ -206,11 +208,29 @@ namespace GraduationDesignManagement.Common
             string sqlSt = "SELECT * FROM teacher_table;";
             MySqlParameter[] param = { };
             var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
-
             teacherList = DataTableToList<Teacher>(dataTable);
             return teacherList;
         }
-
+        /// <summary>
+        /// 根据老师Id 获取老师List
+        /// </summary>
+        /// <returns></returns>
+        public List<Teacher> GeTeacherList(List<string>teacherIdList )
+        {
+            List<Teacher> teacherList = new List<Teacher>();
+            if (teacherIdList == null || teacherIdList.Count <= 0)
+                return teacherList;
+            string sqlSt = "SELECT * FROM teacher_table WHERE teacherid in(";
+            foreach (string s in teacherIdList)
+            {
+                sqlSt = sqlSt + s + ",";
+            }
+            sqlSt = sqlSt.Remove(sqlSt.Length - 1) + ");";
+            MySqlParameter[] param = { };
+            var dataTable = _mySqlDataHelper.ExecuteDataTable(sqlSt, param);
+            teacherList = DataTableToList<Teacher>(dataTable);
+            return teacherList;
+        }
         /// <summary>
         /// 获取是否可以参加毕设的老师List
         /// </summary>
@@ -226,8 +246,6 @@ namespace GraduationDesignManagement.Common
             teacherList = DataTableToList<Teacher>(dataTable);
             return teacherList;
         }
-
-
         /// <summary>
         /// 获取老师所在系的 系里所有的老师
         /// </summary>
@@ -245,7 +263,7 @@ namespace GraduationDesignManagement.Common
             return dataTable;
         }
         /// <summary>
-        /// 更新选择毕设老师的iscan状态返回更新行数
+        /// 更新选择毕设老师或学生的iscan状态返回更新行数
         /// </summary>
         /// <param name="teacherIdList"></param>
         /// <param name="state">1表示设为导师 0或其他表示不是导师</param>
@@ -273,6 +291,9 @@ namespace GraduationDesignManagement.Common
             MySqlParameter[] param = { };
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }
+
+        #endregion
+
         /// <summary>
         /// 根据班级获取学生list
         /// </summary>
@@ -315,6 +336,8 @@ namespace GraduationDesignManagement.Common
             students = DataTableToList<Student>(dataTable);
             return students;
         }
+
+        #region 项目
 
         /// <summary>
         /// 获取ProjectList当userId为Null是获取所有ProjectList
@@ -467,6 +490,8 @@ namespace GraduationDesignManagement.Common
             MySqlParameter[] param1 = new MySqlParameter[] { new MySqlParameter("StudentId", studentId), };
             return _mySqlDataHelper.ExecuteNonQuery(sql1, param1);
         }
+        
+        #endregion
 
         #region 毕业设计的项目 GraduationDesign
 
@@ -593,6 +618,8 @@ namespace GraduationDesignManagement.Common
 
         #endregion
 
+        #region 毕设信息文件管理
+
         /// <summary>
         /// 上传文件List
         /// </summary>
@@ -608,12 +635,12 @@ namespace GraduationDesignManagement.Common
             foreach (ServerFile serverFile in serverFileList)
             {
                 string temp = "('" +
-                    serverFile.FileCode + "','" +
-                    serverFile.FileName + "','" +
-                    serverFile.UpLoadTime + "','" +
-                    serverFile.UserName + "','" +
-                    serverFile.Size +
-                    "'),";
+                              serverFile.FileCode + "','" +
+                              serverFile.FileName + "','" +
+                              serverFile.UpLoadTime + "','" +
+                              serverFile.UserName + "','" +
+                              serverFile.Size +
+                              "'),";
                 sqlSt = sqlSt + temp;
             }
             sqlSt = sqlSt.Remove(sqlSt.Length - 1);
@@ -680,6 +707,8 @@ namespace GraduationDesignManagement.Common
             return _mySqlDataHelper.ExecuteNonQuery(sqlSt, param);
         }
         
+        #endregion
+
         #region 项目文件的操作
         /// <summary>
         /// 根据学生id获取已经提交的项目文件

@@ -11,6 +11,7 @@ using ExcelDna.Integration.CustomUI;
 using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
 using GraduationDesignManagement.Dictionary;
+using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.Game.GluttonousSnake;
 using GraduationDesignManagement.MysqlData;
 using GraduationDesignManagement.Properties;
@@ -153,6 +154,27 @@ namespace GraduationDesignManagement
             fileManagement.TaskPaneFileManagement = fileManagementPane;
             fileManagementPane.Visible = true;
         }
+        /// <summary> 答辩分组 </summary>
+        public void btnReplyTeacher_Click(IRibbonControl control)
+        {
+            DataQuery dataQuery=DataQuery.Instance;
+            List<GraduationDesign> graduationList=new List<GraduationDesign>();
+            graduationList = dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
+            List<string> studentIdList = graduationList.Select(s => s.StudentId).ToList();
+            List<string> teacherIdList = graduationList.Select(s => s.TeacherId).ToList();
+            List<string> pleaTeacherIdList = graduationList.Select(s => s.PleaTeacherId).ToList();
+
+            List<Teacher> teacherList = dataQuery.GeTeacherList(teacherIdList);
+            List<Teacher> pleaTeacherList = dataQuery.GeTeacherList(pleaTeacherIdList);
+
+            List<Student> studentList = dataQuery.GetStudentListById(studentIdList);
+
+            foreach (GraduationDesign graduationDesign in graduationList)
+            {
+                
+            }
+        }
+
         #endregion
 
         #region 毕设管理
@@ -287,8 +309,7 @@ namespace GraduationDesignManagement
         }
 
         #endregion
-
-
+        
         #region 毕设成绩分析
 
         public void btnScorestSort_Click(IRibbonControl control)

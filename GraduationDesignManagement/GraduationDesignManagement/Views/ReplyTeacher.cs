@@ -135,7 +135,13 @@ namespace GraduationDesignManagement.Views
                 pleaType = PleaType.EndReply;
 
             string studentId = (rdgvProject.Rows[row].Cells[0].Value ?? "").ToString();
-            List<GraduationDesignFile> graduationFileList = _gradutionFileDic[studentId];
+
+            List<GraduationDesignFile> graduationFileList=new List<GraduationDesignFile>();
+
+            if (_gradutionFileDic.ContainsKey(studentId))
+            {
+                graduationFileList = _gradutionFileDic[studentId];
+            }
             _fileTable.Rows.Clear();
             foreach (GraduationDesignFile designFile in graduationFileList)
             {
