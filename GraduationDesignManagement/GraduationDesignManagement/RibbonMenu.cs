@@ -157,22 +157,16 @@ namespace GraduationDesignManagement
         /// <summary> 答辩分组 </summary>
         public void btnReplyTeacher_Click(IRibbonControl control)
         {
-            DataQuery dataQuery=DataQuery.Instance;
-            List<GraduationDesign> graduationList=new List<GraduationDesign>();
-            graduationList = dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
-            List<string> studentIdList = graduationList.Select(s => s.StudentId).ToList();
-            List<string> teacherIdList = graduationList.Select(s => s.TeacherId).ToList();
-            List<string> pleaTeacherIdList = graduationList.Select(s => s.PleaTeacherId).ToList();
+            CloseVisibleCtp();
 
-            List<Teacher> teacherList = dataQuery.GeTeacherList(teacherIdList);
-            List<Teacher> pleaTeacherList = dataQuery.GeTeacherList(pleaTeacherIdList);
+            ReplyGroup replyGroup = new ReplyGroup();
+            var replyGroupPane = CustomTaskPaneFactory.CreateCustomTaskPane(replyGroup, "选择学生");
+            replyGroupPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
 
-            List<Student> studentList = dataQuery.GetStudentListById(studentIdList);
-
-            foreach (GraduationDesign graduationDesign in graduationList)
-            {
-                
-            }
+            CustomTaskPaneList.Add(replyGroupPane);
+            //传递CTP
+            replyGroup.TaskPaneReplyGroup = replyGroupPane;
+            replyGroupPane.Visible = true;
         }
 
         #endregion

@@ -183,7 +183,7 @@
             // 
             // chbxAll
             // 
-            this.chbxAll.BackColor = System.Drawing.Color.White;
+            this.chbxAll.BackColor = System.Drawing.Color.Transparent;
             this.chbxAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chbxAll.Location = new System.Drawing.Point(365, 6);
             this.chbxAll.Name = "chbxAll";

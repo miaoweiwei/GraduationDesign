@@ -129,6 +129,12 @@
     <Compile Include="Views\AddProjectFrm.Designer.cs">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReplyGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ReplyGroup.Designer.cs">
+      <DependentUpon>ReplyGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReplyTeacher.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddProjectFrm.resx">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReplyGroup.resx">
+      <DependentUpon>ReplyGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReplyTeacher.resx">
       <DependentUpon>ReplyTeacher.cs</DependentUpon>

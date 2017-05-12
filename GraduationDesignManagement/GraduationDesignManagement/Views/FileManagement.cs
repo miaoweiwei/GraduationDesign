@@ -257,9 +257,8 @@ namespace GraduationDesignManagement.Views
         {
             if (upLoadFtpState)
             {
-                ServerFile serverFile = (ServerFile) obj;
+                ServerFile serverFile = (ServerFile)obj;
                 _dataQuery.UpLoadFile(new List<ServerFile>() { serverFile });
-
                 labUpDateProgres.Invoke(new Action(delegate
                 {
                     _serverFileList.Add(serverFile);

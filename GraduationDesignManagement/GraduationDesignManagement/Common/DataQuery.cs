@@ -630,7 +630,7 @@ namespace GraduationDesignManagement.Common
             if (serverFileList == null || serverFileList.Count <= 0)
                 return 0;
 
-            string sqlSt = " INSERT INTO file_table (filecode, filename, uploadtime, username, size) VALUES (";
+            string sqlSt = " INSERT INTO file_table (filecode, filename, uploadtime, username, size) VALUES ";
 
             foreach (ServerFile serverFile in serverFileList)
             {
