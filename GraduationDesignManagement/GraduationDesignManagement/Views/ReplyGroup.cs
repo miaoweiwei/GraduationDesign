@@ -23,6 +23,7 @@ namespace GraduationDesignManagement.Views
         private DataQuery _dataQuery;
 
         List<GraduationDesign> _graduationList = new List<GraduationDesign>();
+        List<Project> _projectList = new List<Project>();
         List<string> _studentIdList = new List<string>();
         List<string> _teacherIdList = new List<string>();
         List<string> _pleaTeacherIdList = new List<string>();
@@ -36,19 +37,25 @@ namespace GraduationDesignManagement.Views
 
         private void ReplyGroup_Load(object sender, EventArgs e)
         {
-            DataQuery dataQuery = DataQuery.Instance;
-            _graduationList = dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
+            _dataQuery = DataQuery.Instance;
+            _graduationList = _dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
+
+            if (_graduationList == null || _graduationList.Count <= 0)
+                return;
+
+            _projectList = _dataQuery.GetProjectListByCode(_graduationList.Select(s => s.ProjectCode).ToList());
+
             _studentIdList = _graduationList.Select(s => s.StudentId).ToList();
             _teacherIdList = _graduationList.Select(s => s.TeacherId).ToList();
             _pleaTeacherIdList = _graduationList.Select(s => s.PleaTeacherId).ToList();
-            _teacherList = dataQuery.GeTeacherList(_teacherIdList);
-            _pleaTeacherList = dataQuery.GeTeacherList(_pleaTeacherIdList);
-            _studentList = dataQuery.GetStudentListById(_studentIdList);
+            _teacherList = _dataQuery.GeTeacherList(_teacherIdList);
+            _pleaTeacherList = _dataQuery.GeTeacherList(_pleaTeacherIdList);
+            _studentList = _dataQuery.GetStudentListById(_studentIdList);
 
             List<string> colName = new List<string>()
             {
-                "分组","序号","学号","学号","学生姓名","所在班级","毕业设计(论文)题目",
-                "指导教师姓名","审阅","评阅","答辩","成绩明细","总成绩","备注",
+                "分组","序号","学号","学生姓名","所在班级","毕业设计(论文)题目",
+                "指导教师姓名","审阅成绩","评阅成绩","答辩成绩","总成绩","备注",
             };
             foreach (string s in colName)
             {
@@ -75,48 +82,64 @@ namespace GraduationDesignManagement.Views
                 listViewItem.Checked = state;
             }
         }
-        
-        private object[,] GetObjData()
+
+        private object[,] GetObjData(List<string> pleaTeacheIdList, List<string> colNameList)
         {
-            List<string>colNameList=new List<string>();
-            foreach (ListViewItem listViewItem in lvwElemSelected.Items)
+            if (pleaTeacheIdList == null || pleaTeacheIdList.Count <= 0 || colNameList == null || colNameList.Count <= 0)
+                return null;
+
+            List<string> idList = new List<string>();
+            List<Teacher> teacherList = _pleaTeacherList.FindAll(t => pleaTeacheIdList.Contains(t.TeacherId));
+            idList = teacherList.Select(s => s.TeacherId).ToList();
+            List<GraduationDesign> graduationList = _graduationList.FindAll(g => idList.Contains(g.PleaTeacherId));
+
+            int col = teacherList.Count * 3 + graduationList.Count;
+            object[,] objData = new object[col, colNameList.Count];
+            
+            int row = 0;
+            for (int i = 0; i < teacherList.Count; i++)
             {
-                colNameList.Add(listViewItem.SubItems[0].Text);
-            }
-            List<string>pleaTeacheIdList=new List<string>();
-            foreach (ListViewItem listViewItem in lvwpleaTeacher.Items)
-            {
-                if (listViewItem.Checked)
+                List<GraduationDesign> graduations = graduationList.FindAll(g => g.PleaTeacherId == teacherList[i].TeacherId);
+
+                objData[row, 0] = "导出时间："+DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss")+ "  答辩小组："+ (i + 1) +"  答辩老师："+ teacherList[i].TeacherName;
+                    row = row + 1;
+                for (int j = 0; j < colNameList.Count; j++)
+                    objData[row, j] = colNameList[j];
+                
+                for (int j = 0; j < graduations.Count; j++)
                 {
-                    pleaTeacheIdList.Add(listViewItem.SubItems[0].Text);
+                    for (int k = 0; k < colNameList.Count; k++)
+                    {
+                        switch (colNameList[k])
+                        {
+                            case "分组":
+                                objData[row + j+1, k] = i + 1;
+                                break;
+                            case "序号":
+                                objData[row + j+1, k] = j + 1;
+                                break;
+                            case "学号":
+                                objData[row + j+1, k] = graduations[j].StudentId;
+                                break;
+                            case "学生姓名":
+                                objData[row + j + 1, k] = _studentList.Find(s => s.StudentId == graduations[j].StudentId).StudentName;
+                                break;
+                            case "所在班级":
+                                objData[row + j + 1, k] =
+                                    _studentList.Find(s => s.StudentId == graduations[j].StudentId).Class;
+                                break;
+                            case "毕业设计(论文)题目":
+                                objData[row + j + 1, k] =
+                                    _projectList.Find(s => s.Projectcode == graduations[j].ProjectCode).ProjectName;
+                                break;
+                            case "指导教师姓名":
+                                var teacher = _teacherList.Find(s => s.TeacherId == graduations[j].TeacherId);
+                                objData[row + j + 1, k] = teacher.TeacherName;
+                                break;
+                        }
+                    }
                 }
-            }
-
-            int col = _pleaTeacherList.Count * 3 + _studentList.Count;
-            object[,] objData = new object[col, 12];
-
-            //时间：2017年5月14日 8:30     地点：15 - 518         答辩小组：  陈林 李斌   陈哲
-            //分组  序号 学号  学生姓名 所在班级    毕业设计(论文)题目 指导教师姓名  审阅 评阅  答辩    成绩明细 总成绩 备注
-
-            for (int i = 0; i < _pleaTeacherList.Count; i++)
-            {
-                string stHead = "导出时间：" + DateTime.Now.ToString("yyy年MM月dd日 HH:mm:ss") +
-                                " 答辩人：" + _pleaTeacherList[i].TeacherName;
-                objData[i + 1, 0] = stHead;
-                objData[i + 2, 0] = "分组";
-                objData[i + 2, 1] = "序号";
-                objData[i + 2, 2] = "学号";
-                objData[i + 2, 3] = "学生姓名";
-                objData[i + 2, 4] = "所在班级";
-                objData[i + 2, 5] = "毕业设计(论文)题目";
-                objData[i + 2, 6] = "指导教师姓名";
-                objData[i + 2, 6] = "审阅";
-                objData[i + 2, 6] = "评阅";
-                objData[i + 2, 6] = "答辩";
-                objData[i + 2, 6] = "成绩明细";
-                objData[i + 2, 6] = "总成绩";
-                objData[i + 2, 6] = "备注";
-
+                row = row+ graduations.Count+2;
             }
             return objData;
         }
@@ -135,7 +158,7 @@ namespace GraduationDesignManagement.Views
 
         private void btnSecUp_Click(object sender, EventArgs e)
         {
-            MoveSelectedItemsSub(lvwElemSelected,lvwElemSource);
+            MoveSelectedItemsSub(lvwElemSelected, lvwElemSource);
         }
 
         private void btnSecAllUp_Click(object sender, EventArgs e)
@@ -194,8 +217,34 @@ namespace GraduationDesignManagement.Views
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            object[,] obData = GetObjData();
+            List<string> colNameList = new List<string>();
+            foreach (ListViewItem listViewItem in lvwElemSelected.Items)
+            {
+                colNameList.Add(listViewItem.SubItems[0].Text);
+            }
+            List<string> pleaTeacheIdList = new List<string>();
+            foreach (ListViewItem listViewItem in lvwpleaTeacher.Items)
+            {
+                if (listViewItem.Checked)
+                {
+                    pleaTeacheIdList.Add(listViewItem.SubItems[0].Text);
+                }
+            }
+            object[,] obData = null;
+            if (pleaTeacheIdList.Count <= 0 || colNameList.Count <= 0)
+            {
+                obData = new object[1, 1] { { "请选择答辩老师和要输入的列！"} };
+            }
+            else
+            {
+                obData = GetObjData(pleaTeacheIdList, colNameList);
+            }
+            
+            if(obData == null)
+                obData=new object[1,1] { {"没有数据！"} };
+
             ExcelHelper.ExportToExcel(obData);
+            TaskPaneReplyGroup.Visible = false;
         }
     }
 }

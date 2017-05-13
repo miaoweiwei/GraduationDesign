@@ -169,7 +169,7 @@ namespace GraduationDesignManagement.Common
         /// <param name="objectArr"></param>
         public static void ExportToExcel(object[,] objectArr)
         {
-            if (objectArr == null || objectArr.GetLength(0) < 2 || objectArr.GetLength(1) <= 0)
+            if (objectArr == null || objectArr.GetLength(0) <=0 || objectArr.GetLength(1) <= 0)
                 objectArr = new object[,] { { "无数据", "" }, };
             Excel.Application xlApp = GetXlApplication();
             Excel.Worksheet xlSheet = xlApp.ActiveSheet;
