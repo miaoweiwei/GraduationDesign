@@ -590,23 +590,26 @@ namespace GraduationDesignManagement.Common
         {
             int score = 0;
             string comment = "";
+            string sqlSt = "";
             switch (pleaType)
             {
                 case PleaType.BeginReply:
                     score = graduation.BeginScore;
                     comment = graduation.BeginComment;
+                    sqlSt = "UPDATE graduationdesign_table SET beginscore=?Score,begincomment=?Comment WHERE studentid=?StudentId";
                     break;
                 case PleaType.MiddleReply:
                     score = graduation.MiddleScore;
                     comment = graduation.MiddleComment;
+                    sqlSt = "UPDATE graduationdesign_table SET middlescore=?Score,middlecomment=?Comment WHERE studentid=?StudentId";
                     break;
                 case PleaType.EndReply:
                     score = graduation.EndScore;
                     comment = graduation.EndComment;
+                    sqlSt = "UPDATE graduationdesign_table SET endscore=?Score,endcomment=?Comment WHERE studentid=?StudentId";
                     break;
             }
             
-            string sqlSt = "UPDATE graduationdesign_table SET beginscore=?Score,begincomment=?Comment WHERE studentid=?StudentId";
             MySqlParameter[] param=new MySqlParameter[]
             {
                 new MySqlParameter("Score",score),
