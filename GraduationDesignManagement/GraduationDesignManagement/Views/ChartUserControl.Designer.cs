@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartUserControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lvwElemSource = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -88,7 +88,7 @@
             this.lvwElemSource.FullRowSelect = true;
             this.lvwElemSource.GridLines = true;
             this.lvwElemSource.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwElemSource.Location = new System.Drawing.Point(597, 18);
+            this.lvwElemSource.Location = new System.Drawing.Point(437, 18);
             this.lvwElemSource.Name = "lvwElemSource";
             this.lvwElemSource.Size = new System.Drawing.Size(107, 172);
             this.lvwElemSource.TabIndex = 122;
@@ -106,7 +106,7 @@
             this.btnSecAllUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSecAllUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecAllUp.ForeColor = System.Drawing.Color.White;
-            this.btnSecAllUp.Location = new System.Drawing.Point(710, 147);
+            this.btnSecAllUp.Location = new System.Drawing.Point(550, 147);
             this.btnSecAllUp.Name = "btnSecAllUp";
             this.btnSecAllUp.Size = new System.Drawing.Size(52, 25);
             this.btnSecAllUp.TabIndex = 121;
@@ -119,7 +119,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(595, 3);
+            this.label1.Location = new System.Drawing.Point(435, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 12);
             this.label1.TabIndex = 124;
@@ -131,7 +131,7 @@
             this.btnSecAllDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSecAllDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecAllDown.ForeColor = System.Drawing.Color.White;
-            this.btnSecAllDown.Location = new System.Drawing.Point(710, 71);
+            this.btnSecAllDown.Location = new System.Drawing.Point(550, 71);
             this.btnSecAllDown.Name = "btnSecAllDown";
             this.btnSecAllDown.Size = new System.Drawing.Size(52, 25);
             this.btnSecAllDown.TabIndex = 120;
@@ -149,7 +149,7 @@
             this.lvwElemSelected.FullRowSelect = true;
             this.lvwElemSelected.GridLines = true;
             this.lvwElemSelected.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvwElemSelected.Location = new System.Drawing.Point(768, 18);
+            this.lvwElemSelected.Location = new System.Drawing.Point(608, 18);
             this.lvwElemSelected.Name = "lvwElemSelected";
             this.lvwElemSelected.Size = new System.Drawing.Size(107, 172);
             this.lvwElemSelected.TabIndex = 123;
@@ -167,7 +167,7 @@
             this.btnSecUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSecUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecUp.ForeColor = System.Drawing.Color.White;
-            this.btnSecUp.Location = new System.Drawing.Point(710, 111);
+            this.btnSecUp.Location = new System.Drawing.Point(550, 111);
             this.btnSecUp.Name = "btnSecUp";
             this.btnSecUp.Size = new System.Drawing.Size(52, 25);
             this.btnSecUp.TabIndex = 119;
@@ -181,7 +181,7 @@
             this.btnSecDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSecDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecDown.ForeColor = System.Drawing.Color.White;
-            this.btnSecDown.Location = new System.Drawing.Point(710, 35);
+            this.btnSecDown.Location = new System.Drawing.Point(550, 35);
             this.btnSecDown.Name = "btnSecDown";
             this.btnSecDown.Size = new System.Drawing.Size(52, 25);
             this.btnSecDown.TabIndex = 118;
@@ -196,7 +196,7 @@
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnPrevious.ForeColor = System.Drawing.Color.White;
-            this.btnPrevious.Location = new System.Drawing.Point(881, 165);
+            this.btnPrevious.Location = new System.Drawing.Point(721, 165);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(58, 25);
             this.btnPrevious.TabIndex = 117;
@@ -211,7 +211,7 @@
             this.btnComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnComplete.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnComplete.ForeColor = System.Drawing.Color.White;
-            this.btnComplete.Location = new System.Drawing.Point(956, 165);
+            this.btnComplete.Location = new System.Drawing.Point(796, 165);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(58, 25);
             this.btnComplete.TabIndex = 117;
@@ -224,18 +224,18 @@
             this.rdgvScore.AllowUserToAddRows = false;
             this.rdgvScore.AllowUserToDeleteRows = false;
             this.rdgvScore.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.rdgvScore.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.rdgvScore.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.rdgvScore.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.rdgvScore.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.rdgvScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.rdgvScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.rdgvScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rdgvScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -257,9 +257,9 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "StudentId";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column1.HeaderText = "学号";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -267,9 +267,9 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "StudentName";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column2.HeaderText = "姓名";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -277,9 +277,9 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "BeginScore";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column3.HeaderText = "开题成绩";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -287,9 +287,9 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "MiddleScore";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column4.HeaderText = "中期成绩";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -297,9 +297,9 @@
             // Column5
             // 
             this.Column5.DataPropertyName = "EndScore";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column5.HeaderText = "结题成绩";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
@@ -307,9 +307,9 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "SumScore";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column6.HeaderText = "总成绩";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;

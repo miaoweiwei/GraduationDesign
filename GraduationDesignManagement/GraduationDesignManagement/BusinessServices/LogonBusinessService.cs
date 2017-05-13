@@ -167,7 +167,7 @@ namespace GraduationDesignManagement.BusinessServices
                     {"groupStudent", false}, //我的毕业设计group
 
                     {"btnScorestSort", true}, //毕设成绩分析
-                    {"btnScorestChart", true}, //图表
+                    {"btnScorestChart", false}, //图表
                 };
             }
             else
@@ -184,7 +184,7 @@ namespace GraduationDesignManagement.BusinessServices
                     {"groupStudent", false}, //我的毕业设计group
 
                     {"btnScorestSort", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //毕设成绩分析
-                    {"btnScorestChart", (!string.IsNullOrEmpty(teacher.IsCan) && teacher.IsCan == "1")}, //图表
+                    {"btnScorestChart", false}, //图表
                 };
             }
             return dic;
@@ -208,7 +208,7 @@ namespace GraduationDesignManagement.BusinessServices
                     {"groupManagement", false}, //毕设管理group
                     {"groupStudent", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //我的毕业设计group
 
-                    {"btnScorestSort", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //毕设成绩分析
+                    {"btnScorestSort", false}, //毕设成绩分析
                     {"btnScorestChart", (!string.IsNullOrEmpty(student.IsCan) && student.IsCan == "1")}, //图表
                 };
             return dic;

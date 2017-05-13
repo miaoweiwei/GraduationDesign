@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ExcelDna.Integration.CustomUI;
+using GraduationDesignManagement.BusinessServices;
 using GraduationDesignManagement.Common;
 using GraduationDesignManagement.EnumClass;
 using GraduationDesignManagement.MysqlData;
@@ -25,6 +26,8 @@ namespace GraduationDesignManagement.Views
         private bool isFirst = true;
 
         private DataQuery _dataQuery;
+        private LogonBusinessService _logonBusinessService;
+
         /// <summary> 所有的毕业设计项目 </summary>
         List<GraduationDesign> _graduationList = new List<GraduationDesign>();
         /// <summary> 所有的毕业设计指导老师 </summary>
@@ -44,11 +47,29 @@ namespace GraduationDesignManagement.Views
 
         private void ScorestAnalysis_Load(object sender, EventArgs e)
         {
+            _logonBusinessService=LogonBusinessService.Instance;
             _dataQuery = DataQuery.Instance;
-            _graduationList = _dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
-            _teacherList = _dataQuery.GeTeacherList(_graduationList.Select(s => s.TeacherId).ToList());
-            _pleaTeacherList = _dataQuery.GeTeacherList(_graduationList.Select(s => s.PleaTeacherId).ToList());
-            _studentList = _dataQuery.GetStudentListById(_graduationList.Select(s => s.StudentId).ToList());
+            Teacher teacher = (Teacher) _logonBusinessService.UserObj;
+            if (teacher.Position == "系主任")
+            {
+                _graduationList = _dataQuery.GetGraduationDesign(UserTypeInfo.Teacher, null);
+                _teacherList = _dataQuery.GeTeacherList(_graduationList.Select(s => s.TeacherId).ToList());
+                _pleaTeacherList = _dataQuery.GeTeacherList(_graduationList.Select(s => s.PleaTeacherId).ToList());
+                _studentList = _dataQuery.GetStudentListById(_graduationList.Select(s => s.StudentId).ToList());
+            }
+            else
+            {
+                List<GraduationDesign> graduation1 = _dataQuery.GetGraduationDesign(_logonBusinessService.UserTypeInfo, teacher.TeacherId);
+                List<GraduationDesign> graduation2 = _dataQuery.GetGraduationDesign(teacher.TeacherId);
+                _graduationList.AddRange(graduation1);
+                _graduationList.AddRange(graduation2);
+                _teacherList=new List<Teacher>() {teacher};
+                _pleaTeacherList = new List<Teacher>() { teacher };
+
+                _studentList = _dataQuery.GetStudentListById(_graduationList.Select(s => s.StudentId).ToList());
+
+            }
+            
 
             List<string> itmStList = new List<string>()
             {

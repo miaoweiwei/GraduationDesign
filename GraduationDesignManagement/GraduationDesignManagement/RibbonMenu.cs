@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -334,7 +335,33 @@ namespace GraduationDesignManagement
 
         public void btnScorestChart_Click(IRibbonControl control)
         {
+            object[,] dataObj;
 
+            DataQuery dataQuery=DataQuery.Instance;
+            Student student = (Student) _logonBusinessService.UserObj;
+            GraduationDesign graduation = dataQuery.GetMyGraduationDesign(student.StudentId);
+
+            if (graduation == null)
+                dataObj=new object[1,1] { {"不存在该学生！"} };
+            else
+            {
+                dataObj = new object[2, 6];
+                dataObj[0, 0] = "学号";
+                dataObj[0, 1] = "姓名";
+                dataObj[0, 2] = "开题成绩";
+                dataObj[0, 3] = "中期成绩";
+                dataObj[0, 4] = "结题成绩";
+                dataObj[0, 5] = "总成绩";
+
+                dataObj[1, 0] = student.StudentId;
+                dataObj[1, 1] = student.StudentName;
+                dataObj[1, 2] = graduation.BeginScore;
+                dataObj[1, 3] = graduation.MiddleScore;
+                dataObj[1, 4] = graduation.EndScore;
+                dataObj[1, 5] =
+                    Math.Round(graduation.BeginScore * 0.3 + graduation.MiddleScore * 0.3 + graduation.EndScore * 0.4, 0);
+            }
+            ExcelHelper.ExportToExcel(dataObj);
         }
 
         #endregion
