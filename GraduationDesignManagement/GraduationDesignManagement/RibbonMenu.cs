@@ -304,11 +304,32 @@ namespace GraduationDesignManagement
 
         #endregion
         
-        #region 毕设成绩分析
+        #region 毕设成绩
 
         public void btnScorestSort_Click(IRibbonControl control)
         {
+            CloseVisibleCtp();
+
+            ScorestAnalysis secAnalysis = new ScorestAnalysis();
+            var secAnalysisPane = CustomTaskPaneFactory.CreateCustomTaskPane(secAnalysis, "毕设成绩");
+            secAnalysisPane.Width = 250;
+            secAnalysisPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
             
+            ChartUserControl chartUser=new ChartUserControl();
+            var chartUserPane= CustomTaskPaneFactory.CreateCustomTaskPane(chartUser, "导出成绩");
+            chartUserPane.DockPosition = MsoCTPDockPosition.msoCTPDockPositionBottom; //在下面弹出
+            
+            //传递CTP
+            secAnalysis.TaskPaneScorestAnalysis = secAnalysisPane;
+            secAnalysis.TaskPaneChartUserControl = chartUserPane;
+
+            chartUser.TaskPaneScorestAnalysis = secAnalysisPane;
+            chartUser.TaskPaneChartUserControl = chartUserPane;
+
+            CustomTaskPaneList.Add(secAnalysisPane);
+            CustomTaskPaneList.Add(chartUserPane);
+            
+            secAnalysisPane.Visible = true;
         }
 
         public void btnScorestChart_Click(IRibbonControl control)

@@ -69,7 +69,7 @@
             
             <!--毕设成绩分析-->
             <group id="groupAnalysis" label="毕设成绩分析">
-              <button id="btnScorestSort" onAction="btnScorestSort_Click" size="large" label="成绩排名" getEnabled="GetControlsVisible"/>
+              <button id="btnScorestSort" onAction="btnScorestSort_Click" size="large" label="毕设成绩" getEnabled="GetControlsVisible"/>
               <button id="btnScorestChart" onAction="btnScorestChart_Click" size="large" label="图表"  getEnabled="GetControlsVisible"/>
             </group>
             

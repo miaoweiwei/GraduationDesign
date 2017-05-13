@@ -129,6 +129,12 @@
     <Compile Include="Views\AddProjectFrm.Designer.cs">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChartUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ChartUserControl.Designer.cs">
+      <DependentUpon>ChartUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReplyGroup.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddProjectFrm.resx">
       <DependentUpon>AddProjectFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChartUserControl.resx">
+      <DependentUpon>ChartUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReplyGroup.resx">
       <DependentUpon>ReplyGroup.cs</DependentUpon>

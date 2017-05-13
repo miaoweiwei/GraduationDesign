@@ -69,8 +69,7 @@ namespace GraduationDesignManagement.Views
             }
             else
                 dgvFileList.Columns[5].Visible = false;
-
-
+            
             GetFileList();
         }
         private void btnRefresh_Click(object sender, EventArgs e)

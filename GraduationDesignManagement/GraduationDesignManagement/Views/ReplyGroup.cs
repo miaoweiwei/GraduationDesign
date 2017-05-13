@@ -75,7 +75,7 @@ namespace GraduationDesignManagement.Views
         {
             bool state = chbxAll.Checked;
 
-            if (lvwpleaTeacher.Items.Count == 0)
+            if (lvwpleaTeacher.Items.Count <= 0)
                 return;
             foreach (ListViewItem listViewItem in lvwpleaTeacher.Items)
             {
