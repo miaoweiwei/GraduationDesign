@@ -448,46 +448,50 @@
             // 
             // btnDelete2
             // 
+            this.btnDelete2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDelete2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete2.Location = new System.Drawing.Point(20, 60);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(95, 23);
             this.btnDelete2.TabIndex = 135;
             this.btnDelete2.Text = "删除事项";
-            this.btnDelete2.UseVisualStyleBackColor = true;
+            this.btnDelete2.UseVisualStyleBackColor = false;
             this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click);
             // 
             // btnMatter2
             // 
+            this.btnMatter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnMatter2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMatter2.Location = new System.Drawing.Point(20, 20);
             this.btnMatter2.Name = "btnMatter2";
             this.btnMatter2.Size = new System.Drawing.Size(77, 23);
             this.btnMatter2.TabIndex = 133;
             this.btnMatter2.Text = "添加事项";
-            this.btnMatter2.UseVisualStyleBackColor = true;
+            this.btnMatter2.UseVisualStyleBackColor = false;
             this.btnMatter2.Click += new System.EventHandler(this.btnMatter2_Click);
             // 
             // btnCancel2
             // 
+            this.btnCancel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel2.Location = new System.Drawing.Point(20, 136);
             this.btnCancel2.Name = "btnCancel2";
             this.btnCancel2.Size = new System.Drawing.Size(95, 23);
             this.btnCancel2.TabIndex = 132;
             this.btnCancel2.Text = "取消";
-            this.btnCancel2.UseVisualStyleBackColor = true;
+            this.btnCancel2.UseVisualStyleBackColor = false;
             this.btnCancel2.Click += new System.EventHandler(this.btnCancel2_Click);
             // 
             // btnOk2
             // 
+            this.btnOk2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnOk2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk2.Location = new System.Drawing.Point(20, 96);
             this.btnOk2.Name = "btnOk2";
             this.btnOk2.Size = new System.Drawing.Size(77, 23);
             this.btnOk2.TabIndex = 131;
             this.btnOk2.Text = "提交并导出";
-            this.btnOk2.UseVisualStyleBackColor = true;
+            this.btnOk2.UseVisualStyleBackColor = false;
             this.btnOk2.Click += new System.EventHandler(this.btnOk2_Click);
             // 
             // cmbMatter2
@@ -713,46 +717,50 @@
             // 
             // btnDelete3
             // 
+            this.btnDelete3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDelete3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete3.Location = new System.Drawing.Point(19, 61);
             this.btnDelete3.Name = "btnDelete3";
             this.btnDelete3.Size = new System.Drawing.Size(95, 23);
             this.btnDelete3.TabIndex = 136;
             this.btnDelete3.Text = "删除事项";
-            this.btnDelete3.UseVisualStyleBackColor = true;
+            this.btnDelete3.UseVisualStyleBackColor = false;
             this.btnDelete3.Click += new System.EventHandler(this.btnDelete3_Click);
             // 
             // btnMatter3
             // 
+            this.btnMatter3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnMatter3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMatter3.Location = new System.Drawing.Point(19, 21);
             this.btnMatter3.Name = "btnMatter3";
             this.btnMatter3.Size = new System.Drawing.Size(77, 23);
             this.btnMatter3.TabIndex = 133;
             this.btnMatter3.Text = "添加事项";
-            this.btnMatter3.UseVisualStyleBackColor = true;
+            this.btnMatter3.UseVisualStyleBackColor = false;
             this.btnMatter3.Click += new System.EventHandler(this.btnMatter3_Click);
             // 
             // btnCancel3
             // 
+            this.btnCancel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel3.Location = new System.Drawing.Point(19, 137);
             this.btnCancel3.Name = "btnCancel3";
             this.btnCancel3.Size = new System.Drawing.Size(95, 23);
             this.btnCancel3.TabIndex = 132;
             this.btnCancel3.Text = "取消";
-            this.btnCancel3.UseVisualStyleBackColor = true;
+            this.btnCancel3.UseVisualStyleBackColor = false;
             this.btnCancel3.Click += new System.EventHandler(this.btnCancel3_Click);
             // 
             // btnOk3
             // 
+            this.btnOk3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnOk3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk3.Location = new System.Drawing.Point(19, 97);
             this.btnOk3.Name = "btnOk3";
             this.btnOk3.Size = new System.Drawing.Size(77, 23);
             this.btnOk3.TabIndex = 131;
             this.btnOk3.Text = "提交并导出";
-            this.btnOk3.UseVisualStyleBackColor = true;
+            this.btnOk3.UseVisualStyleBackColor = false;
             this.btnOk3.Click += new System.EventHandler(this.btnOk3_Click);
             // 
             // cmbMatter3
