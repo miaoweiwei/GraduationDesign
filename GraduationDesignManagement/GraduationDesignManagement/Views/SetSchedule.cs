@@ -485,57 +485,52 @@ namespace GraduationDesignManagement.Views
         /// <summary> 组织数据 </summary> 
         private object[,] GetObjects()
         {
-            int rowBegin = dgvBegin.Rows.Count;
-            int rowMiddle = dgvMiddle.Rows.Count;
-            int rowEnd = dgvEnd.Rows.Count;
-
-            int max = rowBegin;
-            if (max < rowMiddle)
-                max = rowMiddle;
-            if (max < rowEnd)
-                max = rowEnd;
-
-            object[,] objectArr = new object[max + 2, 9];
-            objectArr[0, 0] = "开题";
-            objectArr[0, 3] = "开题";
-            objectArr[0, 6] = "结题";
-            objectArr[1, 0] = "开始时间";
-            objectArr[1, 1] = "结束时间";
-            objectArr[1, 2] = "事项";
-
-            objectArr[1, 3] = "开始时间";
-            objectArr[1, 4] = "结束时间";
-            objectArr[1, 5] = "事项";
-
-            objectArr[1, 6] = "开始时间";
-            objectArr[1, 7] = "结束时间";
-            objectArr[1, 8] = "事项";
+            object[,] objectArr = new object[dgvBegin.Rows.Count + dgvMiddle.Rows.Count + dgvEnd.Rows.Count + 9, 3];
             try
             {
+                int row = 0;
+                objectArr[row, 0] = "开题日程";
+                objectArr[row + 1, 0] = "开始时间";
+                objectArr[row + 1, 1] = "结束时间";
+                objectArr[row + 1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < dgvBegin.Rows.Count; i++)
                 {
-                    objectArr[i + 2, 0] = dgvBegin.Rows[i].Cells[0].Value.ToString();
-                    objectArr[i + 2, 1] = dgvBegin.Rows[i].Cells[1].Value.ToString();
-                    objectArr[i + 2, 2] = dgvBegin.Rows[i].Cells[2].Value.ToString();
+                    objectArr[row + i, 0] = dgvBegin.Rows[i].Cells[0].Value.ToString();
+                    objectArr[row + i, 1] = dgvBegin.Rows[i].Cells[1].Value.ToString();
+                    objectArr[row + i, 2] = dgvBegin.Rows[i].Cells[2].Value.ToString();
                 }
+                row = row + dgvBegin.Rows.Count + 1;
+
+                objectArr[row, 0] = "中期日程";
+                objectArr[row + 1, 0] = "开始时间";
+                objectArr[row + 1, 1] = "结束时间";
+                objectArr[row + 1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < dgvMiddle.Rows.Count; i++)
                 {
-                    objectArr[i + 2, 3] = dgvMiddle.Rows[i].Cells[0].Value.ToString();
-                    objectArr[i + 2, 4] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
-                    objectArr[i + 2, 5] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
+                    objectArr[row + i, 0] = dgvMiddle.Rows[i].Cells[0].Value.ToString();
+                    objectArr[row + i, 1] = dgvMiddle.Rows[i].Cells[1].Value.ToString();
+                    objectArr[row + i, 2] = dgvMiddle.Rows[i].Cells[2].Value.ToString();
                 }
+                row = row + dgvMiddle.Rows.Count + 1;
+
+                objectArr[row, 0] = "结题日程";
+                objectArr[row + 1, 0] = "开始时间";
+                objectArr[row + 1, 1] = "结束时间";
+                objectArr[row + 1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < dgvEnd.Rows.Count; i++)
                 {
-                    objectArr[i + 2, 6] = dgvEnd.Rows[i].Cells[0].Value.ToString();
-                    objectArr[i + 2, 7] = dgvEnd.Rows[i].Cells[1].Value.ToString();
-                    objectArr[i + 2, 8] = dgvEnd.Rows[i].Cells[2].Value.ToString();
+                    objectArr[row + i, 0] = dgvEnd.Rows[i].Cells[0].Value.ToString();
+                    objectArr[row + i, 1] = dgvEnd.Rows[i].Cells[1].Value.ToString();
+                    objectArr[row + i, 2] = dgvEnd.Rows[i].Cells[2].Value.ToString();
                 }
             }
             catch (Exception exception)
             {
-                LogUtil.Error("日程设定 组织数据出错->"+exception);
+                LogUtil.Error("日程设定 组织数据出错->" + exception);
             }
-
             return objectArr;
         }
         

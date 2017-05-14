@@ -573,61 +573,62 @@ namespace GraduationDesignManagement
         /// <summary> 导出毕设日程 </summary>
         private void ScheduleExportToExcel()
         {
-            DataQuery dataQuery = DataQuery.Instance;
-            DataTable dataTable = dataQuery.GetScheduleDataTable();
-
-            List<Schedule> schedules = dataQuery.DataTableToList<Schedule>(dataTable);
-            
-            List<Schedule> beginList = schedules.Where(s => s.DateType == "BeginReply").ToList();
-            List<Schedule> middleList = schedules.Where(s => s.DateType == "MiddleReply").ToList();
-            List<Schedule> endList = schedules.Where(s => s.DateType == "EndReply").ToList();
-
-            int max = beginList.Count;
-            if (max < middleList.Count)
-                max = middleList.Count;
-            if (max < endList.Count)
-                max = endList.Count;
-
-            object[,] objectArr = new object[max + 2, 9];
-            objectArr[0, 0] = "开题";
-            objectArr[0, 3] = "开题";
-            objectArr[0, 6] = "结题";
-            objectArr[1, 0] = "开始时间";
-            objectArr[1, 1] = "结束时间";
-            objectArr[1, 2] = "事项";
-
-            objectArr[1, 3] = "开始时间";
-            objectArr[1, 4] = "结束时间";
-            objectArr[1, 5] = "事项";
-
-            objectArr[1, 6] = "开始时间";
-            objectArr[1, 7] = "结束时间";
-            objectArr[1, 8] = "事项";
             try
             {
+                DataQuery dataQuery = DataQuery.Instance;
+                DataTable dataTable = dataQuery.GetScheduleDataTable();
+
+                List<Schedule> schedules = dataQuery.DataTableToList<Schedule>(dataTable);
+            
+                List<Schedule> beginList = schedules.Where(s => s.DateType == "BeginReply").ToList();
+                List<Schedule> middleList = schedules.Where(s => s.DateType == "MiddleReply").ToList();
+                List<Schedule> endList = schedules.Where(s => s.DateType == "EndReply").ToList();
+
+                object[,] objectArr = new object[beginList.Count + middleList .Count+ endList .Count+ 9, 3];
+
+                int row = 0;
+                objectArr[row, 0] = "开题日程";
+                objectArr[row+1, 0] = "开始时间";
+                objectArr[row+1, 1] = "结束时间";
+                objectArr[row+1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < beginList.Count; i++)
                 {
-                    objectArr[i + 2, 0] = beginList[i].BeginDate;
-                    objectArr[i + 2, 1] = beginList[i].EndDate;
-                    objectArr[i + 2, 2] = beginList[i].Matter;
+                    objectArr[row + i, 0] = beginList[i].BeginDate;
+                    objectArr[row + i, 1] = beginList[i].EndDate;
+                    objectArr[row + i, 2] = beginList[i].Matter;
                 }
+                row = row + beginList.Count+1;
+
+                objectArr[row, 0] = "中期日程";
+                objectArr[row+1, 0] = "开始时间";
+                objectArr[row+1, 1] = "结束时间";
+                objectArr[row+1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < middleList.Count; i++)
                 {
-                    objectArr[i + 2, 3] = middleList[i].BeginDate;
-                    objectArr[i + 2, 4] = middleList[i].EndDate;
-                    objectArr[i + 2, 5] = middleList[i].Matter;
+                    objectArr[row + i, 0] = middleList[i].BeginDate;
+                    objectArr[row + i, 1] = middleList[i].EndDate;
+                    objectArr[row + i, 2] = middleList[i].Matter;
                 }
+                row = row + middleList.Count + 1;
+
+                objectArr[row, 0] = "结题日程";
+                objectArr[row + 1, 0] = "开始时间";
+                objectArr[row + 1, 1] = "结束时间";
+                objectArr[row + 1, 2] = "事项";
+                row = row + 2;
                 for (int i = 0; i < endList.Count; i++)
                 {
-                    objectArr[i + 2, 6] = endList[i].BeginDate;
-                    objectArr[i + 2, 7] = endList[i].EndDate;
-                    objectArr[i + 2, 8] = endList[i].Matter;
+                    objectArr[row + i, 0] = endList[i].BeginDate;
+                    objectArr[row + i, 1] = endList[i].EndDate;
+                    objectArr[row + i, 2] = endList[i].Matter;
                 }
                 ExcelHelper.ExportToExcel(objectArr);
             }
             catch (Exception exception)
             {
-                LogUtil.Error("日程设定 组织数据出错->" + exception);
+                LogUtil.Error("日程获取 组织数据出错->" + exception);
             }
         }
 
