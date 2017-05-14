@@ -19,19 +19,27 @@
 
   <Image Name="logout" Path=".\Resources\logout.png" Pack="true"/>
   <Image Name="login" Path=".\Resources\login.png" Pack="true"/>
-  <Image Name="恢复数据" Path=".\Resources\恢复数据.png" Pack="true"/>
-  <Image Name="refresh_stop" Path=".\Resources\refresh_stop.png" Pack="true"/>
-  <Image Name="quotereal" Path=".\Resources\quotereal.png" Pack="true"/>
-  <Image Name="trade" Path=".\Resources\trade.png" Pack="true"/>
-  <Image Name="IAS" Path=".\Resources\IAS.png" Pack="true"/>
-  <Image Name="实时持仓" Path=".\Resources\实时持仓.png" Pack="true"/>
-  <Image Name="hismarket" Path=".\Resources\hismarket.png" Pack="true"/>
-  <Image Name="histrade" Path=".\Resources\histrade.png" Pack="true"/>
-  <Image Name="基差" Path=".\Resources\基差.png" Pack="true"/>
-  <Image Name="价差" Path=".\Resources\价差.png" Pack="true"/>
-  <Image Name="about" Path=".\Resources\about.png" Pack="true"/>
-  <Image Name="func" Path=".\Resources\自定义函数.png" Pack="true"/>
+  <Image Name="schedule" Path=".\Resources\Schedule.png" Pack="true"/>
+  <Image Name="setschedule" Path=".\Resources\setschedule.png" Pack="true"/>
+  <Image Name="chooseTearch" Path=".\Resources\chooseTearch.png" Pack="true"/>
+  <Image Name="choosestudent" Path=".\Resources\student.png" Pack="true"/>
+  <Image Name="replyGroup" Path=".\Resources\replyGroup.png" Pack="true"/>
+  <Image Name="filebox" Path=".\Resources\filebox.png" Pack="true"/>
+  
+  
+  <Image Name="getschedule" Path=".\Resources\getschedule.png" Pack="true"/>
+  <Image Name="project" Path=".\Resources\project.png" Pack="true"/>
+  <Image Name="mystudent" Path=".\Resources\mystudent.png" Pack="true"/>
+  <Image Name="reply" Path=".\Resources\reply.png" Pack="true"/>
+  <Image Name="score" Path=".\Resources\score.png" Pack="true"/>
+  
+  
+  <Image Name="openfile" Path=".\Resources\openfile.png" Pack="true"/>
+  <Image Name="fixproject" Path=".\Resources\fixproject.png" Pack="true"/>
 
+  <Image Name="snake" Path=".\Resources\snake.png" Pack="true"/>
+  <Image Name="about" Path=".\Resources\about.png" Pack="true"/>
+  
   <CustomUI>
     <customUI onLoad="RibbonMenu_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui" loadImage="LoadImage">
       <ribbon>
@@ -41,43 +49,41 @@
             <group id="grpLogin" label="登录">
               <button id="btnLogin" onAction="btnLogin_Click" size="large" getLabel="GetLoginLabel" getImage="GetLoginImage"/>
             </group>
-            
+           
             <!--毕设系统-->
             <group id="groupSystemManage" label="毕设系统管理" getVisible="GetControlsVisible">
-              <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" getEnabled="GetControlsVisible"/>
-              <button id ="btnCandidateMentor" onAction="btnCandidateMentor_Click" size="large" label="选择毕设候选导师" getEnabled="GetControlsVisible"/>
-              <button id ="btnCandidateStudent" onAction="btnCandidateStudent_Click" size="large" label="选择毕设候选学生" getEnabled="GetControlsVisible"/>
-              <button id="btnUpDateFile" onAction="btnUpDateFile_Click" size="large" label="资料管理"/>
+              <button id ="btnShcedule" onAction="btnShcedule_Click" size="large" label ="毕设日程设定" image="setschedule" getEnabled="GetControlsVisible"/>
+              <button id ="btnCandidateMentor" onAction="btnCandidateMentor_Click" size="large" label="选择毕设候选导师" image="chooseTearch" getEnabled="GetControlsVisible"/>
+              <button id ="btnCandidateStudent" onAction="btnCandidateStudent_Click" size="large" label="选择毕设候选学生" image="choosestudent" getEnabled="GetControlsVisible"/>
+              <button id="btnUpDateFile" onAction="btnUpDateFile_Click" size="large" label="资料管理" image="filebox"/>
+              <button id="btnReplyTeacher" onAction="btnReplyTeacher_Click" size="large" label="答辩分组" image="replyGroup"/>
             </group>
             
-            <group id="groupManagement" label="毕设管理" getVisible="GetControlsVisible">
-              <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程"/>
-              <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" />
-              <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生"/>
-              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理"/>
+            <group id="groupManagement" label="导师毕设管理" getVisible="GetControlsVisible">
+              <button id="btnTeacherGetPlan" onAction="btnTeacherGetPlan_Click" size="large" label="获取毕设日程" image="getschedule"/>
+              <button id="btnAddProject" onAction="btnAddProject_Click" size="large" label="修改毕设项目" image="project"/>
+              <button id="btnSelectStudent" onAction="btnSelectStudent_Click" size="large" label="我的毕业生" image="mystudent"/>
+              <button id="btnAccessMaterials" onAction="btnAccessMaterials_Click" size="large" label="资料管理" image="filebox"  getVisible="GetControlsVisible"/>
+              <button id="btnTeacherReply" onAction="btnTeacherReply_Click" size="large" label="我的答辩" image="reply"/>
+           
             </group>
             
             <group id="groupStudent" label="我的毕业设计" getVisible="GetControlsVisible">
-              <button id="btnStudentGetPlan" onAction="btnStudentGetPlan_Click" size="large" label="获取毕设日程"/>
-              <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="我的毕设项目"/>
-              <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取"/>
-            </group>
-            
-            <group id="groupPlan" label="毕设计划">
-              <button id="btnBeginReply" onAction="btnBeginReply_Click" size="large" label="开题" getEnabled="GetControlsVisible"/>
-              <button id="btnMiddleReply" onAction="btnMiddleReply_Click" size="large" label="中期" getEnabled="GetControlsVisible"/>
-              <button id="btnEndReply" onAction="btnEndReply_Click" size="large" label="结题" getEnabled="GetControlsVisible"/>
+              <button id="btnStudentGetPlan" onAction="btnStudentGetPlan_Click" size="large" label="获取毕设日程" image="getschedule"/>
+              <button id="btnSelectProject" onAction="btnSelectProject_Click" size="large" label="我的毕设项目" image="fixproject"/>
+              <button id="btnGetData" onAction="btnGetData_Click" size="large" label="资料获取" image="openfile"/>
+              <button id="btnStudentReply" onAction="btnStudentReply_Click" size="large" label="我的答辩" image="reply"/>
             </group>
             
             <!--毕设成绩分析-->
-            <group id="groupAnalysis" label="毕设成绩分析">
-              <button id="btnScorestSort" onAction="btnScorestSort_Click" size="large" label="成绩排名" getEnabled="GetControlsVisible"/>
-              <button id="btnScorestChart" onAction="btnScorestChart_Click" size="large" label="图表"  getEnabled="GetControlsVisible"/>
+            <group id="groupAnalysis" label="毕设成绩">
+              <button id="btnScorestSort" onAction="btnScorestSort_Click" size="large" label="毕设成绩" image="score" getVisible="GetControlsVisible"/>
+              <button id="btnScorestChart" onAction="btnScorestChart_Click" size="large" label="毕设成绩" image="score" getVisible="GetControlsVisible"/>
             </group>
             
             <!--娱乐-->
             <group id="idGame" label="娱乐">
-              <button id="btnSnake" onAction="btnSnake_Click" size="large" image="func" label="贪吃蛇"/>
+              <button id="btnSnake" onAction="btnSnake_Click" size="large" image="snake" label="贪吃蛇"/>
             </group>
             <group id="aboutGraduationDesign" label="关于">
               <button id="btnVerInfo" onAction="btnVerInfo_Click" label="版本&#13;和支持" size="large" image="about"/>

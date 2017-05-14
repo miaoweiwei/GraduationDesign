@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="毕业设计信息管理系统" Language="2052" Codepage="936" Version="1.0.0" Manufacturer="MiaoWeiWei" UpgradeCode="9823c1c7-c057-4740-b50e-0de583c32f16">
+  <Product Id="*" Name="毕业设计信息管理系统" Language="2052" Codepage="936" Version="1.1.1" Manufacturer="MiaoWeiWei" UpgradeCode="9823c1c7-c057-4740-b50e-0de583c32f16">
 
     <!--<WixLocalization Codepage="utf-8" Culture="fr-ca" xmlns="http://schemas.microsoft.com/wix/2006/localization"></WixLocalization>-->
     <!--需要管理员注册的时候Package中 InstallPrivileges="elevated" -->
@@ -121,19 +121,22 @@
   <Fragment>
     <ComponentGroup Id="x86_ProductComponents" >
       <Component Id="x86_AddFiles" Directory="ADDINFOLDER" Guid="{5372D475-88B2-46F0-BA3B-16DE7F89022C}">
-        <!--x86 AddIn文件 9 项-->
+        <!--x86 AddIn文件 12 项-->
         <Condition>OFFICEBITNESS="x86"</Condition>
 
         <File Id ="x86_GraduationDesignManagement.dll" Source="x86\GraduationDesignManagement.dll"/>
         <File Id ="x86_GraduationDesignManagement.dll.config" Source="x86\GraduationDesignManagement.dll.config"/>
+        <File Id ="x86_GraduationDesignManagement.pdb" Source="x86\GraduationDesignManagement.pdb"/>
         <File Id ="x86_GraduationDesignManagement_AddIn.dna" Source="x86\GraduationDesignManagement-AddIn.dna"/>
         <File Id ="x86_GraduationDesignManagement_AddIn.xll" Source="x86\GraduationDesignManagement-AddIn.xll"/>
         <File Id ="x86_GraduationDesignManagement_AddIn_packed.xll" Source="x86\GraduationDesignManagement-AddIn-packed.xll"/>
+        
         <File Id ="x86_ICSharpCode.SharpZipLib.dll" Source="x86\ICSharpCode.SharpZipLib.dll"/>
         <File Id ="x86_log4net.dll" Source="x86\log4net.dll"/> 
+        <File Id ="x86_log4net.xml" Source="x86\log4net.xml"/> 
         <File Id ="x86_MySql.Data.dll" Source="x86\MySql.Data.dll"/>
         <File Id ="x86_Newtonsoft.Json.dll" Source="x86\Newtonsoft.Json.dll"/>
-
+        <File Id ="x86_Newtonsoft.Json.xml" Source="x86\Newtonsoft.Json.xml"/>
       </Component>
     </ComponentGroup>
   </Fragment>
@@ -142,20 +145,20 @@
   <Fragment>
     <ComponentGroup Id="x64_ProductComponents" >
       <Component Id="x64_AddFiles" Directory="ADDINFOLDER" Guid="{A4889405-39BE-42DC-BAA0-DCCBFA57A73A}">
-        <!--x64 AddIn文件 9 项-->
+        <!--x64 AddIn文件 12 项-->
         <Condition>OFFICEBITNESS="x64"</Condition>
         <File Id ="x64_GraduationDesignManagement.dll" Source="x64\GraduationDesignManagement.dll"/>
         <File Id ="x64_GraduationDesignManagement.dll.config" Source="x64\GraduationDesignManagement.dll.config"/>
-        <!--新增文件-->
+        <File Id ="x64_GraduationDesignManagement.pdb" Source="x64\GraduationDesignManagement.pdb"/>
         <File Id ="x64_GraduationDesignManagement_AddIn64.dna" Source="x64\GraduationDesignManagement-AddIn64.dna"/>
         <File Id ="x64_GraduationDesignManagement_AddIn64.xll" Source="x64\GraduationDesignManagement-AddIn64.xll"/>
         <File Id ="x64_GraduationDesignManagement_AddIn64_packed.xll" Source="x64\GraduationDesignManagement-AddIn64-packed.xll"/>
-        <!--新增文件-->
         <File Id ="x64_ICSharpCode.SharpZipLib.dll" Source="x64\ICSharpCode.SharpZipLib.dll"/>
-        <!--新增文件-->
         <File Id ="x64_log4net.dll" Source="x64\log4net.dll"/>
+        <File Id ="x64_log4net.xml" Source="x64\log4net.xml"/>
         <File Id ="x64_MySql.Data.dll" Source="x64\MySql.Data.dll"/>
         <File Id ="x64_Newtonsoft.Json.dll" Source="x64\Newtonsoft.Json.dll"/>
+        <File Id ="x64_Newtonsoft.Json.xml" Source="x64\Newtonsoft.Json.xml"/>
       </Component>
     </ComponentGroup>
   </Fragment>
@@ -164,12 +167,23 @@
   <Fragment>
     <ComponentGroup Id="Pics_ProductComponents" >
       <Component Id="Pics" Directory="Resources" Guid="{9B36A3D5-9857-4AF5-8189-B00B4DD8E88F}" >
-        <!--图片资源 26项-->
+        <!--图片资源 16项-->
         <File Id ="about.png" Source="x86\Resources\about.png"/>
+        <File Id ="chooseTearch.png" Source="x86\Resources\chooseTearch.png"/>
+        <File Id ="filebox.png" Source="x86\Resources\filebox.png"/>
+        <File Id ="fixproject.png" Source="x86\Resources\fixproject.png"/>
+        <File Id ="getschedule.png" Source="x86\Resources\getschedule.png"/>
         <File Id ="login.png" Source="x86\Resources\login.png" />
         <File Id ="logout.png" Source="x86\Resources\logout.png" />
-        <!--<File Id ="func.png" Source="x86\Resources\自定义函数.png" />-->
-
+        <File Id ="mystudent.png" Source="x86\Resources\mystudent.png" />
+        <File Id ="openfile.png" Source="x86\Resources\openfile.png"/>
+        <File Id ="project.png" Source="x86\Resources\project.png"/>
+        <File Id ="reply.png" Source="x86\Resources\reply.png"/>
+        <File Id ="replyGroup.png" Source="x86\Resources\replyGroup.png"/>
+        <File Id ="score.png" Source="x86\Resources\score.png"/>
+        <File Id ="setschedule.png" Source="x86\Resources\setschedule.png"/>
+        <File Id ="snake.png" Source="x86\Resources\snake.png"/>
+        <File Id ="student.png" Source="x86\Resources\student.png"/>
       </Component>
     </ComponentGroup>
   </Fragment>
