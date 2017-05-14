@@ -73,9 +73,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap hismarket {
+        internal static System.Drawing.Bitmap chooseTearch {
             get {
-                object obj = ResourceManager.GetObject("hismarket", resourceCulture);
+                object obj = ResourceManager.GetObject("chooseTearch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap histrade {
+        internal static System.Drawing.Bitmap filebox {
             get {
-                object obj = ResourceManager.GetObject("histrade", resourceCulture);
+                object obj = ResourceManager.GetObject("filebox", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,19 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap IAS {
+        internal static System.Drawing.Bitmap fixproject {
             get {
-                object obj = ResourceManager.GetObject("IAS", resourceCulture);
+                object obj = ResourceManager.GetObject("fixproject", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap getschedule {
+            get {
+                object obj = ResourceManager.GetObject("getschedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +133,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap quotereal {
+        internal static System.Drawing.Bitmap mystudent {
             get {
-                object obj = ResourceManager.GetObject("quotereal", resourceCulture);
+                object obj = ResourceManager.GetObject("mystudent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +143,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap refresh {
+        internal static System.Drawing.Bitmap openfile {
             get {
-                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                object obj = ResourceManager.GetObject("openfile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +153,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_stop {
+        internal static System.Drawing.Bitmap project {
             get {
-                object obj = ResourceManager.GetObject("refresh_stop", resourceCulture);
+                object obj = ResourceManager.GetObject("project", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +163,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap trade {
+        internal static System.Drawing.Bitmap reply {
             get {
-                object obj = ResourceManager.GetObject("trade", resourceCulture);
+                object obj = ResourceManager.GetObject("reply", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +173,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 价差 {
+        internal static System.Drawing.Bitmap replyGroup {
             get {
-                object obj = ResourceManager.GetObject("价差", resourceCulture);
+                object obj = ResourceManager.GetObject("replyGroup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +183,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 基差 {
+        internal static System.Drawing.Bitmap score {
             get {
-                object obj = ResourceManager.GetObject("基差", resourceCulture);
+                object obj = ResourceManager.GetObject("score", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +193,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 实时持仓 {
+        internal static System.Drawing.Bitmap setschedule {
             get {
-                object obj = ResourceManager.GetObject("实时持仓", resourceCulture);
+                object obj = ResourceManager.GetObject("setschedule", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +203,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 恢复数据 {
+        internal static System.Drawing.Bitmap snake {
             get {
-                object obj = ResourceManager.GetObject("恢复数据", resourceCulture);
+                object obj = ResourceManager.GetObject("snake", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +213,9 @@ namespace GraduationDesignManagement.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap 自定义函数 {
+        internal static System.Drawing.Bitmap student {
             get {
-                object obj = ResourceManager.GetObject("自定义函数", resourceCulture);
+                object obj = ResourceManager.GetObject("student", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
