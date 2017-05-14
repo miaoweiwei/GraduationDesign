@@ -617,7 +617,7 @@ namespace GraduationDesignManagement
                     objectArr[i + 2, 4] = middleList[i].EndDate;
                     objectArr[i + 2, 5] = middleList[i].Matter;
                 }
-                for (int i = 0; i < beginList.Count; i++)
+                for (int i = 0; i < endList.Count; i++)
                 {
                     objectArr[i + 2, 6] = endList[i].BeginDate;
                     objectArr[i + 2, 7] = endList[i].EndDate;
